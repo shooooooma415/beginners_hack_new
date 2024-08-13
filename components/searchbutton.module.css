@@ -1,0 +1,21 @@
+.controls{
+    width: 30%;
+    height: 8.5%;
+    top: 50px;
+    background-color: white;
+    font-size: 2rem; 
+}
+
+/* searchbutton.module.css */
+
+.searchBoxWrapper {
+    position: fixed; /* または relative など、必要に応じて変更 */
+    top: 10px; /* 上からの距離 */
+    left: 10px; /* 左からの距離 */
+    
+  }
+  
+  .controls {
+    width: 200px; /* 必要に応じて調整 */
+  }
+  

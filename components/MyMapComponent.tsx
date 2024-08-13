@@ -3,6 +3,7 @@ import React, { useRef, useEffect, useState } from "react";
 import setCurrentLocationMarker from "@/components/setCurrentLocationMarker";
 import createInfoWindowContent from "@/components/createInfoWindowContent";
 import CurrentLocationButton from "@/components/currentLocation";
+import styles from './searchbutton.module.css'
 
 const MyMapComponent: React.FC = () => {
   const mapRef = useRef<HTMLDivElement>(null);
@@ -131,7 +132,7 @@ const MyMapComponent: React.FC = () => {
 
   return (
     <div>
-      <input id="pac-input" className="controls" type="text" placeholder="Search Box" />
+      <input id="pac-input" className={styles.controls} type="text" placeholder="Search" />
       <div ref={mapRef} className="min-h-screen w-screen" />
       <CurrentLocationButton map={map} currentLocation={currentLocation} />
     </div>
