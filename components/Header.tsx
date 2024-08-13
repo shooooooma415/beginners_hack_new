@@ -36,7 +36,7 @@ export default function Header() {
     <header className="p-4 border-b-2 border-gray-300 w-full bg-white">
       <ul className="w-full max-w-3xl m-auto flex font-medium flex-row">
         <li className=' pr-4'>
-          <Link className="text-gray-700 hover:text-blue-700" href="/">
+          <Link className="text-gray-700 hover:text-blue-700" href="/home">
             <Image
               src="/imagefile/MyMapIcon.png"
               width={50}
@@ -48,12 +48,12 @@ export default function Header() {
         </li>
         <li>
           <Link className="text-gray-700 hover:text-blue-700" href="/private">
-            （プライベート）
+            マイページ
           </Link>
         </li>
         <li>
-          <Link className="text-gray-700 hover:text-blue-700" href="/home">
-            shoma
+          <Link className="text-gray-700 hover:text-blue-700" href="/">
+            投稿
           </Link>
         </li>
         <li>
