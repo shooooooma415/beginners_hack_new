@@ -17,7 +17,7 @@ export default function Header() {
           <Link className="text-gray-700 hover:text-blue-700" href="/private">（プライベート）</Link>
         </li>
         <li>
-            <Link className="text-gray-700 hover:text-blue-700" href="/home">Home</Link>
+          <Link className="text-gray-700 hover:text-blue-700" href="/home">shoma</Link>
         </li>
       </ul>
     </header>
