@@ -6,8 +6,7 @@ import Link from 'next/link';
 import Button from '@mui/material/Button'; // Import Button from Material-UI
 import Drawer from '@mui/material/Drawer'; // Import Drawer from Material-UI
 import Box from '@mui/material/Box'; // Import Box from Material-UI
-import SwipeableTemporaryDrawer from "@/components/TopDrawer";
-
+import { FooterIcons } from "@/components/footericon";
 export default function Header() {
   const [open, setOpen] = useState(false);
 
@@ -33,10 +32,16 @@ export default function Header() {
   );
 
   return (
-    <header className="p-4 border-b-2 border-gray-300 w-full bg-gray-500 ">
+    <header className="relative bottom-0 p-4 border-b-2 border-gray-300 w-full bg-gray-500 flex justify-center items-center"
+    style={{ height: '60px', paddingTop: '60px', paddingBottom: '0px', marginTop: '-60px', marginBottom: '0px' }}>
+  
       <ul className="w-full max-w-3xl m-auto flex font-medium flex-row">
         <li className=' pr-4'>
-          <Link className="text-gray-700 hover:text-blue-700" href="/home">
+        <Link
+          className="absolute left-1 bottom-1 z-10"
+          href="/home"
+          style={{ width: '50px', height: '50px' }}
+        >
             <Image
               src="/imagefile/MyMapIcon.png"
               width={50}
@@ -46,8 +51,13 @@ export default function Header() {
             />
           </Link>
         </li>
-        <li>
-          <SwipeableTemporaryDrawer />
+          {/* <li className="absolute justify-center items-center text-black"
+            style={{ width: '50px', height: '50px' }}>
+            <FooterIcons text="New Post" />
+          </li> */}
+        <li className="absolute right-1 bottom-1 z-10 text-black"
+          style={{ width: '50px', height: '50px', paddingRight: '-25px' }}>
+          <FooterIcons text ="My Posts" /> 
         </li>
       </ul>
     </header>
