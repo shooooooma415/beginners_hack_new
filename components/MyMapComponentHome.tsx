@@ -23,6 +23,9 @@ const MyMapComponentHome: React.FC = () => {
           const newMap = new google.maps.Map(mapRef.current!, {
             center: location,
             zoom: 13,
+            zoomControl: false,
+            fullscreenControl: false,
+            streetViewControl: false,
             mapTypeId: "roadmap",
           });
           setMap(newMap);
