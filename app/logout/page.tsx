@@ -16,6 +16,10 @@ export default function LogoutCheck() {
         router.push('/');
     };
 
+    const backLogout = () => {
+        router.push('/home');
+    }
+
     return (
         <>
             <h1 className="mb-4 pt-28 text-4xl">本当にログアウトしますか？</h1>
@@ -26,7 +30,12 @@ export default function LogoutCheck() {
             >
                 Yes
             </Button>
-            <Button variant="outlined">Back</Button>
+            <Button 
+                variant="outlined"
+                onClick={backLogout}
+                >
+                Back
+            </Button>
         </>
     );
 }
