@@ -18,11 +18,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className="bg-background text-foreground">
-      <Header></Header>
-        <main className="min-h-screen flex flex-col items-center px-2">
-          {children}
-        </main>
+      <body className="bg-background text-foreground min-h-screen w-screen">
+        <div className="flex flex-col">
+          <div><Header/></div>
+          <div>
+            <main className="flex flex-col items-center">
+              {children}
+            </main>
+          </div>
+        </div>
+      
+        
       </body>
     </html>
   );

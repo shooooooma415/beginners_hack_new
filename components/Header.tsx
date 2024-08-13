@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Button from '@mui/material/Button'; // Import Button from Material-UI
 import Drawer from '@mui/material/Drawer'; // Import Drawer from Material-UI
 import Box from '@mui/material/Box'; // Import Box from Material-UI
-import SwipeableTemporaryDrawer from  "@/components/TopDrawer";
+import SwipeableTemporaryDrawer from "@/components/TopDrawer";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -37,12 +37,12 @@ export default function Header() {
       <ul className="w-full max-w-3xl m-auto flex font-medium flex-row">
         <li className=' pr-4'>
           <Link className="text-gray-700 hover:text-blue-700" href="/">
-            <Image 
-                src="/imagefile/MyMapIcon.png" 
-                width={50} 
-                height={50} 
-                objectFit="contain" 
-                alt="My Map Icon"
+            <Image
+              src="/imagefile/MyMapIcon.png"
+              width={50}
+              height={50}
+              style={{ objectFit: 'contain' }}
+              alt="My Map Icon"
             />
           </Link>
         </li>
@@ -57,7 +57,7 @@ export default function Header() {
           </Link>
         </li>
         <li>
-            <SwipeableTemporaryDrawer />
+          <SwipeableTemporaryDrawer />
         </li>
       </ul>
     </header>
