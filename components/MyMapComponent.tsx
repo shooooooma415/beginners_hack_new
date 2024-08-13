@@ -108,7 +108,8 @@ const MyMapComponent: React.FC = () => {
 
               newMarker.addListener("click", () => {
                 infoWindow.open(newMap, newMarker);
-                // window.location.href = "https://www.hinatazaka46.com/s/official/artist/24?ima=0000";
+                // URLにリダイレクト
+                window.location.href = "./postDetail";
               });
 
               // 緯度と経度を更新
