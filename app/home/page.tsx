@@ -3,6 +3,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import setCurrentLocationMarker from "@/components/setCurrentLocationMarker";
 import createInfoWindowContent from "@/components/createInfoWindowContent";
+import CurrentLocationButton from "@/components/currentLocation";
 
 const render = (status: Status) => {
   if (status === Status.LOADING) return <div>Loading...</div>;
@@ -33,7 +34,7 @@ const MyMapComponent: React.FC = () => {
           setMap(newMap);
 
           if (location) {
-            setCurrentLocationMarker(newMap, location); // Ensure newMap is defined here
+            setCurrentLocationMarker(newMap, location);
           }
 
           const input = document.getElementById("pac-input") as HTMLInputElement;
@@ -113,17 +114,6 @@ const MyMapComponent: React.FC = () => {
               });
             }
           });
-
-          const button = document.getElementById("current-location-button");
-          if (button) {
-            button.addEventListener("click", () => {
-              if (currentLocation) {
-                newMap.setCenter(currentLocation);
-              } else {
-                console.error("Current location is not set.");
-              }
-            });
-          }
         },
         (error) => {
           console.error("Error retrieving location: ", error);
@@ -146,12 +136,10 @@ const MyMapComponent: React.FC = () => {
     <div>
       <input id="pac-input" className="controls" type="text" placeholder="Search Box" />
       <div ref={mapRef} className="min-h-screen w-screen" />
-      <button id="current-location-button">現在地に移動</button>
+      <CurrentLocationButton map={map} currentLocation={currentLocation} />
     </div>
   );
 };
-
-createInfoWindowContent()
 
 const MapWrapper: React.FC = () => {
   return (
