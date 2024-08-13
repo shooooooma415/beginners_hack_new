@@ -7,7 +7,7 @@ const createInfoWindowContent = () => {
             ここにコメント書く
             </div>
             <div class="custom-info-item google-map">
-            <a href="https://www.hinatazaka46.com/s/official/?ima=0000" target="_blank">日向坂46</a>
+            <a href="https://www.hinatazaka46.com/s/official/?ima=0000" target="_blank">投稿</a>
             </div>
         </div>`;
   };
