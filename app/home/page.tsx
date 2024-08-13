@@ -1,6 +1,9 @@
 'use client';
 import React, { useRef, useEffect, useState } from "react";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
+import setCurrentLocationMarker from "@/components/setCurrentLocationMarker";
+import createInfoWindowContent from "@/components/createInfoWindowContent";
+import CurrentLocationButton from "@/components/currentLocation";
 
 const render = (status: Status) => {
   if (status === Status.LOADING) return <div>Loading...</div>;
@@ -92,7 +95,9 @@ const MyMapComponent: React.FC = () => {
             newMap.fitBounds(bounds);
           });
 
-          newMap.addListener("click", (event:any) => {
+
+          newMap.addListener("click", (event: google.maps.MapMouseEvent) => {
+
             const latLng = event.latLng;
             const confirmPin = window.confirm("ここにピンを指しますか？");
             if (confirmPin) {
@@ -112,16 +117,7 @@ const MyMapComponent: React.FC = () => {
             }
           });
 
-          const button = document.getElementById("current-location-button");
-          if (button) {
-            button.addEventListener("click", () => {
-              if (currentLocation) {
-                newMap.setCenter(currentLocation);
-              } else {
-                console.error("Current location is not set.");
-              }
-            });
-          }
+
         },
         (error) => {
           console.error("Error retrieving location: ", error);
@@ -144,50 +140,13 @@ const MyMapComponent: React.FC = () => {
     <div>
       <input id="pac-input" className="controls" type="text" placeholder="Search Box" />
       <div ref={mapRef} className="min-h-screen w-screen" />
-      <button id="current-location-button">現在地に移動</button>
+
+      <CurrentLocationButton map={map} currentLocation={currentLocation} />
+
     </div>
   );
 };
 
-function setCurrentLocationMarker(map: google.maps.Map, position: google.maps.LatLngLiteral) {
-  new google.maps.Circle({
-    strokeColor: "#115EC3",
-    strokeOpacity: 0.2,
-    strokeWeight: 1,
-    fillColor: "#115EC3",
-    fillOpacity: 0.2,
-    map,
-    center: position,
-    radius: 100,
-  });
-
-  new google.maps.Marker({
-    position,
-    map,
-    icon: {
-      path: google.maps.SymbolPath.CIRCLE,
-      fillColor: "#115EC3",
-      fillOpacity: 1,
-      strokeColor: "white",
-      strokeWeight: 2,
-      scale: 7,
-    },
-  });
-}
-
-function createInfoWindowContent() {
-  return `<div class="custom-info">
-        <div class="custom-info-item name">
-        Tips
-        </div>
-        <div class="custom-info-item address">
-        ここにコメント書く
-        </div>
-        <div class="custom-info-item google-map">
-        <a href="https://www.hinatazaka46.com/s/official/?ima=0000" target="_blank">日向坂46</a>
-        </div>
-    </div>`;
-}
 
 const MapWrapper: React.FC = () => {
   return (
@@ -201,4 +160,6 @@ const MapWrapper: React.FC = () => {
   );
 };
 
+
 export default MapWrapper;
+
