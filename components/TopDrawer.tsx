@@ -69,6 +69,17 @@ export default function SwipeableTemporaryDrawer() {
                     </ListItemButton>
                     </Link>
                 );
+            case 'Posts':
+                return (
+                    <Link href={"/post"}>
+                    <ListItemButton>
+                        <ListItemIcon>
+                            <TbMapPinPlus />
+                        </ListItemIcon>
+                        <ListItemText primary={text} />
+                    </ListItemButton>
+                    </Link>
+                );
             default:
                 return null;
         }
@@ -82,7 +93,7 @@ export default function SwipeableTemporaryDrawer() {
             onKeyDown={toggleDrawer(false)}
         >
             <List>
-                {['My Map', 'My Posts', 'New Post'].map((text) => (
+                {['My Map', 'My Posts', 'New Post','Posts'].map((text) => (
                     <ListItem key={text} disablePadding>
                         {getIcon(text)}
                     </ListItem>

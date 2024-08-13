@@ -1,0 +1,29 @@
+'use client';
+import React, { useRef, useEffect, useState } from "react";
+import { Wrapper, Status } from "@googlemaps/react-wrapper";
+import { MyMapComponent } from "@/components/MyMapComponent";
+
+const render = (status: Status) => {
+  if (status === Status.LOADING) return <div>Loading...</div>;
+  if (status === Status.FAILURE) return <div>Error loading map</div>;
+  return null;
+};
+
+<MyMapComponent />
+
+
+const MapWrapper: React.FC = () => {
+  return (
+    <Wrapper
+      apiKey="AIzaSyBXGiM07CN4VN57L3QmdNVc4FTbJ_kKdbI"
+      render={render}
+      libraries={["places"]}
+    >
+      <MyMapComponent />
+    </Wrapper>
+  );
+};
+
+
+export default MapWrapper;
+
