@@ -10,6 +10,7 @@ interface Comment {
 export default function PrivateImageApp() {
   const public_url = "https://spzlpfucuqkpjlucnnfh.supabase.co/storage/v1/object/public/public-image-bucket/img/";
 
+  const [eventDate, setEventDate] = useState<string>("");
   const [urlList, setUrlList] = useState<string[]>([]);
   const [loadingState, setLoadingState] = useState("hidden");
   const [comments, setComments] = useState<{ [key: string]: Comment[] }>({});
