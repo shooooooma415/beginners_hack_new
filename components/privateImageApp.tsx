@@ -84,7 +84,8 @@ export default function PrivateImageApp() {
                 <li key={index} className="text-sm text-gray-600">
                   {commentData.comment}
                   <span className="text-xs text-gray-400 ml-2">
-                    {new Date(commentData.created_at).toLocaleString()}
+                    {/* {new Date(commentData.created_at).toLocaleString()} */}
+                    <li> 日付:{commentData.event_date} {/* 追加 */}</li>
                   </span>
                 </li>
               ))}

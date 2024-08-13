@@ -164,9 +164,8 @@ export default function ImageApp() {
     <>
       {/* 画像アップロードフォーム */}
       <form className="mb-4 text-center" onSubmit={onSubmit}>
-        日付を選択してください：
         <input
-          className="my-10"
+          className="mb-10 mt-2 text-align-center"
           type="date"
           onChange={(e) => setEventDate(e.target.value)} // 日付選択時のハンドラー
         />
