@@ -1,5 +1,7 @@
 // components/currentLocation.tsx
 import React from "react";
+import styles from './currentLocation.module.css'
+import { FaLocationArrow } from "react-icons/fa";
 
 interface CurrentLocationProps {
   map: google.maps.Map | null;
@@ -16,10 +18,10 @@ const CurrentLocationButton: React.FC<CurrentLocationProps> = ({ map, currentLoc
   };
 
   return (
-    <button id="current-location-button" onClick={handleClick}>
-      現在地に移動
-    </button>
+    <FaLocationArrow className={styles.currentLocationButton} onClick={handleClick}/>
   );
 };
 
 export default CurrentLocationButton;
+
+
