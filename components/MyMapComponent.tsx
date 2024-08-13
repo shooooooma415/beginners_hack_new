@@ -106,7 +106,7 @@ const MyMapComponent: React.FC = () => {
               newMarker.addListener("click", () => {
                 infoWindow.open(newMap, newMarker);
                 // URLにリダイレクト
-                window.location.href = "https://www.hinatazaka46.com/s/official/artist/24?ima=0000";
+                window.location.href = "./postDetail";
               });
             }
           });

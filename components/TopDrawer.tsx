@@ -60,7 +60,7 @@ export default function SwipeableTemporaryDrawer() {
                 );
             case 'New Post':
                 return (
-                    <Link href={"/"}>
+                    <Link href={"/postDetail"}>
                     <ListItemButton>
                         <ListItemIcon>
                             <TbMapPinPlus />
