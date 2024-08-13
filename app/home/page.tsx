@@ -95,7 +95,9 @@ const MyMapComponent: React.FC = () => {
             newMap.fitBounds(bounds);
           });
 
+
           newMap.addListener("click", (event: google.maps.MapMouseEvent) => {
+
             const latLng = event.latLng;
             const confirmPin = window.confirm("ここにピンを指しますか？");
             if (confirmPin) {
@@ -114,6 +116,8 @@ const MyMapComponent: React.FC = () => {
               });
             }
           });
+
+
         },
         (error) => {
           console.error("Error retrieving location: ", error);
@@ -136,10 +140,13 @@ const MyMapComponent: React.FC = () => {
     <div>
       <input id="pac-input" className="controls" type="text" placeholder="Search Box" />
       <div ref={mapRef} className="min-h-screen w-screen" />
+
       <CurrentLocationButton map={map} currentLocation={currentLocation} />
+
     </div>
   );
 };
+
 
 const MapWrapper: React.FC = () => {
   return (
@@ -153,4 +160,6 @@ const MapWrapper: React.FC = () => {
   );
 };
 
+
 export default MapWrapper;
+
