@@ -16,6 +16,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import MapIcon from '@mui/icons-material/Map';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
+import styles from './humburger.module.css'
 
 export default function SwipeableTemporaryDrawer() {
     const [open, setOpen] = React.useState(false);
@@ -129,7 +130,7 @@ export default function SwipeableTemporaryDrawer() {
     return (
         <div>
             {/* Button to open the Drawer from the bottom */}
-            <Button  onClick={toggleDrawer(true)}><GiHamburgerMenu />
+            <Button  onClick={toggleDrawer(true)}><GiHamburgerMenu className={styles.Hamburger}/>
             </Button>
             <SwipeableDrawer
                 anchor="bottom"  // Open the Drawer from the bottom
