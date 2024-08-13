@@ -1,7 +1,7 @@
 'use client';
 import React, { useRef, useEffect, useState } from "react";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
-import { MyMapComponent } from "@/components/MyMapComponent";
+import { MyMapComponentHome } from "@/components/MyMapComponentHome";
 
 const render = (status: Status) => {
   if (status === Status.LOADING) return <div>Loading...</div>;
@@ -9,7 +9,7 @@ const render = (status: Status) => {
   return null;
 };
 
-<MyMapComponent />
+<MyMapComponentHome />
 
 
 const MapWrapper: React.FC = () => {
@@ -19,7 +19,7 @@ const MapWrapper: React.FC = () => {
       render={render}
       libraries={["places"]}
     >
-      <MyMapComponent />
+      <MyMapComponentHome />
     </Wrapper>
   );
 };
