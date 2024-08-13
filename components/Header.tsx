@@ -52,7 +52,7 @@ export default function Header() {
           </Link>
         </li>
         <li>
-          <Link className="text-gray-700 hover:text-blue-700" href="/">
+          <Link className="text-gray-700 hover:text-blue-700" href="/postDetail">
             投稿
           </Link>
         </li>
