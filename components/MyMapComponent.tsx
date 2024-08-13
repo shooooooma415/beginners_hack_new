@@ -114,7 +114,7 @@ const MyMapComponent: React.FC = () => {
         },
         (error) => {
           console.error("Error retrieving location: ", error);
-          const fallbackLocation = { lat: -33.8688, lng: 151.2195 };
+          const fallbackLocation = { lat: 35.32325, lng: 136.13382 };
           const newMap = new google.maps.Map(mapRef.current!, {
             center: fallbackLocation,
             zoom: 13,
