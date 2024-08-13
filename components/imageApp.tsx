@@ -8,6 +8,7 @@ export default function ImageApp() {
   const public_url = "https://spzlpfucuqkpjlucnnfh.supabase.co/storage/v1/object/public/public-image-bucket/img/"
 
   // ステート管理
+  const [date, setDate] = useState<string>("") // 日付 追加
   const [urlList, setUrlList] = useState<string[]>([]) // 画像URLリスト
   const [loadingState, setLoadingState] = useState("hidden") // ローディング状態
   const [comments, setComments] = useState<{ [key: string]: { comment: string; created_at: string }[] }>({}) // 画像ごとのコメント
@@ -128,11 +129,15 @@ export default function ImageApp() {
     await listAllImage()
     setLoadingState("hidden") // ローディング状態を隠す
   }
+  
 
   return (
     <>
       {/* 画像アップロードフォーム */}
       <form className="mb-4 text-center" onSubmit={onSubmit}>
+        <input 
+          className="my-10" 
+          type="date"/> {/* 追加 */}
         <input
           className="relative mb-4 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none"
           type="file"
@@ -140,10 +145,10 @@ export default function ImageApp() {
           accept="image/*"
           onChange={handleChangeFile} // ファイル選択時のハンドラー
         />
-        <input
-          type="text"
+        <textarea
+          // type="text"
           className="relative mb-4 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out"
-          placeholder="コメントを入力してください"
+          placeholder="コメントを入力"
           value={comment} // コメントの値
           onChange={(e) => setComment(e.target.value)} // コメント入力時のハンドラー
         />

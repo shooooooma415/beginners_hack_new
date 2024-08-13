@@ -9,6 +9,7 @@ export default function Index() {
       <Link className="my-10 " href="/">homeへ
       </Link>
       <PrivateImageApp />
+      
     </>
   );
 }
