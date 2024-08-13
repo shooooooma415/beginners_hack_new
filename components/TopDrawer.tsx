@@ -93,7 +93,7 @@ export default function SwipeableTemporaryDrawer() {
                     );
                     case 'Logout':
                         return (
-                            <Link href={""}>
+                            <Link href={"/logout"}>
                             <ListItemButton>
                                 <ListItemIcon>
                                     <LogoutIcon />
