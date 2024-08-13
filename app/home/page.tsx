@@ -6,7 +6,7 @@ import { MyMapComponentHome } from "@/components/MyMapComponentHome";
 const render = (status: Status) => {
   if (status === Status.LOADING) return <div>Loading...</div>;
   if (status === Status.FAILURE) return <div>Error loading map</div>;
-  return null;
+  return <></>;
 };
 
 <MyMapComponentHome />
