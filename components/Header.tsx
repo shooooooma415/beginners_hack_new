@@ -46,16 +46,7 @@ export default function Header() {
             />
           </Link>
         </li>
-        <li>
-          <Link className="text-gray-700 hover:text-blue-700" href="/private">
-            マイページ
-          </Link>
-        </li>
-        <li>
-          <Link className="text-gray-700 hover:text-blue-700" href="/">
-            投稿
-          </Link>
-        </li>
+        
         <li>
           <SwipeableTemporaryDrawer />
         </li>

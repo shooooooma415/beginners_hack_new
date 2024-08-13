@@ -10,12 +10,12 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import { TbMap2, TbMapPlus } from "react-icons/tb";
-import { RiMapPinUserFill } from "react-icons/ri";
-import { TbMapPinPlus } from "react-icons/tb";
-import { TbPhotoPlus } from "react-icons/tb";
-import MailIcon from '@mui/icons-material/Mail';
 import { GiHamburgerMenu } from "react-icons/gi";
+import SettingsIcon from '@mui/icons-material/Settings';
+import LogoutIcon from '@mui/icons-material/Logout';
+import MapIcon from '@mui/icons-material/Map';
+import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 
 export default function SwipeableTemporaryDrawer() {
     const [open, setOpen] = React.useState(false);
@@ -41,7 +41,7 @@ export default function SwipeableTemporaryDrawer() {
                     <Link href={"/home"}>
                         <ListItemButton>
                             <ListItemIcon>
-                                <TbMap2 />
+                                <MapIcon />
                             </ListItemIcon>
                             <ListItemText primary={text} />
                         </ListItemButton>
@@ -52,7 +52,7 @@ export default function SwipeableTemporaryDrawer() {
                     <Link href={"/private"}>
                         <ListItemButton>
                             <ListItemIcon>
-                                <TbPhotoPlus />
+                                <InsertPhotoIcon />
                             </ListItemIcon>
                             <ListItemText primary={text} />
                         </ListItemButton>
@@ -63,7 +63,7 @@ export default function SwipeableTemporaryDrawer() {
                     <Link href={"/"}>
                     <ListItemButton>
                         <ListItemIcon>
-                            <TbMapPinPlus />
+                            <AddLocationAltIcon />
                         </ListItemIcon>
                         <ListItemText primary={text} />
                     </ListItemButton>
@@ -74,12 +74,35 @@ export default function SwipeableTemporaryDrawer() {
                     <Link href={"/post"}>
                     <ListItemButton>
                         <ListItemIcon>
-                            <TbMapPinPlus />
+                            <AddLocationAltIcon />
                         </ListItemIcon>
                         <ListItemText primary={text} />
                     </ListItemButton>
                     </Link>
                 );
+                case 'Setting':
+                    return (
+                        <Link href={""}>
+                        <ListItemButton>
+                        <ListItemIcon>
+                            < SettingsIcon/>
+                        </ListItemIcon>
+                            <ListItemText primary={text} />
+                        </ListItemButton>
+                        </Link>
+                    );
+                    case 'Logout':
+                        return (
+                            <Link href={""}>
+                            <ListItemButton>
+                                <ListItemIcon>
+                                    <LogoutIcon />
+                                </ListItemIcon>
+                                <ListItemText primary={text} />
+                            </ListItemButton>
+                            </Link>
+                        );
+        
             default:
                 return null;
         }
@@ -87,13 +110,13 @@ export default function SwipeableTemporaryDrawer() {
 
     const list = () => (
         <Box
-            sx={{ width: 250 }}  // Set width for the right Drawer
+            sx={{ width: 'auto', height: '600px' }}  // Set height for the bottom Drawer
             role="presentation"
             onClick={toggleDrawer(false)}
             onKeyDown={toggleDrawer(false)}
         >
             <List>
-                {['My Map', 'My Posts', 'New Post','Posts'].map((text) => (
+                {['My Map', 'My Posts', 'New Post','Posts',"Setting","Logout"].map((text) => (
                     <ListItem key={text} disablePadding>
                         {getIcon(text)}
                     </ListItem>
@@ -105,11 +128,11 @@ export default function SwipeableTemporaryDrawer() {
 
     return (
         <div>
-            {/* Button to open the Drawer from the right */}
-            <Button onClick={toggleDrawer(true)}><GiHamburgerMenu />
+            {/* Button to open the Drawer from the bottom */}
+            <Button  onClick={toggleDrawer(true)}><GiHamburgerMenu />
             </Button>
             <SwipeableDrawer
-                anchor="right"  // Ensure the Drawer only opens from the right
+                anchor="bottom"  // Open the Drawer from the bottom
                 open={open}
                 onClose={toggleDrawer(false)}
                 onOpen={toggleDrawer(true)}
