@@ -16,6 +16,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import MapIcon from '@mui/icons-material/Map';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
+import { NavigationItem } from '@/components/getIcon';
 import styles from './humburger.module.css'
 
 export default function SwipeableTemporaryDrawer() {
@@ -34,81 +35,6 @@ export default function SwipeableTemporaryDrawer() {
         setOpen(open);
     };
 
-    // Helper function to render the correct icon
-    const getIcon = (text: string) => {
-        switch (text) {
-            case 'My Map':
-                return (
-                    <Link href={"/home"}>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <MapIcon />
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItemButton>
-                    </Link>
-                );
-            case 'My Posts':
-                return (
-                    <Link href={"/private"}>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <InsertPhotoIcon />
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItemButton>
-                    </Link>
-                );
-            case 'New Post':
-                return (
-                    <Link href={"/postDetail"}>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <AddLocationAltIcon />
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItemButton>
-                    </Link>
-                );
-            case 'Posts':
-                return (
-                    <Link href={"/post"}>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <AddLocationAltIcon />
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItemButton>
-                    </Link>
-                );
-                case 'Setting':
-                    return (
-                        <Link href={""}>
-                        <ListItemButton>
-                        <ListItemIcon>
-                            < SettingsIcon/>
-                        </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItemButton>
-                        </Link>
-                    );
-                    case 'Logout':
-                        return (
-                            <Link href={"/logout"}>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                    <LogoutIcon />
-                                </ListItemIcon>
-                                <ListItemText primary={text} />
-                            </ListItemButton>
-                            </Link>
-                        );
-        
-            default:
-                return null;
-        }
-    };
-
     const list = () => (
         <Box
             sx={{ width: 'auto', height: '600px' }}  // Set height for the bottom Drawer
@@ -119,7 +45,7 @@ export default function SwipeableTemporaryDrawer() {
             <List>
                 {['My Map', 'My Posts', 'New Post','Posts',"Setting","Logout"].map((text) => (
                     <ListItem key={text} disablePadding>
-                        {getIcon(text)}
+                        <NavigationItem text={text} />
                     </ListItem>
                 ))}
             </List>
