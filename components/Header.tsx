@@ -46,7 +46,6 @@ export default function Header() {
             />
           </Link>
         </li>
-        
         <li>
           <SwipeableTemporaryDrawer />
         </li>
