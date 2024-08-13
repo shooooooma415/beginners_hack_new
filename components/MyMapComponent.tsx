@@ -8,6 +8,7 @@ const MyMapComponent: React.FC = () => {
   const mapRef = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const [currentLocation, setCurrentLocation] = useState<google.maps.LatLngLiteral | null>(null);
+  const [latLng, setLatLng] = useState<{ lat: number, lng: number } | null>(null);
 
   useEffect(() => {
     if (mapRef.current) {
@@ -71,7 +72,7 @@ const MyMapComponent: React.FC = () => {
               });
 
               const infoWindow = new google.maps.InfoWindow({
-                content: createInfoWindowContent(),
+                content: createInfoWindowContent(0, 0), // デフォルト値を設定
                 pixelOffset: new google.maps.Size(0, -50),
               });
 
@@ -88,9 +89,11 @@ const MyMapComponent: React.FC = () => {
             newMap.fitBounds(bounds);
           });
 
-          // ピンを指した時に特定のURLにリダイレクトする処理
+          // ピンを指した時に緯度と経度を表示
           newMap.addListener("click", (event: google.maps.MapMouseEvent) => {
             const latLng = event.latLng;
+            if (!latLng) return;
+
             const confirmPin = window.confirm("ここにピンを指しますか？");
             if (confirmPin) {
               const newMarker = new google.maps.Marker({
@@ -99,22 +102,29 @@ const MyMapComponent: React.FC = () => {
               });
 
               const infoWindow = new google.maps.InfoWindow({
-                content: createInfoWindowContent(),
+                content: createInfoWindowContent(latLng.lat(), latLng.lng()),
                 pixelOffset: new google.maps.Size(0, -50),
               });
 
               newMarker.addListener("click", () => {
                 infoWindow.open(newMap, newMarker);
-                // URLにリダイレクト
-                window.location.href = "https://www.hinatazaka46.com/s/official/artist/24?ima=0000";
+                // window.location.href = "https://www.hinatazaka46.com/s/official/artist/24?ima=0000";
               });
+
+              // 緯度と経度を更新
+              setLatLng({
+                lat: latLng.lat(),
+                lng: latLng.lng()
+              });
+
+              newMap.panTo(latLng);
             }
           });
 
         },
         (error) => {
           console.error("Error retrieving location: ", error);
-          const fallbackLocation = { lat: 35.32325, lng: 136.13382 };
+          const fallbackLocation = { lat: -33.8688, lng: 151.2093 };
           const newMap = new google.maps.Map(mapRef.current!, {
             center: fallbackLocation,
             zoom: 13,
@@ -134,6 +144,12 @@ const MyMapComponent: React.FC = () => {
       <input id="pac-input" className="controls" type="text" placeholder="Search Box" />
       <div ref={mapRef} className="min-h-screen w-screen" />
       <CurrentLocationButton map={map} currentLocation={currentLocation} />
+      <div>
+        <ul>
+          <li>緯度: <span>{latLng?.lat ?? '-'}</span></li>
+          <li>経度: <span>{latLng?.lng ?? '-'}</span></li>
+        </ul>
+      </div>
     </div>
   );
 };
