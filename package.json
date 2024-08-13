@@ -6,8 +6,14 @@
     "start": "next start"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@googlemaps/react-wrapper": "^1.1.42",
+    "@mui/icons-material": "^5.16.7",
+    "@mui/material": "^5.16.7",
     "@supabase/ssr": "latest",
     "@supabase/supabase-js": "latest",
+    "@types/google.maps": "^3.55.12",
     "autoprefixer": "10.4.17",
     "geist": "^1.2.1",
     "heic2any": "^0.0.4",
@@ -15,6 +21,7 @@
     "postcss": "8.4.33",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-icons": "^5.3.0",
     "tailwindcss": "3.4.1",
     "typescript": "5.3.3",
     "uuid": "^10.0.0"
