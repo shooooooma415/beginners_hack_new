@@ -1,11 +1,3 @@
-/* searchbutton.module.css */
-.searchBoxWrapper {
-  position: absolute;
-  top: 10px; /* 上からの距離 */
-  left: 50%; /* 左からの距離（中央寄せ） */
-  z-index: 10; /* 他の要素の上に表示 */
-}
-
 .controls {
   position: fixed;
   top: 1%; /* 上からの距離 */
@@ -24,4 +16,15 @@
   position: relative; /* 検索ボックスを絶対配置するために必要 */
   width: 100%;
   height: 100vh; /* 高さをビュー全体に設定 */
+}
+
+.toggleButton {
+  position: fixed;
+  z-index: 10;
+  font-size: 3rem; 
+  bottom: 20%;
+  right: 3%;
+  background-color: rgba(0, 0, 0, 0.9); /* 背景をほぼ黒にする */
+  color: rgb(255, 255, 255);
+  border-radius: 15px;
 }

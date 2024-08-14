@@ -7,7 +7,7 @@ import styles from './searchbutton.module.css'
 
 const MyMapComponentHome: React.FC = () => {
   const divStyle: React.CSSProperties = {
-    overflowY: 'hidden', // 縦方向のスクロールを有効にする
+    overflowY: 'hidden', 
     overflowX: 'hidden'  // 横方向のスクロールを無効にする
   };
   const mapRef = useRef<HTMLDivElement>(null);
