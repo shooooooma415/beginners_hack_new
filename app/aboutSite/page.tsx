@@ -7,7 +7,10 @@ export default function AboutSite() {
             <div className="header-container">
                 <h2 className="custom-heading">このサイトについて</h2>
 
+
             </div>
+            <div className="teamname">チーム名</div>
+            
             <div className="tools">技術スタック</div>
             <div className="image-row">
                 <Image

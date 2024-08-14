@@ -8,7 +8,7 @@
   margin-bottom: 2%;
 }
 
-.tools {
+.tools,.teamname{
   font-size: 25px;
   padding-top: 40px; 
   padding-bottom: 15px;
