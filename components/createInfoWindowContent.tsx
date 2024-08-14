@@ -10,7 +10,7 @@ const createInfoWindowContent = (lat: number, lng: number): string => {
             <div class="custom-info-item coordinates">
                 緯度: ${lat}<br>経度: ${lng}
             </div>
-            <div class="custom-info-item google-map">
+           <div class="custom-info-item google-map">
                 <a href="https://www.hinatazaka46.com/s/official/?ima=0000" target="_blank">投稿</a>
             </div>
         </div>`;
