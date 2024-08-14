@@ -1,0 +1,54 @@
+/* style.css */
+.round-image {
+    border-radius: 50%;
+    border: 2px solid #94989e;
+    overflow: hidden;
+    margin-bottom: 2%;
+  }
+
+.custom-button {
+    background-color: #94989e; /* ボタンの背景色 */
+    color: rgb(0, 0, 0); /* ボタンの文字色 */
+    border-radius: 8px; /* ボタンの角を丸くする */
+    padding: 10px 20px; /* ボタンの内側の余白 */
+    text-transform: uppercase; /* 文字を大文字にする */
+    font-weight: bold; /* 文字を太字にする */
+    margin-bottom: 2%; /* ボタンの下に2%の余白を追加 */
+  }
+
+  /* ボタンホバー時のスタイル */
+  .custom-button:hover {
+    background-color: #94989e; /* ホバー時の背景色 */
+    opacity: 0.8; /* ホバー時に少し透明にする */
+  }
+  
+
+.custom-heading {
+    font-family: 'Caveat', cursive; /* フォントファミリーを指定 */
+    margin-bottom: 2rem; /* 例えば 2rem の下マージン */
+    /* padding-top: 10%; 例えば 4rem の上パディング */
+    font-size: 2.5rem; /* フォントサイズを調整 */
+  }
+
+
+  .scroll-container {
+    max-height: 500px; /* 必要に応じて高さを調整 */
+    max-width: 100%;
+    overflow-y: scroll; /* 縦方向のスクロールを有効にする */
+    overflow-x: hidden; /* 横方向のスクロールを無効にする */
+    padding: 0px; /* 内側の余白 */
+  }
+  
+  /* スクロールバーのスタイルを非表示にする */
+  .scroll-container::-webkit-scrollbar {
+    width: 0; /* スクロールバーの幅を0にする */
+    height: 0; /* 横スクロールバーも隠す */
+  }
+  
+  .scroll-container {
+    -ms-overflow-style: none; /* IE 10+ */
+    scrollbar-width: none; /* Firefox */
+  }
+  
+  
+  
