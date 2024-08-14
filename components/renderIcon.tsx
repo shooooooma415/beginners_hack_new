@@ -17,7 +17,7 @@ export const LogoutIconComponent: React.FC = () => <LogoutIcon />;
 export const IconComponent: React.FC<IconProps> = ({ text }) => {
   switch (text) {
     case 'My Map':
-      return <MapIconComponent />;
+      return <MapIconComponent className = "fontsize"  />;
     case 'My Posts':
       return <InsertPhotoIconComponent />;
     case 'New Post':

@@ -54,7 +54,7 @@ export default function SwipeableTemporaryDrawer() {
     );
 
     return (
-        <div>
+        <>
             {/* Button to open the Drawer from the bottom */}
             <Button  onClick={toggleDrawer(true)}><GiHamburgerMenu className={styles.Hamburger}/>
             </Button>
@@ -66,6 +66,6 @@ export default function SwipeableTemporaryDrawer() {
             >
                 {list()}
             </SwipeableDrawer>
-        </div>
+        </>
     );
 }
