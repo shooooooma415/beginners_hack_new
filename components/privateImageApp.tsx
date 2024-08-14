@@ -83,15 +83,15 @@ export default function PrivateImageApp() {
   }, [user_id]);
 
   return (
-    <div className="w-full max-w-3xl">
+    <div className="w-screen max-w-3xl">
       <div className={loadingState} aria-label="読み込み中">
         <div className="animate-spin h-10 w-10 border-4 border-blue-500 rounded-full border-t-transparent"></div>
       </div>
       <ul className="flex flex-wrap w-full">
         {urlList.map((item) => (
-          <li className="w-1/4 h-auto p-1" key={item}>
+          <li className="h-auto p-1" style={{width: "33%"}} key={item}>
             <a className="hover:opacity-50" href={public_url + item} target="_blank">
-              <img className="object-cover max-h-32 w-full" src={public_url + item} alt={item} />
+              <img className="object-cover" style={{aspectRatio: 1/1}} src={public_url + item} alt={item} />
             </a>
             <ul className="mt-2">
               {comments[item]?.map((commentData, index) => (
