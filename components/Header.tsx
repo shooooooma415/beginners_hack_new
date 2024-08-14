@@ -1,10 +1,7 @@
 "use client"
-import AnchorTemporaryDrawer from "@/components/TopDrawer";
 import { useState } from "react";
 import Image from 'next/image';
 import Link from 'next/link';
-import Button from '@mui/material/Button'; // Import Button from Material-UI
-import Drawer from '@mui/material/Drawer'; // Import Drawer from Material-UI
 import Box from '@mui/material/Box'; // Import Box from Material-UI
 import { FooterIcons } from "@/components/footericon";
 export default function Header() {
