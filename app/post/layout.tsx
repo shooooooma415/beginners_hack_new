@@ -23,7 +23,6 @@ export default function HomeLayout({
       <main className="flex flex-col items-center"> {/* ここに main を追加 */}
         {children}
       </main>
-      <Header />
     </div>
   );
 }
