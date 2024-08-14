@@ -9,7 +9,6 @@ const MyMapComponent: React.FC = () => {
   const mapRef = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const [currentLocation, setCurrentLocation] = useState<google.maps.LatLngLiteral | null>(null);
-  const [latLng, setLatLng] = useState<{ lat: number, lng: number } | null>(null);
 
   useEffect(() => {
     if (mapRef.current) {
@@ -27,7 +26,7 @@ const MyMapComponent: React.FC = () => {
             zoomControl: false,
             fullscreenControl: false,
             streetViewControl: false,
-            mapTypeControl: false, // これで航空写真などの切り替えボタンを非表示にする
+            mapTypeControl: false,
             mapTypeId: "roadmap",
           });
           setMap(newMap);
@@ -76,7 +75,7 @@ const MyMapComponent: React.FC = () => {
                 });
 
                 const infoWindow = new google.maps.InfoWindow({
-                  content: createInfoWindowContent(0,0),
+                  content: createInfoWindowContent(0, 0),
                   pixelOffset: new google.maps.Size(0, -50),
                 });
 
@@ -103,19 +102,14 @@ const MyMapComponent: React.FC = () => {
                     map: newMap,
                   });
 
+                  const infoWindowContent = createInfoWindowContent(latLng.lat(), latLng.lng());
                   const infoWindow = new google.maps.InfoWindow({
-                    content: createInfoWindowContent(0,0),
+                    content: infoWindowContent,
                     pixelOffset: new google.maps.Size(0, -50),
                   });
 
                   newMarker.addListener("click", () => {
                     infoWindow.open(newMap, newMarker);
-                    window.location.href = "https://www.hinatazaka46.com/s/official/artist/24?ima=0000";
-                  });
-
-                  setLatLng({
-                    lat: latLng.lat(),
-                    lng: latLng.lng()
                   });
 
                   newMap.panTo(latLng);
@@ -125,7 +119,6 @@ const MyMapComponent: React.FC = () => {
           } else {
             console.error("Failed to find the search box input element.");
           }
-
         },
         (error) => {
           console.error("Error retrieving location: ", error);
@@ -136,7 +129,6 @@ const MyMapComponent: React.FC = () => {
             mapTypeId: "roadmap",
           });
           setMap(newMap);
-
           setCurrentLocationMarker(newMap, fallbackLocation);
         },
         { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
@@ -151,12 +143,6 @@ const MyMapComponent: React.FC = () => {
       </div>
       <div ref={mapRef} className="min-h-screen w-screen" />
       <CurrentLocationButton map={map} currentLocation={currentLocation} />
-      {/* <div>
-        <ul>
-          <li>緯度: <span>{latLng?.lat ?? '-'}</span></li>
-          <li>経度: <span>{latLng?.lng ?? '-'}</span></li>
-        </ul>
-      </div> */}
     </div>
   );
 };
