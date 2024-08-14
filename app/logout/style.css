@@ -8,7 +8,7 @@
   .custom-buttonYes {
     width: 150px;
     padding: 10px 20px;
-    margin: 0 10px;
+    margin: 0 50;
     background-color: #767373;
     color: white;
     font-size: 0.875rem;
@@ -43,4 +43,12 @@
 
 .custom-buttonNo:hover {
     background-color: rgb(229, 228, 228,0.6);
+}
+.logout{
+    color: #886771;
+    font-size: 1.95rem;
+    text-align: center;
+    margin-top: 20rem;
+
+
 }
