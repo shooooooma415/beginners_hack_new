@@ -2,7 +2,7 @@
   position: fixed;
   font-size: 3rem; 
   bottom: 10%;
-  right: 5%;
+  right: 3%;
   padding: 10px;
   transition: transform 0.2s ease; /* アニメーションの設定 */
   background-color: rgba(0, 0, 0, 0.9); /* 背景をほぼ黒にする */
