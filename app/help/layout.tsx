@@ -1,6 +1,6 @@
 import Header from "@/components/Header-notmap";
-import SwipeableTemporaryDrawer from "@/components/TopDrawer";
-// import "../globals.css";
+import SwipeableTemporaryDrawer from "@/components/negaburger";
+import "../globals.css";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
