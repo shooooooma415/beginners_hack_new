@@ -1,5 +1,3 @@
-import Header from "@/components/Header";
-import SwipeableTemporaryDrawer from "@/components/TopDrawer";
 import "./globals.css";
 
 const defaultUrl = process.env.VERCEL_URL
@@ -21,10 +19,8 @@ export default function RootLayout({
     <html lang="ja">
       <body className="bg-background text-foreground min-h-screen w-screen">
         <div className="flex flex-col">
-          {children}
+          <main>{children}</main> {/* ここに main を追加 */}
         </div>
-      
-        
       </body>
     </html>
   );
