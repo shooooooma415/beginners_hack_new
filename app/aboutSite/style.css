@@ -1,0 +1,29 @@
+/* style.css */
+
+.custom-heading {
+  color: #886771;
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 2%;
+}
+
+.tools {
+  font-size: 25px;
+  padding-top: 40px; 
+  padding-bottom: 15px;
+  text-decoration: underline;
+}
+
+.image-row {
+  display: flex;
+  gap: 40px; /* 画像同士の間隔を調整 */
+  justify-content: center; /* 中央に揃える */
+  margin-top: 20px; /* 上部に余白を追加 */
+}
+
+.Image, .nextjs, .supabase, .tailwindcss {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}

@@ -1,6 +1,6 @@
 "use client";
 import { supabase } from "@/utils/supabase/supabase";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import heic2any from "heic2any"; // HEIC変換ライブラリをインポート
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
@@ -15,7 +15,6 @@ import Stack from '@mui/joy/Stack';
 
 
 export default function ImageApp() {
-  // 画像の公開URL
   const [user_id, setUserId] = useState<string>("");
   const public_url = `https://spzlpfucuqkpjlucnnfh.supabase.co/storage/v1/object/public/public-image-bucket/img/${user_id}/`;
   const inputRef = React.useRef<HTMLInputElement | null>(null);
@@ -28,25 +27,29 @@ export default function ImageApp() {
   const [file, setFile] = useState<File>(); // アップロードするファイル
   const [comment, setComment] = useState<string>(""); // コメントの値
   const [errorMessage, setErrorMessage] = useState<string>(""); // エラーメッセージ
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false); // ボタンの無効化状態を管理するステートを追加
   const router = useRouter(); // useRouterを初期化
+
+  const params = new URLSearchParams(window.location.search);
+  const lat = params.get('lat');
+  const lng = params.get('lng'); 
 
   const supabase = createClientComponentClient();
   useEffect(() => {
-    // supabase.auth.getUser().then((user) => {
-    //   // ユーザーがサインインしていない場合、警告を表示 
-    //   if (user.data.user === null) {
-    //     return alert("ログインしてください");
-    //   }
-    //   setUserId(user.data.user.id)
-    // });
+    supabase.auth.getUser().then((user) => { 
+      if (user.data.user === null) {
+        return alert("ログインしてください");
+      }
+      setUserId(user.data.user.id);
+    });
   }, []);
+
   // 画像を全てリストする関数
   const listAllImage = async () => {
-
     const tempUrlList: string[] = []; // 一時的なURLリスト
     setLoadingState("flex justify-center"); // ローディング状態を表示
 
-    console.log("fetching image list: ", user_id)
+    console.log("fetching image list: ", user_id);
     // Supabaseから画像リストを取得
     const { data, error } = await supabase
       .storage
@@ -55,16 +58,7 @@ export default function ImageApp() {
         limit: 100,
         offset: 0,
         sortBy: { column: "created_at", order: "desc" },
-      
       });
-      
-
-    if (error) {
-      console.log(error); // エラーが発生した場合、コンソールにログを出力
-      return;
-    }
-
-      
 
     if (error) {
       console.log(error); // エラーが発生した場合、コンソールにログを出力
@@ -78,8 +72,6 @@ export default function ImageApp() {
       }
     }
     setUrlList(tempUrlList); // 画像URLリストをステートに設定
-    
-    
     await fetchAllComments(tempUrlList); // コメントを取得
     setLoadingState("hidden"); // ローディング状態を隠す
   };
@@ -110,7 +102,7 @@ export default function ImageApp() {
   // コンポーネントがマウントされたときに画像リストを取得
   useEffect(() => {
     if (user_id === "") {
-      return
+      return;
     }
     (async () => {
       await listAllImage();
@@ -158,6 +150,7 @@ export default function ImageApp() {
 
     setLoadingState("flex justify-center"); // ローディング状態を表示
     setErrorMessage(""); // エラーメッセージをクリア
+    setIsButtonDisabled(true); // ボタンを無効化
 
     const fileExtension = file.name.split(".").pop(); // ファイル拡張子を取得
     const fileName = `${uuidv4()}.${fileExtension}`; // 一意なファイル名を生成
@@ -172,6 +165,7 @@ export default function ImageApp() {
       } else {
         alert("HEICファイルの変換に失敗しました。");
         setLoadingState("hidden"); // ローディング状態を隠す
+        setIsButtonDisabled(false); // 失敗時にボタンを再度有効化
         return;
       }
     }
@@ -183,6 +177,7 @@ export default function ImageApp() {
     if (uploadError) {
       alert("エラーが発生しました：" + uploadError.message); // アップロードエラーの警告
       setLoadingState("hidden"); // ローディング状態を隠す
+      setIsButtonDisabled(false); // 失敗時にボタンを再度有効化
       return;
     }
     const inputRef = React.useRef<HTMLInputElement | null>(null);
@@ -195,11 +190,14 @@ export default function ImageApp() {
         comment,
         created_at: new Date(),
         event_date: eventDate,
-        user_id: user_id
+        user_id: user_id, 
+        latitude: lat,
+        longitude: lng,
       }]); // 日付も追加
     if (commentError) {
       alert("コメントの保存中にエラーが発生しました：" + commentError.message); // コメント保存エラーの警告
       setLoadingState("hidden"); // ローディング状態を隠す
+      setIsButtonDisabled(false); // 失敗時にボタンを再度有効化
       return;
     }
 
@@ -210,10 +208,7 @@ export default function ImageApp() {
     setLoadingState("hidden"); // ローディング状態を隠す
 
     // 投稿が完了した後に遷移
-  router.push('/private'); // 遷移先のパスを指定
-
-
-
+    router.push('/private'); // 遷移先のパスを指定
   };
 
   return (
@@ -267,30 +262,7 @@ export default function ImageApp() {
         </button>
       </form>
       {/* 画像とコメントの表示 */}
-      <div className="w-full max-w-3xl">
-        <div className={loadingState} aria-label="読み込み中">
-          <div className="animate-spin h-10 w-10 border-4 border-blue-500 rounded-full border-t-transparent"></div>
-        </div>
-        <ul className="flex flex-wrap w-full">
-          {urlList.map((item) => (
-            <li className="w-1/4 h-auto p-1" key={item}>
-              <a className="hover:opacity-50" href={public_url + item} target="_blank">
-                <img className="object-cover max-h-32 w-full" src={public_url + item} alt={item} />
-              </a>
-              <ul className="mt-2">
-                {comments[item]?.map((commentData, index) => (
-                  <li key={index} className="text-sm text-gray-600">
-                    <li>{commentData.comment} </li> {/* コメント */}
-                    <span className="text-xs text-gray-400 ml-2">
-                      <li> 日付:{commentData.event_date} {/* 追加 */}</li>
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
-      </div>
     </>
   );
 }
+ 

@@ -2,31 +2,36 @@
     position: absolute;
     bottom: 0;
     right: 0;
-    padding: 4px;
-    border-bottom: 2px solid #d1d5db; /* gray-300 */
-    width: 100%;
+    padding: 0%;
+    border-bottom: 0px; /* gray-300 */
+    width: 100vw;
     display: flex;
     justify-content: center; /* 中央揃え */
     align-items: center;
     background-color: rgba(128, 128, 128, 0.6); /* 透明度50%のグレー */
     height: 60px;
-    margin: 0;
+    margin-bottom: 0px;
 }
 
 .navList {
     display: flex; /* フレックスボックスで配置 */
+    position: absolute;
+    bottom: 0;
     justify-content: space-between; /* 等間隔に配置 */
     align-items: center; /* 垂直中央揃え */
     padding: 0;
     margin: 0;
     list-style: none; /* リストスタイルを無効に */
     width: 100%; /* リストの幅を100%に */
+    height: 60px;
 }
 
 .leftItem {
     display: flex; /* 各アイテムをフレックスボックスに */
     align-items: center; /* 垂直中央揃え */
     justify-content: center; /* 水平中央揃え */
+    padding: 1% 0 0%; /* 左右の余白を自動に */
+    left: 3%;
     flex: 1; /* 各アイテムを均等に分配 */
 }
 
@@ -34,13 +39,26 @@
     display: flex; /* フレックスボックスで配置 */
     align-items: center; /* 垂直中央揃え */
     justify-content: center; /* 水平中央揃え */
-    padding: 0 20%; /* 左右の余白を自動に */
+    padding: 0 0%; /* 左右の余白を自動に */
+    margin: 0 20%; /* 左右の余白を自動に */
     flex: 1; /* 均等にスペースを分配 */
 }
 
-.centerIcon{
-    font-size: 50px;
 
+.centerIcon{
+    position: absolute; /*  フレックスボックスで配置 */
+    font-size: 50px;
+    align-items: center; /* 垂直中央揃え */
+    justify-content: center; /* 水平中央揃え */
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+.rightIcon{
+    font-size: 58px;
     align-items: center; /* 垂直中央揃え */
     justify-content: center; /* 水平中央揃え */
 }
@@ -49,7 +67,9 @@
     display: flex; /* 各アイテムをフレックスボックスに */
     align-items: center; /* 垂直中央揃え */
     justify-content: center; /* 水平中央揃え */
+    padding: 0 0%; /* 左右の余白を自動に */
     flex: 1; /* 各アイテムを均等に分配 */
+    right: 3%;
 }
 
 .iconLink {
@@ -72,3 +92,9 @@
 .button:hover {
     background-color: rgba(0, 0, 0, 0.1); /* ホバー時の背景色 */
 }
+
+.upBurger {
+    position: absolute;
+    bottom: 0;
+}
+
