@@ -2,7 +2,7 @@
   position: fixed;
   font-size: 3rem; 
   bottom: 10%;
-  right: 5%;
+  right: 3%;
   transition: transform 0.2s ease; /* アニメーションの設定 */
   }
   .currentLocationButton:active {
