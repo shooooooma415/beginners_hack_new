@@ -1,6 +1,7 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { Button, styled } from "@mui/material";
+import './style.css';
 
 export default function LogoutCheck() {
     const router = useRouter();
@@ -22,9 +23,10 @@ export default function LogoutCheck() {
 
     return (
         <>
-            <h1 className="mb-4 pt-28 text-4xl">本当にログアウトしますか？</h1>
-            <div style={{ display: 'flex', justifyContent: 'center' , paddingBottom: '50%'}}>
+            <h1 className="mb-4 pt-28 text-4xl">Logout ?</h1>
+            <div style={{ display: 'flex', justifyContent: 'center', paddingBottom: '50%' }}>
                 <CustomButton
+                    className="custom-buttonYes"
                     variant="contained"
                     href="#contained-buttons"
                     onClick={handleLogout}
@@ -32,7 +34,9 @@ export default function LogoutCheck() {
                     Yes
                 </CustomButton>
                 <CustomButton
-                    variant="outlined"
+                    className="custom-buttonNo"
+                    variant="contained"
+                    href="#contained-buttons"
                     onClick={backLogout}
                 >
                     Back

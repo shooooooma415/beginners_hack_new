@@ -1,0 +1,37 @@
+.round-image {
+    border-radius: 50%;
+    border: 2px solid #E5E4E4;
+    overflow: hidden;
+    margin-bottom: 2%;
+  }
+
+  .custom-buttonNo {
+    background-color: #E5E4E4; /* ボタンの背景色 */
+    color: #886771; /* ボタンの文字色 */
+    border-radius: 8px; /* ボタンの角を丸くする */
+    padding: 10px 20px; /* ボタンの内側の余白 */
+    text-transform: uppercase; /* 文字を大文字にする */
+    font-weight: bold; /* 文字を太字にする */
+    margin-bottom: 2%; /* ボタンの下に2%の余白を追加 */
+  }
+
+  .custom-buttonYes {
+    background-color: #767373; /* ボタンの背景色 */
+    color: #ffffff; /* ボタンの文字色 */
+    border-radius: 8px; /* ボタンの角を丸くする */
+    padding: 10px 20px; /* ボタンの内側の余白 */
+    text-transform: uppercase; /* 文字を大文字にする */
+    font-weight: bold; /* 文字を太字にする */
+    margin-bottom: 2%; /* ボタンの下に2%の余白を追加 */
+  }
+
+  /* ボタンホバー時のスタイル */
+  .custom-buttonYes:hover {
+    background-color: #767373; /* ホバー時の背景色 */
+    opacity: 0.8; /* ホバー時に少し透明にする */
+  }
+
+  .custom-buttonNo:hover {
+    background-color: #E5E4E4; /* ホバー時の背景色 */
+    opacity: 0.8; /* ホバー時に少し透明にする */
+  }
