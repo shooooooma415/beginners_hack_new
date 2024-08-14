@@ -10,11 +10,13 @@
     align-items: center;
     background-color: rgba(128, 128, 128, 0.6); /* 透明度50%のグレー */
     height: 60px;
-    margin: 0;
+    margin: 0 0 0 4px;
 }
 
 .navList {
     display: flex; /* フレックスボックスで配置 */
+    position: absolute;
+    bottom: 0;
     justify-content: space-between; /* 等間隔に配置 */
     align-items: center; /* 垂直中央揃え */
     padding: 0;
