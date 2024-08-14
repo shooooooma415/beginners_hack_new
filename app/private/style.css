@@ -1,14 +1,14 @@
 /* style.css */
 .round-image {
     border-radius: 50%;
-    border: 2px solid #94989e;
+    border: 2px solid #E5E4E4;
     overflow: hidden;
     margin-bottom: 2%;
   }
 
 .custom-button {
-    background-color: #94989e; /* ボタンの背景色 */
-    color: rgb(0, 0, 0); /* ボタンの文字色 */
+    background-color: #E5E4E4; /* ボタンの背景色 */
+    color: #886771; /* ボタンの文字色 */
     border-radius: 8px; /* ボタンの角を丸くする */
     padding: 10px 20px; /* ボタンの内側の余白 */
     text-transform: uppercase; /* 文字を大文字にする */
@@ -18,7 +18,7 @@
 
   /* ボタンホバー時のスタイル */
   .custom-button:hover {
-    background-color: #94989e; /* ホバー時の背景色 */
+    background-color: #E5E4E4; /* ホバー時の背景色 */
     opacity: 0.8; /* ホバー時に少し透明にする */
   }
   
