@@ -57,10 +57,10 @@ export default function Header() {
             />
           </Link>
         </li>
-          {/* <li className="absolute justify-center items-center text-black"
+          <li className="absolute  bottom-1 z-10 text-black"
             style={{ width: '50px', height: '50px' }}>
             <FooterIcons text="New Post" />
-          </li> */}
+          </li>
         <li className="absolute right-1 bottom-1 z-10 text-black"
           style={{ width: '50px', height: '50px', paddingRight: '-25px' }}>
           <FooterIcons text ="My Posts" /> 

@@ -8,6 +8,7 @@
     color: rgb(255, 255, 255);
     padding: 10px;
     border-radius: 15px; /* 角を丸くする */
+    transition: transform 0.2s ease;
 }
 
 .Hamburger::before {
@@ -22,3 +23,7 @@
     border-radius: 15px; /* 背景の角を丸くする */
     z-index: -1;
 }
+
+.humberger:active {
+    transform: scale(0.8); /* アイコンを縮小 */
+  }
