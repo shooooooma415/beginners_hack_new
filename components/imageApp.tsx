@@ -36,6 +36,7 @@ export default function ImageApp() {
     const tempUrlList: string[] = []; // 一時的なURLリスト
     setLoadingState("flex justify-center"); // ローディング状態を表示
 
+    console.log("fetching image list: ", user_id)
     // Supabaseから画像リストを取得
     const { data, error } = await supabase
       .storage
@@ -46,6 +47,7 @@ export default function ImageApp() {
         sortBy: { column: "created_at", order: "desc" },
       
       });
+      
 
     if (error) {
       console.log(error); // エラーが発生した場合、コンソールにログを出力
@@ -58,7 +60,6 @@ export default function ImageApp() {
       console.log(error); // エラーが発生した場合、コンソールにログを出力
       return;
     }
-    console.log(user_id);
     
 
     // 空のフォルダーを除外し、URLリストを作成
@@ -76,7 +77,8 @@ export default function ImageApp() {
     await fetchAllComments(tempUrlList); // コメントを取得
     setLoadingState("hidden"); // ローディング状態を隠す
   };
-  console.log(urlList);
+  console.log("risuto",urlList);
+  console.log(user_id);
 
 
   // 画像に関連する全てのコメントを取得する関数
@@ -104,10 +106,13 @@ export default function ImageApp() {
 
   // コンポーネントがマウントされたときに画像リストを取得
   useEffect(() => {
+    if (user_id === "") {
+      return
+    }
     (async () => {
       await listAllImage();
     })();
-  }, []);
+  }, [user_id]);
 
   // ファイル選択時に呼ばれる関数
   const handleChangeFile = (e: any) => {
