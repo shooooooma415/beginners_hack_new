@@ -20,7 +20,7 @@ const NavigationItem = ({ text }) => {
       case 'New Post':
         return "/post";
       case 'Setting':
-        return "/settings";
+        return "/setting";
       case 'Logout':
         return "/logout";
       default:
