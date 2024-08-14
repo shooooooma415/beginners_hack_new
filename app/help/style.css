@@ -1,7 +1,20 @@
 .custom-heading {
     color: #886771; /* 文字の色を青色に設定 */
     font-size: 2rem; /* 文字の大きさを設定 */
-    text-align: center; /* 文字を中央に配置 */
+    /* text-align: center; 文字を中央に配置 */
     margin-top: 20px; /* 上部に余白を追加 */
     margin-bottom: 2%;
   }
+.main {
+  font-size:20px;
+  padding-top: 40px; 
+  padding-bottom: 15px;
+  text-decoration: underline;
+}
+.highlight {
+  font-size:22px;
+  color:red; 
+}
+.ul{
+  font-size: 25px;
+}
