@@ -26,7 +26,7 @@ export default function Index() {
       />
 
 
-      <Link href="/edit-profile" passHref>
+      <Link href="/editProfile" passHref>
         <Button className="custom-button" variant="contained" disableElevation>
           プロフィールを編集
         </Button>
