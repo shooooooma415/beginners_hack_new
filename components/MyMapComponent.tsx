@@ -36,7 +36,7 @@ const MyMapComponent: React.FC = () => {
     {
       featureType: "road",
       elementType: "geometry",
-      stylers: [{ color: "#886771" }],
+      stylers: [{ color: "b8b6b6" }],
     },
     {
       featureType: "water",
