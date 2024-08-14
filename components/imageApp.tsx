@@ -77,8 +77,7 @@ export default function ImageApp() {
     await fetchAllComments(tempUrlList); // コメントを取得
     setLoadingState("hidden"); // ローディング状態を隠す
   };
-  console.log("risuto",urlList);
-  console.log(user_id);
+
 
 
   // 画像に関連する全てのコメントを取得する関数
