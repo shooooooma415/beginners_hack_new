@@ -1,12 +1,14 @@
 "use client";
 import { supabase } from "@/utils/supabase/supabase";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import heic2any from "heic2any"; // HEIC変換ライブラリをインポート
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 export default function ImageApp() {
   // 画像の公開URL
-  const public_url = "https://spzlpfucuqkpjlucnnfh.supabase.co/storage/v1/object/public/public-image-bucket/img/";
+  const [user_id, setUserId] = useState<string>("");
+  const public_url = `https://spzlpfucuqkpjlucnnfh.supabase.co/storage/v1/object/public/public-image-bucket/img/${user_id}`;
 
   // ステート管理
   const [eventDate, setEventDate] = useState<string>(""); // 日付 追加
@@ -16,20 +18,33 @@ export default function ImageApp() {
   const [file, setFile] = useState<File>(); // アップロードするファイル
   const [comment, setComment] = useState<string>(""); // コメントの値
   const [errorMessage, setErrorMessage] = useState<string>(""); // エラーメッセージ
+  // const [user_id, setUserId] = useState<string>("");
 
+  const supabase = createClientComponentClient();
+  useEffect(() => {
+    supabase.auth.getUser().then((user) => { 
+      if (user.data.user === null) {
+        // ユーザーがサインインしていない場合、警告を表示
+        return alert("ログインしてください");
+      }
+      setUserId(user.data.user.id)
+    });
+  }, []);
   // 画像を全てリストする関数
   const listAllImage = async () => {
+
     const tempUrlList: string[] = []; // 一時的なURLリスト
     setLoadingState("flex justify-center"); // ローディング状態を表示
 
     // Supabaseから画像リストを取得
     const { data, error } = await supabase
       .storage
-      .from("public-image-bucket")
-      .list("img", {
+      .from(`public-image-bucket`)
+      .list(`img/${user_id}`, {
         limit: 100,
         offset: 0,
         sortBy: { column: "created_at", order: "desc" },
+      
       });
 
     if (error) {
@@ -37,16 +52,32 @@ export default function ImageApp() {
       return;
     }
 
+      
+
+    if (error) {
+      console.log(error); // エラーが発生した場合、コンソールにログを出力
+      return;
+    }
+    console.log(user_id);
+    
+
     // 空のフォルダーを除外し、URLリストを作成
+
+
+
     for (let index = 0; index < data.length; index++) {
       if (data[index].name != ".emptyFolderPlaceholder") {
         tempUrlList.push(data[index].name);
       }
     }
     setUrlList(tempUrlList); // 画像URLリストをステートに設定
+    
+    
     await fetchAllComments(tempUrlList); // コメントを取得
     setLoadingState("hidden"); // ローディング状態を隠す
   };
+  console.log(urlList);
+
 
   // 画像に関連する全てのコメントを取得する関数
   const fetchAllComments = async (imageList: string[]) => {
@@ -54,8 +85,8 @@ export default function ImageApp() {
     for (const image of imageList) {
       const { data, error } = await supabase
         .from("comments")
-        .select("comment, created_at, event_date") // コメントと追加日を取得
-        .eq("image_name", image);
+        .select("*")
+        .eq('id', user_id);
 
       if (error) {
         console.log(error);
@@ -92,6 +123,10 @@ export default function ImageApp() {
         blob: file,
         toType: "image/jpeg",
       });
+      if (Array.isArray(outputBlob)){
+        return outputBlob[0];
+      }
+      
       return outputBlob;
     } catch (error) {
       console.error("HEIC to JPEG conversion error:", error);
@@ -119,7 +154,7 @@ export default function ImageApp() {
     const fileExtension = file.name.split(".").pop(); // ファイル拡張子を取得
     const fileName = `${uuidv4()}.${fileExtension}`; // 一意なファイル名を生成
 
-    let uploadFile: File | Blob = file; // アップロードするファイルを初期化
+    let uploadFile = file; // アップロードするファイルを初期化
 
     // HEICファイルの場合、JPEGに変換
     if (file.type === "image/heic" || file.type === "image/heif") {
@@ -136,7 +171,7 @@ export default function ImageApp() {
     // Supabaseに画像をアップロード
     const { error: uploadError } = await supabase.storage
       .from("public-image-bucket")
-      .upload(`img/${uploadFile.name}`, uploadFile);
+      .upload(`img/${user_id}/${uploadFile.name}`, uploadFile);
     if (uploadError) {
       alert("エラーが発生しました：" + uploadError.message); // アップロードエラーの警告
       setLoadingState("hidden"); // ローディング状態を隠す
@@ -146,7 +181,13 @@ export default function ImageApp() {
     // コメントをデータベースに保存
     const { error: commentError } = await supabase
       .from("comments")
-      .insert([{ image_name: uploadFile.name, comment, created_at: new Date(), event_date: eventDate }]); // 日付も追加
+      .insert([{
+        image_name: uploadFile.name,
+        comment,
+        created_at: new Date(),
+        event_date: eventDate,
+        user_id: user_id
+      }]); // 日付も追加
     if (commentError) {
       alert("コメントの保存中にエラーが発生しました：" + commentError.message); // コメント保存エラーの警告
       setLoadingState("hidden"); // ローディング状態を隠す
