@@ -3,7 +3,7 @@ import React, { useRef, useEffect, useState } from "react";
 import setCurrentLocationMarker from "@/components/setCurrentLocationMarker";
 import createInfoWindowContent from "@/components/createInfoWindowContent";
 import CurrentLocationButton from "@/components/currentLocation";
-import styles from './searchbutton.module.css'; // CSSモジュールをインポート
+import styles from './searchbutton.module.css'
 
 const MyMapComponent: React.FC = () => {
   const mapRef = useRef<HTMLDivElement>(null);
@@ -27,104 +27,104 @@ const MyMapComponent: React.FC = () => {
             zoomControl: false,
             fullscreenControl: false,
             streetViewControl: false,
-            mapTypeControl: false, // これで航空写真などの切り替えボタンを非表示にする
             mapTypeId: "roadmap",
           });
           setMap(newMap);
 
-          setCurrentLocationMarker(newMap, location);
+          if (location) {
+            setCurrentLocationMarker(newMap, location);
+          }
 
           const input = document.getElementById("pac-input") as HTMLInputElement;
-          if (input) {
-            const searchBox = new google.maps.places.SearchBox(input);
-            newMap.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+          const searchBox = new google.maps.places.SearchBox(input);
+          newMap.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-            newMap.addListener("bounds_changed", () => {
-              searchBox.setBounds(newMap.getBounds() as google.maps.LatLngBounds);
-            });
+          newMap.addListener("bounds_changed", () => {
+            searchBox.setBounds(newMap.getBounds() as google.maps.LatLngBounds);
+          });
 
-            let markers: google.maps.Marker[] = [];
+          let markers: google.maps.Marker[] = [];
 
-            searchBox.addListener("places_changed", () => {
-              const places = searchBox.getPlaces();
+          searchBox.addListener("places_changed", () => {
+            const places = searchBox.getPlaces();
 
-              if (!places || places.length === 0) {
-                return;
-              }
+            if (!places || places.length === 0) {
+              return;
+            }
 
-              markers.forEach((marker) => marker.setMap(null));
-              markers = [];
+            markers.forEach((marker) => marker.setMap(null));
+            markers = [];
 
-              const bounds = new google.maps.LatLngBounds();
+            const bounds = new google.maps.LatLngBounds();
 
-              places.forEach((place) => {
-                if (!place.geometry || !place.geometry.location) return;
+            places.forEach((place) => {
+              if (!place.geometry || !place.geometry.location) return;
 
-                const icon = {
-                  url: place.icon!,
-                  size: new google.maps.Size(71, 71),
-                  origin: new google.maps.Point(0, 0),
-                  anchor: new google.maps.Point(17, 34),
-                  scaledSize: new google.maps.Size(25, 25),
-                };
+              const icon = {
+                url: place.icon!,
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(25, 25),
+              };
 
-                const marker = new google.maps.Marker({
-                  map: newMap,
-                  icon,
-                  title: place.name,
-                  position: place.geometry.location,
-                });
-
-                const infoWindow = new google.maps.InfoWindow({
-                  content: createInfoWindowContent(0,0),
-                  pixelOffset: new google.maps.Size(0, -50),
-                });
-
-                marker.addListener("click", () => {
-                  infoWindow.open(newMap, marker);
-                });
-
-                if (place.geometry.viewport) {
-                  bounds.union(place.geometry.viewport);
-                } else {
-                  bounds.extend(place.geometry.location);
-                }
+              const marker = new google.maps.Marker({
+                map: newMap,
+                icon,
+                title: place.name,
+                position: place.geometry.location,
               });
-              newMap.fitBounds(bounds);
-            });
 
-            newMap.addListener("click", (event: google.maps.MapMouseEvent) => {
-              const latLng = event.latLng;
-              if (latLng) {
-                const confirmPin = window.confirm("ここにピンを指しますか？");
-                if (confirmPin) {
-                  const newMarker = new google.maps.Marker({
-                    position: latLng,
-                    map: newMap,
-                  });
+              const infoWindow = new google.maps.InfoWindow({
+                content: createInfoWindowContent(0, 0), // デフォルト値を設定
+                pixelOffset: new google.maps.Size(0, -50),
+              });
 
-                  const infoWindow = new google.maps.InfoWindow({
-                    content: createInfoWindowContent(0,0),
-                    pixelOffset: new google.maps.Size(0, -50),
-                  });
+              marker.addListener("click", () => {
+                infoWindow.open(newMap, marker);
+              });
 
-                  newMarker.addListener("click", () => {
-                    infoWindow.open(newMap, newMarker);
-                    window.location.href = "https://www.hinatazaka46.com/s/official/artist/24?ima=0000";
-                  });
-
-                  setLatLng({
-                    lat: latLng.lat(),
-                    lng: latLng.lng()
-                  });
-
-                  newMap.panTo(latLng);
-                }
+              if (place.geometry.viewport) {
+                bounds.union(place.geometry.viewport);
+              } else {
+                bounds.extend(place.geometry.location);
               }
             });
-          } else {
-            console.error("Failed to find the search box input element.");
-          }
+            newMap.fitBounds(bounds);
+          });
+
+          // ピンを指した時に緯度と経度を表示
+          newMap.addListener("click", (event: google.maps.MapMouseEvent) => {
+            const latLng = event.latLng;
+            if (!latLng) return;
+
+            const confirmPin = window.confirm("ここにピンを指しますか？");
+            if (confirmPin) {
+              const newMarker = new google.maps.Marker({
+                position: latLng,
+                map: newMap,
+              });
+
+              const infoWindow = new google.maps.InfoWindow({
+                content: createInfoWindowContent(latLng.lat(), latLng.lng()),
+                pixelOffset: new google.maps.Size(0, -50),
+              });
+
+              newMarker.addListener("click", () => {
+                infoWindow.open(newMap, newMarker);
+                // URLにリダイレクト
+                window.location.href = "./postDetail";
+              });
+
+              // 緯度と経度を更新
+              setLatLng({
+                lat: latLng.lat(),
+                lng: latLng.lng()
+              });
+
+              newMap.panTo(latLng);
+            }
+          });
 
         },
         (error) => {
@@ -146,9 +146,7 @@ const MyMapComponent: React.FC = () => {
 
   return (
     <div>
-      <div className={styles.searchBoxWrapper}>
-        <input id="pac-input" className={styles.controls} type="text" placeholder="Search Box" />
-      </div>
+      <input id="pac-input" className={styles.controls} type="text" placeholder="Search" />
       <div ref={mapRef} className="min-h-screen w-screen" />
       <CurrentLocationButton map={map} currentLocation={currentLocation} />
       <div>
