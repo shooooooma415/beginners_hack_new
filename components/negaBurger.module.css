@@ -1,0 +1,16 @@
+.hamburger {
+    position: absolute;
+    top: 1%;
+    right: 3%;
+    z-index: 1000;
+    font-size: 3rem;
+    background-color: rgb(255, 255, 255); /* 背景をほぼ黒にする */
+    color: rgba(0, 0, 0, 0.9);
+    padding: 10px;
+    border-radius: 15px; /* 角を丸くする */
+    transition: transform 0.2s ease;
+}
+
+.hamburger:active {
+    transform: scale(0.8); /* アイコンを縮小 */
+  }
