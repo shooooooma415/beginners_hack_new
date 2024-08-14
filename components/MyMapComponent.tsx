@@ -151,12 +151,12 @@ const MyMapComponent: React.FC = () => {
       </div>
       <div ref={mapRef} className="min-h-screen w-screen" />
       <CurrentLocationButton map={map} currentLocation={currentLocation} />
-      <div>
+      {/* <div>
         <ul>
           <li>緯度: <span>{latLng?.lat ?? '-'}</span></li>
           <li>経度: <span>{latLng?.lng ?? '-'}</span></li>
         </ul>
-      </div>
+      </div> */}
     </div>
   );
 };
