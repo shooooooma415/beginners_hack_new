@@ -55,7 +55,7 @@ export default function SwipeableTemporaryDrawer() {
 
     return (
         <>
-            <Button onClick={toggleDrawer(true)}><GiHamburgerMenu className={styles.Hamburger} /></Button>
+            <GiHamburgerMenu className={styles.Hamburger} onClick={toggleDrawer(true)}/>
             <SwipeableDrawer
                 anchor="bottom"
                 open={open}

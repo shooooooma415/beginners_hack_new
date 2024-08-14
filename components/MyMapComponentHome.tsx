@@ -6,6 +6,10 @@ import CurrentLocationButton from "@/components/currentLocation";
 import styles from './searchbutton.module.css'
 
 const MyMapComponentHome: React.FC = () => {
+  const divStyle: React.CSSProperties = {
+    overflowY: 'hidden', // 縦方向のスクロールを有効にする
+    overflowX: 'hidden'  // 横方向のスクロールを無効にする
+  };
   const mapRef = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const [currentLocation, setCurrentLocation] = useState<google.maps.LatLngLiteral | null>(null);
@@ -137,7 +141,7 @@ const MyMapComponentHome: React.FC = () => {
   }, [mapRef]);
 
   return (
-    <div>
+    <div style={divStyle}>
       <input id="pac-input" className={styles.controls} type="text" placeholder="Search" />
       <div ref={mapRef} className="min-h-screen w-screen" />
       <CurrentLocationButton map={map} currentLocation={currentLocation} />
