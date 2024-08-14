@@ -18,8 +18,6 @@ const NavigationItem = ({ text }) => {
       case 'My Posts':
         return "/private";
       case 'New Post':
-        return "/postDetail";
-      case 'Posts':
         return "/post";
       case 'Setting':
         return "/settings";
