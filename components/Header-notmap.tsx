@@ -53,11 +53,13 @@ export default function Header() {
       </Link>
     </li>
     <li className={styles.centeredItem}>
-      <ListItemButton>
-        <ListItemIcon>
-          <FaRegSquarePlus className={ styles.centerIcon} />
-        </ListItemIcon>
-      </ListItemButton>
+      <Link href="/post">
+        <ListItemButton>
+          <ListItemIcon>
+            <FaRegSquarePlus className={ styles.centerIcon} />
+          </ListItemIcon>
+        </ListItemButton>
+      </Link>
     </li>
     <li className={styles.rightItem}>
       <Link href="/private">
