@@ -1,4 +1,3 @@
-import Header from "@/components/Header";
 import SwipeableTemporaryDrawer from "@/components/TopDrawer";
 import "../globals.css";
 
