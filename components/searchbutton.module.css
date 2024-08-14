@@ -7,10 +7,17 @@
 }
 
 .controls {
-  width: 300px; /* 検索ボックスの幅 */
-  height: 40px; /* 検索ボックスの高さ */
-  padding: 0 12px; /* 内側の余白 */
-  font-size: 16px; /* フォントサイズ */
+  position: fixed;
+  top: 1%; /* 上からの距離 */
+  left: 3%; /* 左からの距離（中央寄せ） */
+  z-index: 10; /* 他の要素の上に表示 */
+  height: 45px;
+  width: 70%;
+  font-size: 100%;
+  color: black;
+  border-radius: 15px; /* 角を丸くする */
+  padding-left: 1rem;
+  background: #E5E4E4 no-repeat 2% ;
 }
 
 .mapContainer {

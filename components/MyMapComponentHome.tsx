@@ -37,7 +37,6 @@ const MyMapComponentHome: React.FC = () => {
 
           const input = document.getElementById("pac-input") as HTMLInputElement;
           const searchBox = new google.maps.places.SearchBox(input);
-          newMap.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
           newMap.addListener("bounds_changed", () => {
             searchBox.setBounds(newMap.getBounds() as google.maps.LatLngBounds);
