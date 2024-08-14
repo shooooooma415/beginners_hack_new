@@ -1,10 +1,10 @@
 import React from 'react';
 import { GiHamburgerMenu } from "react-icons/gi";
-import styles from './humberger.module.css'
+import styles from './hamburger.module.css'
 
 const SearchIcon = () => {
   return (
-    <GiHamburgerMenu className={styles.Hamburger}/>
+    <GiHamburgerMenu className={styles.hamburger}/>
   );
 };
 
