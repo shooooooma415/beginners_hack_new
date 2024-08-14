@@ -23,7 +23,7 @@ export default function LogoutCheck() {
     return (
         <>
             <h1 className="mb-4 pt-28 text-4xl">本当にログアウトしますか？</h1>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <div style={{ display: 'flex', justifyContent: 'center' , paddingBottom: '50%'}}>
                 <CustomButton
                     variant="contained"
                     href="#contained-buttons"
