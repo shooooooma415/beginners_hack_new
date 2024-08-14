@@ -7,7 +7,7 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import { GiHamburgerMenu } from "react-icons/gi";
 import { NavigationItem } from '@/components/getIcon';
-import styles from './hamburger.module.css';
+import styles from './hamburgerbox.module.css';
 
 export default function SwipeableTemporaryDrawer() {
     const [open, setOpen] = useState(false);
