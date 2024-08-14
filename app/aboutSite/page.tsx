@@ -31,6 +31,14 @@ export default function AboutSite() {
                     height={100}
                     alt="Tailwind CSS Icon"
                 />
+                <Image
+                    className="github"
+                    src="/imagefile/github copy.png"
+                    width={100}
+                    height={100}
+                    alt="Tailwind CSS Icon"
+                />
+                
             </div>
         </>
     );  
