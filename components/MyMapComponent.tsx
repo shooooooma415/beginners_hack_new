@@ -36,12 +36,12 @@ const MyMapComponent: React.FC = () => {
           }
 
           const input = document.getElementById("pac-input") as HTMLInputElement;
-          const searchBox = new google.maps.places.SearchBox(input);
-          newMap.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+          if (input) {
+            const searchBox = new google.maps.places.SearchBox(input);
 
-          newMap.addListener("bounds_changed", () => {
-            searchBox.setBounds(newMap.getBounds() as google.maps.LatLngBounds);
-          });
+            newMap.addListener("bounds_changed", () => {
+              searchBox.setBounds(newMap.getBounds() as google.maps.LatLngBounds);
+            });
 
           let markers: google.maps.Marker[] = [];
 
@@ -75,10 +75,10 @@ const MyMapComponent: React.FC = () => {
                 position: place.geometry.location,
               });
 
-                const infoWindow = new google.maps.InfoWindow({
-                  content: createInfoWindowContent(0, 0),
-                  pixelOffset: new google.maps.Size(0, -50),
-                });
+              const infoWindow = new google.maps.InfoWindow({
+                content: createInfoWindowContent(0, 0), // デフォルト値を設定
+                pixelOffset: new google.maps.Size(0, -50),
+              });
 
               marker.addListener("click", () => {
                 infoWindow.open(newMap, marker);
@@ -96,32 +96,31 @@ const MyMapComponent: React.FC = () => {
           // ピンを指した時に緯度と経度を表示
           newMap.addListener("click", (event: google.maps.MapMouseEvent) => {
             const latLng = event.latLng;
-            if (!latLng) return;
+            if (latLng) {
+              const confirmPin = window.confirm("ここにピンを指しますか？");
+              if (confirmPin) {
+                const newMarker = new google.maps.Marker({
+                  position: latLng,
+                  map: newMap,
+                });
 
-            const confirmPin = window.confirm("ここにピンを指しますか？");
-            if (confirmPin) {
-              const newMarker = new google.maps.Marker({
-                position: latLng,
-                map: newMap,
-              });
+                const infoWindowContent = createInfoWindowContent(latLng.lat(), latLng.lng());
+                const infoWindow = new google.maps.InfoWindow({
+                  content: infoWindowContent,
+                  pixelOffset: new google.maps.Size(0, -50),
+                });
 
-                  const infoWindowContent = createInfoWindowContent(latLng.lat(), latLng.lng());
-                  const infoWindow = new google.maps.InfoWindow({
-                    content: infoWindowContent,
-                    pixelOffset: new google.maps.Size(0, -50),
-                  });
+                newMarker.addListener("click", () => {
+                  infoWindow.open(newMap, newMarker);
+                });
 
-                  newMarker.addListener("click", () => {
-                    infoWindow.open(newMap, newMarker);
-                  });
-
-                  newMap.panTo(latLng);
-                }
+                newMap.panTo(latLng);
               }
-            });
-          } else {
-            console.error("Failed to find the search box input element.");
-          }
+            }
+          });
+        }else {
+          console.error("Failed to find the search box input element.");
+        }
         },
         (error) => {
           console.error("Error retrieving location: ", error);
