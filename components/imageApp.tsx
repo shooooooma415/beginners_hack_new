@@ -4,6 +4,9 @@ import { use, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import heic2any from "heic2any"; // HEIC変換ライブラリをインポート
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { useRouter } from "next/navigation"; // useRouterをインポート
+
+
 
 export default function ImageApp() {
   // 画像の公開URL
@@ -18,7 +21,7 @@ export default function ImageApp() {
   const [file, setFile] = useState<File>(); // アップロードするファイル
   const [comment, setComment] = useState<string>(""); // コメントの値
   const [errorMessage, setErrorMessage] = useState<string>(""); // エラーメッセージ
-  // const [user_id, setUserId] = useState<string>("");
+  const router = useRouter(); // useRouterを初期化
 
   const supabase = createClientComponentClient();
   useEffect(() => {
@@ -60,12 +63,8 @@ export default function ImageApp() {
       console.log(error); // エラーが発生した場合、コンソールにログを出力
       return;
     }
-    
 
     // 空のフォルダーを除外し、URLリストを作成
-
-
-
     for (let index = 0; index < data.length; index++) {
       if (data[index].name != ".emptyFolderPlaceholder") {
         tempUrlList.push(data[index].name);
@@ -77,8 +76,6 @@ export default function ImageApp() {
     await fetchAllComments(tempUrlList); // コメントを取得
     setLoadingState("hidden"); // ローディング状態を隠す
   };
-
-
 
   // 画像に関連する全てのコメントを取得する関数
   const fetchAllComments = async (imageList: string[]) => {
@@ -203,6 +200,12 @@ export default function ImageApp() {
     setComment("");
     await listAllImage();
     setLoadingState("hidden"); // ローディング状態を隠す
+
+    // 投稿が完了した後に遷移
+  router.push('/private'); // 遷移先のパスを指定
+
+
+
   };
 
   return (
