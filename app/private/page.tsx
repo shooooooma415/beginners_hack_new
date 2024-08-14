@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import PrivateImageApp from '../../components/privateImageApp';
 import { Button } from "@mui/material";
 import Link from 'next/link';
@@ -10,11 +9,7 @@ import Image from 'next/image';
 export default function Index() {
   return (
     <>
-      <Head>
-        <link href="https://fonts.googleapis.com/css?family=Caveat&display=swap" rel="stylesheet" />
-      </Head>
-
-      <h1 className="custom-heading">Profile</h1>
+      <h2 className = "custom-heading">プロフィール</h2>
 
       <Image
         src="/imagefile/FreeIcon.png"

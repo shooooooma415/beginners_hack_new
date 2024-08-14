@@ -32,7 +32,7 @@ export default function Header() {
   );
 
   return (
-    <header className="relative bottom-0 p-4 border-b-2 border-gray-300 w-full flex justify-center items-center"
+    <header className="absolute bottom-0 p-4 border-b-2 border-gray-300 w-full flex justify-center items-center"
     style={{ 
         height: '60px', 
         paddingTop: '60px', 
