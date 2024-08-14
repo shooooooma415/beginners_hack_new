@@ -37,7 +37,7 @@ export default function SwipeableTemporaryDrawer() {
             onKeyDown={toggleDrawer(false)}
         >
             <List>
-                {['My Map', 'My Posts', 'New Post','Posts',"Setting","Logout"].map((text) => (
+                {['My Map', 'My Posts', 'New Post',"Setting","Logout"].map((text) => (
                     <ListItem key={text} disablePadding>
                         <NavigationItem text={text} />
                     </ListItem>

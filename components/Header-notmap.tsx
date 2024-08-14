@@ -32,13 +32,12 @@ export default function Header() {
   );
 
   return (
-    <header className="absolute bottom-0 p-4 border-b-2 border-gray-300 w-full flex justify-center items-center"
+    <header className="absolute bottom-0 right-0 p-4 border-b-2 border-gray-300 w-full flex justify-center items-center"
     style={{ 
         height: '60px', 
         paddingTop: '60px', 
         paddingBottom: '0px', 
-        marginTop: '0px', 
-        marginBottom: '0px',
+        margin: '0px',
         backgroundColor: 'rgba(128, 128, 128, 0.6)'  // 透明度50%のグレー
     }}>
       <ul className="w-full max-w-3xl m-auto flex font-medium flex-row">
