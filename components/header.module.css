@@ -30,7 +30,7 @@
     display: flex; /* 各アイテムをフレックスボックスに */
     align-items: center; /* 垂直中央揃え */
     justify-content: center; /* 水平中央揃え */
-    padding: 1% 0 0%; /* 左右の余白を自動に */
+    padding:  0 0%; /* 左右の余白を自動に */
     left: 3%;
     flex: 1; /* 各アイテムを均等に分配 */
 }
@@ -87,11 +87,13 @@
     border-radius: 4px; /* ボタンの角を丸くする */
     background-color: transparent; /* ボタンの背景色 */
     transition: background-color 0.2s; /* ホバー時の変化のアニメーション */
+    width: 60px; /* ボタンの幅を固定 */
+    height: 60px; /* ボタンの高さを固定 */
 }
 
-.button:hover {
-    background-color: rgba(0, 0, 0, 0.1); /* ホバー時の背景色 */
-}
+/* .button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+} */
 
 .upBurger {
     position: absolute;
