@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Button from '@mui/material/Button'; // Import Button from Material-UI
 import Drawer from '@mui/material/Drawer'; // Import Drawer from Material-UI
 import Box from '@mui/material/Box'; // Import Box from Material-UI
-import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
+import { MdInsertPhoto } from "react-icons/md";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import { FaRegSquarePlus } from "react-icons/fa6";
 import ListItemButton from '@mui/material/ListItemButton';
@@ -88,8 +88,8 @@ export default function Header() {
         <div className={styles.button}>
           <Image
             src="/imagefile/MyMapIcon.png"
-            width={50}
-            height={50}
+            width={43.6}
+            height={43.6}
             style={{ objectFit: 'contain' }}
             alt="My Map Icon"
           />
@@ -107,7 +107,7 @@ export default function Header() {
       <Link href="/private">
         <ListItemButton>
           <ListItemIcon>
-            <InsertPhotoIcon style={{ fontSize: '50px' }} />
+          <MdInsertPhoto  className={ styles.rightIcon} />
           </ListItemIcon>
         </ListItemButton>
       </Link>
