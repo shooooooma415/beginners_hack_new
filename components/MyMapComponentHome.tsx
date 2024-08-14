@@ -75,7 +75,10 @@ const MyMapComponentHome: React.FC = () => {
               });
 
               const infoWindow = new google.maps.InfoWindow({
-                content: createInfoWindowContent(),
+                content: createInfoWindowContent(
+                  place.geometry.location.lat(),
+                  place.geometry.location.lng()
+              ),
                 pixelOffset: new google.maps.Size(0, -50),
               });
 

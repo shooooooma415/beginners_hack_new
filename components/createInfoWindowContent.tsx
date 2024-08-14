@@ -1,4 +1,4 @@
-const createInfoWindowContent = (lat: number, lng: number) => {
+const createInfoWindowContent = (lat: number, lng: number): string => {
     return `
         <div class="custom-info">
             <div class="custom-info-item name">
