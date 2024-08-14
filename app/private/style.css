@@ -1,4 +1,15 @@
 /* style.css */
+/* 文字の色、大きさ、位置をカスタマイズ */
+
+.custom-heading {
+    color: #886771; /* 文字の色を青色に設定 */
+    font-size: 2rem; /* 文字の大きさを設定 */
+    text-align: center; /* 文字を中央に配置 */
+    margin-top: 20px; /* 上部に余白を追加 */
+    margin-bottom: 2%;
+  }
+  
+
 .round-image {
     border-radius: 50%;
     border: 2px solid #E5E4E4;
@@ -21,15 +32,6 @@
     background-color: #E5E4E4; /* ホバー時の背景色 */
     opacity: 0.8; /* ホバー時に少し透明にする */
   }
-  
-
-.custom-heading {
-    font-family: 'Caveat', cursive; /* フォントファミリーを指定 */
-    margin-bottom: 2rem; /* 例えば 2rem の下マージン */
-    /* padding-top: 10%; 例えば 4rem の上パディング */
-    font-size: 2.5rem; /* フォントサイズを調整 */
-  }
-
 
   .scroll-container {
     max-height: 500px; /* 必要に応じて高さを調整 */

@@ -8,7 +8,7 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 export default function ImageApp() {
   // 画像の公開URL
   const [user_id, setUserId] = useState<string>("");
-  const public_url = `https://spzlpfucuqkpjlucnnfh.supabase.co/storage/v1/object/public/public-image-bucket/img/${user_id}`;
+  const public_url = `https://spzlpfucuqkpjlucnnfh.supabase.co/storage/v1/object/public/public-image-bucket/img/${user_id}/`;
 
   // ステート管理
   const [eventDate, setEventDate] = useState<string>(""); // 日付 追加
