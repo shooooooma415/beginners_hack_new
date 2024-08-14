@@ -9,6 +9,7 @@ const MyMapComponent: React.FC = () => {
   const mapRef = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const [currentLocation, setCurrentLocation] = useState<google.maps.LatLngLiteral | null>(null);
+  
 
   useEffect(() => {
     if (mapRef.current) {
