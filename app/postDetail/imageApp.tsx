@@ -1,15 +1,22 @@
 "use client";
 import { supabase } from "@/utils/supabase/supabase";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import heic2any from "heic2any"; // HEIC変換ライブラリをインポート
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation"; // useRouterをインポート
+import "./style.css"
+import Textarea from '@mui/joy/Textarea';
+import Input from '@mui/joy/Input';
+import Stack from '@mui/joy/Stack';
 
 export default function ImageApp() {
   const [user_id, setUserId] = useState<string>("");
   const public_url = `https://spzlpfucuqkpjlucnnfh.supabase.co/storage/v1/object/public/public-image-bucket/img/${user_id}/`;
-  const [eventDate, setEventDate] = useState<string>(""); // 日付
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  // ステート管理
+  const [eventDate, setEventDate] = useState<string>(""); // 日付 追加
   const [urlList, setUrlList] = useState<string[]>([]); // 画像URLリスト
   const [loadingState, setLoadingState] = useState("hidden"); // ローディング状態
   const [comments, setComments] = useState<{ [key: string]: { comment: string; created_at: string; event_date: string }[] }>({}); // 画像ごとのコメント
@@ -202,28 +209,50 @@ export default function ImageApp() {
   return (
     <>
       {/* 画像アップロードフォーム */}
-      <form className="mb-4 text-center" onSubmit={onSubmit}>
-        <input
-          className="mb-10 mt-2 text-align-center"
-          type="date"
-          onChange={(e) => setEventDate(e.target.value)} // 日付選択時のハンドラー
-        />
-        <input
-          className="relative mb-4 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none"
+      
+      <form className="appload" onSubmit={onSubmit}>
+        
+      
+      <input
+          className="handler"
           type="file"
           id="formFile"
           accept="image/*,.HEIC"
-          onChange={handleChangeFile} // ファイル選択時のハンドラー
+          onChange={handleChangeFile} // ファイル選択時のハンドラ
         />
-        <textarea
-          className="relative mb-4 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out"
-          placeholder="コメントを入力"
+      <Stack spacing={1.5} sx={{ minWidth: 300 }}>
+        <Input
+          type="date"
+          onChange={(e) => setEventDate(e.target.value)}
+          slotProps={{
+            input: {
+              min: '1930-01-01',
+              max: '2100-12-31',
+            },
+          }}
+        />
+      </Stack>
+        <Textarea
+          className="comment"
+          placeholder="Enter your comment"
+          minRows={6}
+          sx={{
+            '--Textarea-focusedInset': 'var(--any, )',
+            '--Textarea-focusedThickness': '0.25rem',
+            '--Textarea-focusedHighlight': 'rgba(13,110,253,.25)',
+            '&::before': {
+            transition: 'box-shadow .15s ease-in-out',
+            },
+            '&:focus-within': {
+            borderColor: '#86b7fe',
+            },
+          }}
           value={comment} // コメントの値
           onChange={(e) => setComment(e.target.value)} // コメント入力時のハンドラー
         />
         {/* エラーメッセージの表示 */}
         {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>}
-        <button type="submit" disabled={isButtonDisabled || !file} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center disabled:opacity-25">
+        <button type="submit" disabled={!file} className="send">
           送信
         </button>
       </form>
@@ -231,4 +260,3 @@ export default function ImageApp() {
     </>
   );
 }
- 

@@ -1,0 +1,47 @@
+.NewPost{
+    margin-bottom: 2.5rem; 
+    padding-top: 7rem;
+    font-size: 2.25rem;
+    color: #886771;
+}
+.date{
+  flex-direction: column; /* flex-col */
+}
+
+.appload{
+    text-align: center;
+}
+
+.dateselect{
+    margin-bottom: 10px;
+    text-align: center;
+}
+.handler{
+  background-color: #E5E4E4;
+  color: #886771;
+}
+.comment{
+  width: 100%; /* w-full */
+  background-color: #E5E4E4;
+  color: #886771;
+  border-radius: 0.5rem;
+  width: 100%;
+  justify-content: center; /* 水平方向の中央揃え */
+    align-items: center; /* 垂直方向の中央揃え */
+}
+
+.send{
+    background-color:#E5E4E4 ;
+    color: #886771;
+  border-radius: 0.5rem; /* rounded-lg */
+  font-weight: 5rem; /* font-medium */
+  font-size: 1.5rem; /* text-sm */
+  width: 40%; /* w-full */
+  margin: 23%;
+}
+
+#formFile{
+    border-radius: 1.3rem 1.3rem 0 0;
+    padding-left: 3%;
+    width: 100%;
+}

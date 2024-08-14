@@ -8,7 +8,7 @@
   .custom-buttonYes {
     width: 150px;
     padding: 10px 20px;
-    margin: 0 10px;
+    margin: 0 50;
     background-color: #767373;
     color: white;
     font-size: 0.875rem;
@@ -29,7 +29,7 @@
     width: 150px;
     padding: 10px 20px;
     margin: 0 10px;
-    background-color: #E5E4E4; /* 青いボタン */
+    background-color: #E5E4E4; 
     color: #886771;
     font-size: 0.875rem;
     font-weight: 500;
@@ -42,5 +42,13 @@
 }
 
 .custom-buttonNo:hover {
-    background-color: rgb(229, 228, 228,0.6); /* ホバー時の赤い色 */
+    background-color: rgb(229, 228, 228,0.6);
+}
+.logout{
+    color: #886771;
+    font-size: 1.95rem;
+    text-align: center;
+    margin-top: 20rem;
+
+
 }

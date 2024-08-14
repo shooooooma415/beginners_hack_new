@@ -16,7 +16,7 @@ export default function LogoutCheck() {
 
     return (
         <>
-            <h1 className="mb-4 pt-28 text-4xl">Logout ?</h1>
+            <h2 className="logout">Are you sure to logout?</h2>
            
             <div>
                 <button className="custom-buttonYes" onClick={handleLogout}>Logout</button>

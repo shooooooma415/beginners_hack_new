@@ -1,0 +1,80 @@
+.container {
+    position: relative;
+    height: 100vh; /* 親要素の高さをビュー全体に設定 */
+    width: 100vw; /* 親要素の幅をビュー全体に設定 */
+    background-color: #f0f0f0; /* 親要素の背景色を灰色に設定 */
+    display: flex;
+    justify-content: center; /* 子要素を水平方向に中央揃え */
+    align-items: center; /* 子要素を垂直方向に中央揃え */
+}
+
+.googleSin {
+    height: 80%; /* 親要素に対する高さの80% */
+    width: 80%; /* 親要素に対する幅の80% */
+    background-color: white; /* 白色の背景 */
+    padding: 5vh; /* 内側の余白を5%に設定 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* 軽い影を追加して立体感を出す */
+    border-radius: 15px; /* 角を丸くする */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; /* 要素を均等に配置 */
+    align-items: center;
+    overflow: hidden; /* 子要素が溢れた場合に隠す */
+    position: absolute; /* 親要素内での絶対配置 */
+    top: 10%; /* 親要素のトップから10%下に配置 */
+    left: 10%; /* 親要素の左から10%内側に配置 */
+}
+
+.Image {
+    max-width: 20vh; /* 最大幅を40%に設定 */
+
+    height: auto; /* 高さを自動調整 */
+    object-fit: contain; /* 画像のアスペクト比を保持 */
+    margin: 0 auto; /* 中央に配置 */
+}
+
+.title {
+    font-size: calc(2vw + 2vh + 1rem); /* 画面の幅と高さに応じたタイトルサイズ */
+    max-width: 90%; /* 最大幅を設定して溢れを防ぐ */
+    text-align: center; /* テキストを中央に配置 */
+    color: #333; /* 読みやすい色 */
+    font-weight: 600; /* 強調のためにボールド */
+    margin: 0% auto 2%; /* 上下のマージンを調整 */
+}
+
+.subTitle {
+    font-size: calc(1.0vw + 1.0vh + 0.5rem); /* 画面の幅と高さに応じたサブタイトルサイズ */
+    max-width: 90%; /* 最大幅を設定して溢れを防ぐ */
+    text-align: center;
+    color: #666; /* グレーで控えめに */
+    margin: 4vh auto 0%; /* 上下のマージンを調整 */
+}
+
+.googleButton {
+    width: 80%;
+    height: auto; /* 高さを自動に */
+    padding: 10px; /* ボタンの余白 */
+    display: flex;
+    justify-content: center;
+}
+
+.signUp {
+    font-size: calc(0.5vw + 0.5vh + 0.5rem); /* 画面の幅と高さに応じたテキストサイズ */
+    color: #666; /* グレーで控えめに */
+    margin: 4vh auto 0%; /* 上下のマージンを調整 */
+    display: flex;
+    justify-content: center;
+}
+
+.signUpButton {
+    font-size: calc(1.5vw + 1.5vh + 0.5rem); /* 画面の幅と高さに応じたテキストサイズ */
+    color: blue;
+    margin: 0 auto;
+    padding: 10px; /* ボタンの余白 */
+    display: flex;
+    justify-content: center;
+}
+
+.signUpButton:hover {
+    color: red;
+}

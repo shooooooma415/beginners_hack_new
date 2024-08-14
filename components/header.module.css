@@ -2,15 +2,15 @@
     position: absolute;
     bottom: 0;
     right: 0;
-    padding: 0;
+    padding: 0%;
     border-bottom: 0px; /* gray-300 */
-    width: 100%;
+    width: 100vw;
     display: flex;
     justify-content: center; /* 中央揃え */
     align-items: center;
     background-color: rgba(128, 128, 128, 0.6); /* 透明度50%のグレー */
     height: 60px;
-    margin: 0px;
+    margin-bottom: 0px;
 }
 
 .navList {
@@ -30,7 +30,8 @@
     display: flex; /* 各アイテムをフレックスボックスに */
     align-items: center; /* 垂直中央揃え */
     justify-content: center; /* 水平中央揃え */
-    padding: 1% 0 0%; /* 左右の余白を自動に */
+    padding:  0 0%; /* 左右の余白を自動に */
+    left: 3%;
     flex: 1; /* 各アイテムを均等に分配 */
 }
 
@@ -45,10 +46,15 @@
 
 
 .centerIcon{
+    position: absolute; /*  フレックスボックスで配置 */
     font-size: 50px;
-
     align-items: center; /* 垂直中央揃え */
     justify-content: center; /* 水平中央揃え */
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
 }
 
 .rightIcon{
@@ -63,6 +69,7 @@
     justify-content: center; /* 水平中央揃え */
     padding: 0 0%; /* 左右の余白を自動に */
     flex: 1; /* 各アイテムを均等に分配 */
+    right: 3%;
 }
 
 .iconLink {
@@ -80,8 +87,16 @@
     border-radius: 4px; /* ボタンの角を丸くする */
     background-color: transparent; /* ボタンの背景色 */
     transition: background-color 0.2s; /* ホバー時の変化のアニメーション */
+    width: 60px; /* ボタンの幅を固定 */
+    height: 60px; /* ボタンの高さを固定 */
 }
 
-.button:hover {
-    background-color: rgba(0, 0, 0, 0.1); /* ホバー時の背景色 */
+/* .button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+} */
+
+.upBurger {
+    position: absolute;
+    bottom: 0;
 }
+

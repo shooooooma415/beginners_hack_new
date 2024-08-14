@@ -12,12 +12,6 @@
   background: #E5E4E4 no-repeat 2% ;
 }
 
-.mapContainer {
-  position: relative; /* 検索ボックスを絶対配置するために必要 */
-  width: 100%;
-  height: 100vh; /* 高さをビュー全体に設定 */
-}
-
 .toggleButton {
   position: fixed;
   z-index: 10;
