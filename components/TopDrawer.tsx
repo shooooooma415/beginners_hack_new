@@ -9,6 +9,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { NavigationItem } from '@/components/getIcon';
 import styles from './hamburgerbox.module.css';
 
+
 export default function SwipeableTemporaryDrawer() {
     const [open, setOpen] = useState(false);
     const [isClient, setIsClient] = useState(false);
