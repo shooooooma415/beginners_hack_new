@@ -7,7 +7,7 @@ import styles from './searchbutton.module.css'
 
 const MyMapComponentHome: React.FC = () => {
   const divStyle: React.CSSProperties = {
-    overflowY: 'hidden', 
+    overflowY: 'hidden', // 縦方向のスクロールを有効にする
     overflowX: 'hidden'  // 横方向のスクロールを無効にする
   };
   const mapRef = useRef<HTMLDivElement>(null);
@@ -46,8 +46,7 @@ const MyMapComponentHome: React.FC = () => {
             searchBox.setBounds(newMap.getBounds() as google.maps.LatLngBounds);
           });
 
-          let markers: google.maps.Marker[] = [];
-
+          // 検索ボックスで場所を検索したときのリスナー
           searchBox.addListener("places_changed", () => {
             const places = searchBox.getPlaces();
 
@@ -55,73 +54,21 @@ const MyMapComponentHome: React.FC = () => {
               return;
             }
 
-            markers.forEach((marker) => marker.setMap(null));
-            markers = [];
-
             const bounds = new google.maps.LatLngBounds();
 
             places.forEach((place) => {
               if (!place.geometry || !place.geometry.location) return;
 
-              const icon = {
-                url: place.icon!,
-                size: new google.maps.Size(71, 71),
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(17, 34),
-                scaledSize: new google.maps.Size(25, 25),
-              };
-
-              const marker = new google.maps.Marker({
-                map: newMap,
-                icon,
-                title: place.name,
-                position: place.geometry.location,
-              });
-
-              const infoWindow = new google.maps.InfoWindow({
-                content: createInfoWindowContent(
-                  place.geometry.location.lat(),
-                  place.geometry.location.lng()
-              ),
-                pixelOffset: new google.maps.Size(0, -50),
-              });
-
-              marker.addListener("click", () => {
-                infoWindow.open(newMap, marker);
-              });
-
+              // マーカーを作成せずに、場所のビューポートにマップをフィットさせる
               if (place.geometry.viewport) {
                 bounds.union(place.geometry.viewport);
               } else {
                 bounds.extend(place.geometry.location);
               }
             });
+
             newMap.fitBounds(bounds);
           });
-
-          // // ピンを指した時に特定のURLにリダイレクトする処理
-          // newMap.addListener("click", (event: google.maps.MapMouseEvent) => {
-          //   const latLng = event.latLng;
-          //   const confirmPin = window.confirm("ここにピンを指しますか？");
-          //   if (confirmPin) {
-          //     const newMarker = new google.maps.Marker({
-          //       position: latLng,
-          //       map: newMap,
-          //     });
-
-          //     const infoWindow = new google.maps.InfoWindow({
-          //       content: createInfoWindowContent(),
-          //       pixelOffset: new google.maps.Size(0, -50),
-          //     });
-
-          //     newMarker.addListener("click", () => {
-          //       infoWindow.open(newMap, newMarker);
-          //       // URLにリダイレクト
-          //       window.location.href = "https://www.hinatazaka46.com/s/official/artist/24?ima=0000";
-          //     });
-          //   }
-          // });
-
         },
         (error) => {
           console.error("Error retrieving location: ", error);
