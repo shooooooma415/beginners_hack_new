@@ -10,6 +10,40 @@ const MyMapComponent: React.FC = () => {
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const [currentLocation, setCurrentLocation] = useState<google.maps.LatLngLiteral | null>(null);
   
+  const mapStyles = [
+    {
+      elementType: "geometry",
+      stylers: [{ color: "#E5E4E4" }],
+    },
+    {
+      elementType: "labels.text.fill",
+      stylers: [{ color: "#886771" }],
+    },
+    {
+      elementType: "labels.text.stroke",
+      stylers: [{ color: "#ffffff" }],
+    },
+    {
+      featureType: "administrative",
+      elementType: "geometry",
+      stylers: [{ visibility: "on" }],
+    },
+    {
+      featureType: "poi",
+      elementType: "geometry",
+      stylers: [{ visibility: "on" }],
+    },
+    {
+      featureType: "road",
+      elementType: "geometry",
+      stylers: [{ color: "#886771" }],
+    },
+    {
+      featureType: "water",
+      elementType: "geometry",
+      stylers: [{ color: "#886771" }],
+    },
+  ];
 
   useEffect(() => {
     if (mapRef.current) {
@@ -29,6 +63,7 @@ const MyMapComponent: React.FC = () => {
             streetViewControl: false,
             mapTypeControl: false,
             mapTypeId: "roadmap",
+            styles: mapStyles, // ここでカスタムスタイルを適用
           });
           setMap(newMap);
 
@@ -44,84 +79,84 @@ const MyMapComponent: React.FC = () => {
               searchBox.setBounds(newMap.getBounds() as google.maps.LatLngBounds);
             });
 
-          let markers: google.maps.Marker[] = [];
+            let markers: google.maps.Marker[] = [];
 
-          searchBox.addListener("places_changed", () => {
-            const places = searchBox.getPlaces();
+            searchBox.addListener("places_changed", () => {
+              const places = searchBox.getPlaces();
 
-            if (!places || places.length === 0) {
-              return;
-            }
-
-            markers.forEach((marker) => marker.setMap(null));
-            markers = [];
-
-            const bounds = new google.maps.LatLngBounds();
-
-            places.forEach((place) => {
-              if (!place.geometry || !place.geometry.location) return;
-
-              const icon = {
-                url: place.icon!,
-                size: new google.maps.Size(71, 71),
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(17, 34),
-                scaledSize: new google.maps.Size(25, 25),
-              };
-
-              const marker = new google.maps.Marker({
-                map: newMap,
-                icon,
-                title: place.name,
-                position: place.geometry.location,
-              });
-
-              const infoWindow = new google.maps.InfoWindow({
-                content: createInfoWindowContent(0, 0), // デフォルト値を設定
-                pixelOffset: new google.maps.Size(0, -50),
-              });
-
-              marker.addListener("click", () => {
-                infoWindow.open(newMap, marker);
-              });
-
-              if (place.geometry.viewport) {
-                bounds.union(place.geometry.viewport);
-              } else {
-                bounds.extend(place.geometry.location);
+              if (!places || places.length === 0) {
+                return;
               }
-            });
-            newMap.fitBounds(bounds);
-          });
 
-          // ピンを指した時に緯度と経度を表示
-          newMap.addListener("click", (event: google.maps.MapMouseEvent) => {
-            const latLng = event.latLng;
-            if (latLng) {
-              const confirmPin = window.confirm("ここにピンを指しますか？");
-              if (confirmPin) {
-                const newMarker = new google.maps.Marker({
-                  position: latLng,
+              markers.forEach((marker) => marker.setMap(null));
+              markers = [];
+
+              const bounds = new google.maps.LatLngBounds();
+
+              places.forEach((place) => {
+                if (!place.geometry || !place.geometry.location) return;
+
+                const icon = {
+                  url: place.icon!,
+                  size: new google.maps.Size(71, 71),
+                  origin: new google.maps.Point(0, 0),
+                  anchor: new google.maps.Point(17, 34),
+                  scaledSize: new google.maps.Size(25, 25),
+                };
+
+                const marker = new google.maps.Marker({
                   map: newMap,
+                  icon,
+                  title: place.name,
+                  position: place.geometry.location,
                 });
 
-                const infoWindowContent = createInfoWindowContent(latLng.lat(), latLng.lng());
                 const infoWindow = new google.maps.InfoWindow({
-                  content: infoWindowContent,
+                  content: createInfoWindowContent(0, 0), // デフォルト値を設定
                   pixelOffset: new google.maps.Size(0, -50),
                 });
 
-                newMarker.addListener("click", () => {
-                  infoWindow.open(newMap, newMarker);
+                marker.addListener("click", () => {
+                  infoWindow.open(newMap, marker);
                 });
 
-                newMap.panTo(latLng);
+                if (place.geometry.viewport) {
+                  bounds.union(place.geometry.viewport);
+                } else {
+                  bounds.extend(place.geometry.location);
+                }
+              });
+              newMap.fitBounds(bounds);
+            });
+
+            // ピンを指した時に緯度と経度を表示
+            newMap.addListener("click", (event: google.maps.MapMouseEvent) => {
+              const latLng = event.latLng;
+              if (latLng) {
+                const confirmPin = window.confirm("ここにピンを指しますか？");
+                if (confirmPin) {
+                  const newMarker = new google.maps.Marker({
+                    position: latLng,
+                    map: newMap,
+                  });
+
+                  const infoWindowContent = createInfoWindowContent(latLng.lat(), latLng.lng());
+                  const infoWindow = new google.maps.InfoWindow({
+                    content: infoWindowContent,
+                    pixelOffset: new google.maps.Size(0, -50),
+                  });
+
+                  newMarker.addListener("click", () => {
+                    infoWindow.open(newMap, newMarker);
+                  });
+
+                  newMap.panTo(latLng);
+                }
               }
-            }
-          });
-        }else {
-          console.error("Failed to find the search box input element.");
-        }
+            });
+          } else {
+            console.error("Failed to find the search box input element.");
+          }
         },
         (error) => {
           console.error("Error retrieving location: ", error);
@@ -130,6 +165,7 @@ const MyMapComponent: React.FC = () => {
             center: fallbackLocation,
             zoom: 13,
             mapTypeId: "roadmap",
+            styles: mapStyles, // ここでカスタムスタイルを適用
           });
           setMap(newMap);
           setCurrentLocationMarker(newMap, fallbackLocation);
