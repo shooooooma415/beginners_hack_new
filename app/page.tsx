@@ -13,7 +13,7 @@ export default function SignInForm(props: {
   const supabase = createClientComponentClient();
   const router = useRouter();  // useRouter フックを初期化
 
-  const handleSocialLogin = async (prov: string) => {
+  const handleSocialLogin = async (prov: any) => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: prov,
       options: {
@@ -21,17 +21,14 @@ export default function SignInForm(props: {
           access_type: 'offline',
           prompt: 'consent',
         },
+        redirectTo: `http://localhost:3000/home`,  // リダイレクト先の URL
       },
     });
+  
 
     if (error) {
       console.log(error);
       return;
-    }
-
-    // `data` の構造に応じた処理を実装する
-    if (data) {  // 例: URL プロパティを使用する場合
-      router.push("/home");  // 認証成功後に /home にリダイレクト
     }
   };
 
