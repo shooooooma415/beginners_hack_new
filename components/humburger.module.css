@@ -4,6 +4,21 @@
     right: 1%;
     z-index: 1000;
     font-size: 3rem;
-    background-color: rgba(0, 0, 0, 0.369);
-    color: rgb(8, 152, 255);
+    background-color: rgba(0, 0, 0, 0.9); /* 背景をほぼ黒にする */
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    border-radius: 15px; /* 角を丸くする */
+}
+
+.Hamburger::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 120%;
+    background-color: rgba(0, 0, 0, 0.5); /* 背景にもう少し黒い影を追加 */
+    border-radius: 15px; /* 背景の角を丸くする */
+    z-index: -1;
 }
