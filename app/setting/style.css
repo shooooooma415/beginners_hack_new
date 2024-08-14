@@ -1,0 +1,27 @@
+.custom-heading {
+    color: #886771; /* 文字の色を青色に設定 */
+    font-size: 2rem; /* 文字の大きさを設定 */
+    text-align: center; /* 文字を中央に配置 */
+    margin-top: 20px; /* 上部に余白を追加 */
+    margin-bottom: 2%;
+  }
+
+.settings-title {
+    color: #886771;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.button-group {
+    color: #886771;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.settings-button {
+    text-align: center;
+    color: #886771;
+    width: 500px;
+    margin: 0 auto;
+}
