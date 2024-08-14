@@ -1,23 +1,19 @@
 "use client";
 import { supabase } from "@/utils/supabase/supabase";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import heic2any from "heic2any"; // HEIC変換ライブラリをインポート
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation"; // useRouterをインポート
 import "./style.css"
-import * as React from 'react';
 import Textarea from '@mui/joy/Textarea';
 import Input from '@mui/joy/Input';
 import Stack from '@mui/joy/Stack';
-  
-
-
 
 export default function ImageApp() {
   const [user_id, setUserId] = useState<string>("");
   const public_url = `https://spzlpfucuqkpjlucnnfh.supabase.co/storage/v1/object/public/public-image-bucket/img/${user_id}/`;
-  const inputRef = React.useRef<HTMLInputElement | null>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   // ステート管理
   const [eventDate, setEventDate] = useState<string>(""); // 日付 追加
@@ -180,7 +176,6 @@ export default function ImageApp() {
       setIsButtonDisabled(false); // 失敗時にボタンを再度有効化
       return;
     }
-    const inputRef = React.useRef<HTMLInputElement | null>(null);
 
     // コメントをデータベースに保存
     const { error: commentError } = await supabase
@@ -265,4 +260,3 @@ export default function ImageApp() {
     </>
   );
 }
- 
