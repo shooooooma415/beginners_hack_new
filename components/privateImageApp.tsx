@@ -1,40 +1,32 @@
 'use client'
 import { useEffect, useState } from "react";
-import { supabase } from "@/utils/supabase/supabase";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 interface Comment {
   comment: string;
-  created_at: string;
+  event_date: string; // 修正：created_at から event_date に変更
 }
 
 export default function PrivateImageApp() {
   const [user_id, setUserId] = useState<string>("");
   const public_url = `https://spzlpfucuqkpjlucnnfh.supabase.co/storage/v1/object/public/public-image-bucket/img/${user_id}/`;
 
-  const [eventDate, setEventDate] = useState<string>("");
   const [urlList, setUrlList] = useState<string[]>([]);
   const [loadingState, setLoadingState] = useState("hidden");
   const [comments, setComments] = useState<{ [key: string]: Comment[] }>({});
 
-  interface Comment {
-    comment: string;
-    event_date:string
-  }
-
-  // const [user_id, setUserId] = useState<string>("");
-
   const supabase = createClientComponentClient();
+
   useEffect(() => {
     supabase.auth.getUser().then((user) => { 
       if (user.data.user === null) {
         // ユーザーがサインインしていない場合、警告を表示
         return alert("ログインしてください");
       }
-      setUserId(user.data.user.id)
+      setUserId(user.data.user.id);
     });
   }, []);
-  
+
   const listAllImage = async () => {
     const tempUrlList: string[] = [];
     setLoadingState("flex justify-center");
@@ -48,14 +40,13 @@ export default function PrivateImageApp() {
         sortBy: { column: 'created_at', order: 'desc' },
       });
 
-
     if (error) {
       console.log(error);
       return;
     }
 
     for (let index = 0; index < data.length; index++) {
-      if (data[index].name != ".emptyFolderPlaceholder") {
+      if (data[index].name !== ".emptyFolderPlaceholder") {
         tempUrlList.push(data[index].name);
       }
     }
@@ -64,17 +55,12 @@ export default function PrivateImageApp() {
     setLoadingState("hidden");
   };
 
-
-
-
-
-
   const fetchAllComments = async (imageList: string[]) => {
     const tempComments: { [key: string]: Comment[] } = {};
     for (const image of imageList) {
       const { data, error } = await supabase
         .from('comments')
-        .select('comment, created_at')
+        .select('comment, event_date') // 修正：created_at を event_date に変更
         .eq('image_name', image);
 
       if (error) {
@@ -84,15 +70,17 @@ export default function PrivateImageApp() {
 
       tempComments[image] = data.map((entry) => ({
         comment: entry.comment,
-        event_date: entry.created_at,
+        event_date: entry.event_date,
       }));
     }
     setComments(tempComments);
   };
 
   useEffect(() => {
-    listAllImage();
-  }, []);
+    if (user_id) {
+      listAllImage();
+    }
+  }, [user_id]);
 
   return (
     <div className="w-full max-w-3xl">
@@ -108,10 +96,9 @@ export default function PrivateImageApp() {
             <ul className="mt-2">
               {comments[item]?.map((commentData, index) => (
                 <li key={index} className="text-sm text-gray-600">
-                  {commentData.comment}
+                  <li>{commentData.comment}</li>
                   <span className="text-xs text-gray-400 ml-2">
-                    {/* {new Date(commentData.created_at).toLocaleString()} */}
-                    <li> 日付:{commentData.event_date} {/* 追加 */}</li>
+                    日付: {commentData.event_date} {/* 修正：created_at を event_date に変更 */}
                   </span>
                 </li>
               ))}
