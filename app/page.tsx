@@ -48,7 +48,7 @@ export default function SignInForm(props: {
           <GoogleButton handleClickMethod={handleSocialLogin} />
         </div>
         <p className={styles.signUp} >
-          If you don not have google mail acount. 
+          If you have not gotten google mail account. 
         </p>
         <Link className={styles.signUpButton} href={"https://support.google.com/accounts/answer/27441?hl=ja-JP"}>
           Sign Up
