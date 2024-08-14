@@ -4,6 +4,15 @@ import setCurrentLocationMarker from "@/components/setCurrentLocationMarker";
 import createInfoWindowContent from "@/components/createInfoWindowContent";
 import CurrentLocationButton from "@/components/currentLocation";
 import styles from './searchbutton.module.css'
+import useFetchAllComments  from "./fetchAllComments";
+import { User } from "@supabase/supabase-js";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import createImageWindowContent from "./createImageWindowContent";
+
+interface CommentLocation {
+  lat: number
+  lng: number
+}
 
 const MyMapComponentHome: React.FC = () => {
   const divStyle: React.CSSProperties = {
@@ -13,7 +22,9 @@ const MyMapComponentHome: React.FC = () => {
   const mapRef = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const [currentLocation, setCurrentLocation] = useState<google.maps.LatLngLiteral | null>(null);
-
+  const [url, setUrl] = useState<string[]|null>([])
+  // const [userId, setUserId] = useState<string>("")
+  const supabase = createClientComponentClient();
   useEffect(() => {
     if (mapRef.current) {
       navigator.geolocation.getCurrentPosition(
@@ -38,6 +49,56 @@ const MyMapComponentHome: React.FC = () => {
           if (location) {
             setCurrentLocationMarker(newMap, location);
           }
+          (async() => {
+            const userId = await supabase.auth.getUser().then((u) => {
+              if(u.data.user == null) {
+                alert("ログインしてください")
+                return ""
+              }
+              return u.data.user.id
+            })
+            const { data, error } = await supabase
+              .from("comments")
+              .select("image_name, latitude, longitude")
+              .eq("user_id", userId)
+            
+            if(error){
+              console.error(error)
+            }
+
+            if (data == null) {
+              console.error("")
+            }
+
+            const locations: CommentLocation[] = data!.map((rec) => {
+              return { lat: rec.latitude as number, lng: rec.longitude as number }
+            })
+          
+            await data!.forEach(async(rec) => {
+              const marker = new google.maps.Marker({
+                position: {lat: rec.latitude as number, lng: rec.longitude as number },
+                map: newMap
+              })
+              const {data, error} = await supabase.storage.from('public-image-bucket').download(`img/${userId}/${rec.image_name}`);
+              if (error) {
+                console.error(error);
+              }
+              const url = URL.createObjectURL(data!)
+              const imageWindowContent = createImageWindowContent(url);
+              const imageWindow = new google.maps.InfoWindow({
+                content: imageWindowContent,
+                pixelOffset: new google.maps.Size(0, -50),
+              });
+
+              marker.addListener("click", () => {
+                imageWindow.open(newMap, marker);
+              })
+            })
+
+            locations.forEach((location) => {
+              newMap.panTo(location)
+            })
+          })()
 
           const input = document.getElementById("pac-input") as HTMLInputElement;
           const searchBox = new google.maps.places.SearchBox(input);
@@ -66,7 +127,6 @@ const MyMapComponentHome: React.FC = () => {
                 bounds.extend(place.geometry.location);
               }
             });
-
             newMap.fitBounds(bounds);
           });
         },

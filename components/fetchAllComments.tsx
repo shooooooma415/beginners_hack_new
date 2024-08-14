@@ -1,32 +1,41 @@
-
 import { supabase } from "@/utils/supabase/supabase";
 import { useEffect, useState } from "react";
 
+// コンポーネント内でデータを取得する関数
+const useFetchAllComments = (user_id: string) => {
+  const [comments, setComments] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-const [user_id, setUserId] = useState<string>("");
+  useEffect(() => {
+    const fetchComments = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("comments")
+          .select("latitude, longitude")
+          .eq("id", user_id);
 
+        if (error) {
+          console.log(error);
+          setError("データの取得に失敗しました");
+          return;
+        }
 
-useEffect(() => {
-  supabase.auth.getUser().then((user) => { 
-    if (user.data.user === null) {
-      return alert("ログインしてください");
+        setComments(data || []);
+      } catch (err) {
+        console.error(err);
+        setError("予期しないエラーが発生しました");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (user_id) {
+      fetchComments();
     }
-    setUserId(user.data.user.id);
-  });
-}, []);
+  }, [user_id]);
 
-export const fetchAllComments = async () => {
-  const { data, error } = await supabase
-    .from("comments")
-    .select("*")
-    .eq("id",user_id); //現在ログイン中のユーザーのテーブルを取得
-
-  if (error) {
-    console.log(error);
-    return []; // エラーが発生した場合は空の配列を返す
-  }
-
-  return data; // 取得した緯度経度のリストを返す
+  return { comments, loading, error };
 };
 
-export default fetchAllComments;
+export default useFetchAllComments;
