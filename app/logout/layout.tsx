@@ -12,28 +12,18 @@ export const metadata = {
   description: "The fastest way to build apps with Next.js and Supabase",
 };
 
-export default function RootLayout({
+export default function HomeLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ja">
-      <body className="bg-background text-foreground min-h-screen w-screen">
-        <div className="flex flex-col">
-        <div style={{ width: '60px', height: '60px', marginBottom: '-60px' }}>
-          <SwipeableTemporaryDrawer />
-        </div>
-        <div>
-          <main className="flex flex-col items-center">
-            {children}
-          </main>
-        </div>
-        <div><Header/></div>
-        </div>
-      
-        
-      </body>
-    </html>
+    <div className="flex flex-col min-h-screen">
+      <SwipeableTemporaryDrawer />
+      <main className="flex flex-col items-center"> {/* ここに main を追加 */}
+        {children}
+      </main>
+      <Header />
+    </div>
   );
 }
