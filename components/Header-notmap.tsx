@@ -37,50 +37,6 @@ export default function Header() {
   );
 
   return (
-    // <header className="absolute bottom-0 right-0 p-4 border-b-2 border-gray-300 w-full flex justify-center items-center"
-    // style={{ 
-    //     height: '60px', 
-    //     paddingTop: '60px', 
-    //     paddingBottom: '0px', 
-    //     margin: '0px',
-    //     backgroundColor: 'rgba(128, 128, 128, 0.6)'  // 透明度50%のグレー
-    // }}>
-    //         <li className=' pr-4'>
-    //     <Link
-    //       className="absolute left-1 bottom-1 z-10"
-    //       href="/home"
-    //       style={{ width: '50px', height: '50px' }}
-    //     >
-    //         <Image
-    //           src="/imagefile/MyMapIcon.png"
-    //           width={50}
-    //           height={50}
-    //           style={{ objectFit: 'contain' }}
-    //           alt="My Map Icon"
-    //         />
-    //       </Link>
-    //     </li>
-    //     <li className="absolute flex justify-center items-center text-black"
-    //         style={{ width: '50px', height: '50px' }}>
-    //     <ListItemButton>
-    //         <ListItemIcon>
-    //         <FaRegSquarePlus style={{ fontSize: '50px' }} />
-    //         </ListItemIcon>
-    //     </ListItemButton>
-    //     </li>
-
-    //         <li className="absolute right-1 bottom-1 z-10 text-black"
-    //             style={{ width: '50px', height: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-    //             <Link href={"/private"}>   
-    //                 <ListItemButton>
-    //                     <ListItemIcon>
-    //                     <InsertPhotoIcon style={{ fontSize: '50px' }} />
-    //                     </ListItemIcon>
-    //                 </ListItemButton>
-    //             </Link> 
-    //         </li>
-    //   </ul>
-    // </header>
     <header className={styles.header}>
   <ul className={styles.navList}>
     <li className={styles.leftItem}>
