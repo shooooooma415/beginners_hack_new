@@ -7,14 +7,12 @@
  * Always set the map height explicitly to define the size of the div element
  * that contains the map. 
  */
- #map {
+ /* #map {
     height: 100%;
     width: 100%;
   }
   
-  /* 
-   * Optional: Makes the sample page fill the window. 
-   */
+  
   html,
   body {
     height: 100%;
@@ -112,4 +110,4 @@
   #current-location-button:hover {
     background-color: #0a3d7a;
   }
-  
+   */
