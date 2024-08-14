@@ -1,5 +1,5 @@
 .Hamburger {
-    position: fixed;
+    position: absolute;
     top: 1%;
     right: 3%;
     z-index: 1000;
