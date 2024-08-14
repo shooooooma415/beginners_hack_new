@@ -6,7 +6,11 @@ import Link from 'next/link';
 import Button from '@mui/material/Button'; // Import Button from Material-UI
 import Drawer from '@mui/material/Drawer'; // Import Drawer from Material-UI
 import Box from '@mui/material/Box'; // Import Box from Material-UI
+import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import { FooterIcons } from "@/components/footericon";
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
 export default function Header() {
   const [open, setOpen] = useState(false);
 
@@ -58,12 +62,22 @@ export default function Header() {
         </li>
           {/* <li className="absolute justify-center items-center text-black"
             style={{ width: '50px', height: '50px' }}>
-            <FooterIcons text="New Post" />
+             <ListItemButton>
+                <ListItemIcon>
+                    <AddLocationAltIcon  style={{ fontSize: '50 px' }} />
+                </ListItemIcon>
+            </ListItemButton>
           </li> */}
-        <li className="absolute right-1 bottom-1 z-10 text-black"
-          style={{ width: '50px', height: '50px', paddingRight: '-25px' }}>
-          <FooterIcons text ="My Posts" /> 
-        </li>
+            <li className="absolute right-1 bottom-1 z-10 text-black"
+                style={{ width: '50px', height: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Link href={"/private"}>   
+                    <ListItemButton>
+                        <ListItemIcon>
+                        <InsertPhotoIcon style={{ fontSize: '50px' }} />
+                        </ListItemIcon>
+                    </ListItemButton>
+                </Link> 
+            </li>
       </ul>
     </header>
   );
