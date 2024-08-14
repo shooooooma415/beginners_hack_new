@@ -26,6 +26,7 @@ const MyMapComponentHome: React.FC = () => {
             zoomControl: false,
             fullscreenControl: false,
             streetViewControl: false,
+            mapTypeControl: false, // これで航空写真などの切り替えボタンを非表示にする
             mapTypeId: "roadmap",
           });
           setMap(newMap);

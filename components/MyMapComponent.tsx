@@ -27,6 +27,7 @@ const MyMapComponent: React.FC = () => {
             zoomControl: false,
             fullscreenControl: false,
             streetViewControl: false,
+            mapTypeControl: false, 
             mapTypeId: "roadmap",
           });
           setMap(newMap);

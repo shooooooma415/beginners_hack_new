@@ -1,10 +1,10 @@
 .currentLocationButton{
   position: fixed;
-  font-size: 5rem; 
-  bottom: 20px;
-  right: 10px;
+  font-size: 3rem; 
+  bottom: 10%;
+  right: 5%;
   transition: transform 0.2s ease; /* アニメーションの設定 */
   }
   .currentLocationButton:active {
-    transform: scale(0.9); /* アイコンを縮小 */
+    transform: scale(0.8); /* アイコンを縮小 */
   }
