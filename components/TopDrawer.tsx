@@ -7,7 +7,7 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import { GiHamburgerMenu } from "react-icons/gi";
 import { NavigationItem } from '@/components/getIcon';
-import styles from './humburger.module.css';
+import styles from './hamburger.module.css';
 
 export default function SwipeableTemporaryDrawer() {
     const [open, setOpen] = useState(false);
@@ -53,7 +53,7 @@ export default function SwipeableTemporaryDrawer() {
 
     return (
         <>
-            <GiHamburgerMenu className={styles.Hamburger} onClick={toggleDrawer(true)}/>
+            <GiHamburgerMenu className={styles.hamburger} onClick={toggleDrawer(true)}/>
             <SwipeableDrawer
                 anchor="bottom"
                 open={open}

@@ -1,4 +1,4 @@
-.Hamburger {
+.hamburger {
     position: fixed;
     top: 1%;
     right: 3%;
@@ -11,19 +11,6 @@
     transition: transform 0.2s ease;
 }
 
-.Hamburger:before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 120%;
-    height: 120%;
-    background-color: rgba(0, 0, 0, 0.5); /* 背景にもう少し黒い影を追加 */
-    border-radius: 15px; /* 背景の角を丸くする */
-    z-index: -1;
-}
-
-.humberger:active {
+.hamburger:active {
     transform: scale(0.8); /* アイコンを縮小 */
   }
