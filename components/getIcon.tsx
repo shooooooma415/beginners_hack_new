@@ -2,12 +2,8 @@ import Link from "next/link";
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import MapIcon from '@mui/icons-material/Map';
-import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
-import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
-import SettingsIcon from '@mui/icons-material/Settings';
-import LogoutIcon from '@mui/icons-material/Logout';
 import { IconComponent } from '@/components/renderIcon';
+import styles from './drawerIcon.module.css';
 
 const NavigationItem = ({ text }) => {
 
@@ -34,10 +30,10 @@ const NavigationItem = ({ text }) => {
         <ListItemIcon>
           <IconComponent text={text} />
         </ListItemIcon>
-        <ListItemText primary={text} />
+        <ListItemText primary={text} className={styles.texts} />
       </ListItemButton>
     </Link>
   );
 };
 
-export  {NavigationItem};
+export { NavigationItem };
