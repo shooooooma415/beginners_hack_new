@@ -38,20 +38,20 @@ export default function SignInForm(props: {
         <Image
           className={styles.Image}
           src="/imagefile/MyMapIcon.png"
-          width={500}
-          height={500}
+          width={1000}
+          height={1000}
           alt="My Map Icon"
         />
         <h1 className={styles.title}>My Map</h1>
-        <p className={styles.subTitle}>Please sign in with Google</p>
+        <p className={styles.subTitle}>Googleアカウントでサインイン</p>
         <div className={styles.googleButton}>
           <GoogleButton handleClickMethod={handleSocialLogin} />
         </div>
         <p className={styles.signUp} >
-          If you have not gotten google mail account. 
+        Googleアカウントを作成 
         </p>
         <Link className={styles.signUpButton} href={"https://support.google.com/accounts/answer/27441?hl=ja-JP"}>
-          Sign Up
+          新規登録
         </Link>
       </div>
     </div>
