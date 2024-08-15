@@ -146,7 +146,7 @@ const MyMapComponentHome: React.FC = () => {
                 console.error(error);
               }
               const url = URL.createObjectURL(data!)
-              const imageWindowContent = createImageWindowContent(url);
+              const imageWindowContent = createImageWindowContent(url, rec.image_name);
               const imageWindow = new google.maps.InfoWindow({
                 content: imageWindowContent,
                 pixelOffset: new google.maps.Size(0, -50),
