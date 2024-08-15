@@ -1,8 +1,9 @@
 /* 文字の色、大きさ、位置をカスタマイズ */
 .toukou {
-    color: #000000; 
-    font-size: 3rem; /* 文字の大きさを設定 */
+    font-size: 2rem; /* 文字の大きさを設定 */
     text-align: center; /* 文字を中央に配置 */
+    background-color: antiquewhite;
+    border-radius: 15px;
   }
 
 
