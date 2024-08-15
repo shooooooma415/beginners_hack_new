@@ -2,11 +2,13 @@
     color: #886771;
     font-size: 2rem;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 3vh;
     margin-bottom: 2vh;
 }
 
 .settings-title {
+    position: absolute;
+    top: 0%;
     color: #886771;
     font-size: 24px;
     margin-bottom: 20px;
