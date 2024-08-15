@@ -4,8 +4,8 @@
     right: 3%;
     z-index: 1000;
     font-size: 3rem;
-    background-color: rgba(0, 0, 0, 0.9); /* 背景をほぼ黒にする */
-    color: rgb(255, 255, 255);
+    background-color: #886771; /* 背景をほぼ黒にする */
+    color: #E5E4E4;
     padding: 10px;
     border-radius: 15px; /* 角を丸くする */
     transition: transform 0.2s ease;
