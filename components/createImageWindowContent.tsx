@@ -1,11 +1,10 @@
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import './createInfoWindowContent.css';
+import "./createImageWindowContent.css";
 
 const createImageWindowContent = (imageUrl: string) => {
     return `
         <div class="custom-info">
             <div class="custom-info-item coordinates">
-                <img src="${imageUrl}" />
+                <img src="${imageUrl}" class="img-trimming" alt="Image"/>
             </div>
         </div>`;
 };
