@@ -25,6 +25,42 @@ const MyMapComponentHome: React.FC = () => {
   const [url, setUrl] = useState<string[]|null>([])
   // const [userId, setUserId] = useState<string>("")
   const supabase = createClientComponentClient();
+
+  const mapStyles = [
+    {
+      elementType: "geometry",
+      stylers: [{ color: "#E5E4E4" }],
+    },
+    {
+      elementType: "labels.text.fill",
+      stylers: [{ color: "#886771" }],
+    },
+    {
+      elementType: "labels.text.stroke",
+      stylers: [{ color: "#ffffff" }],
+    },
+    {
+      featureType: "administrative",
+      elementType: "geometry",
+      stylers: [{ visibility: "on" }],
+    },
+    {
+      featureType: "poi",
+      elementType: "geometry",
+      stylers: [{ visibility: "on" }],
+    },
+    {
+      featureType: "road",
+      elementType: "geometry",
+      stylers: [{ color: "b8b6b6" }],
+    },
+    {
+      featureType: "water",
+      elementType: "geometry",
+      stylers: [{ color: "#be859f" }],
+    },
+  ];
+
   useEffect(() => {
     if (mapRef.current) {
       navigator.geolocation.getCurrentPosition(
@@ -43,6 +79,7 @@ const MyMapComponentHome: React.FC = () => {
             streetViewControl: false,
             mapTypeControl: false, // これで航空写真などの切り替えボタンを非表示にする
             mapTypeId: "roadmap",
+            styles: mapStyles,
           });
           setMap(newMap);
 

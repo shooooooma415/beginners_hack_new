@@ -1,0 +1,12 @@
+/* 文字の色、大きさ、位置をカスタマイズ */
+.toukou {
+    color: #000000; 
+    font-size: 3rem; /* 文字の大きさを設定 */
+    text-align: center; /* 文字を中央に配置 */
+  }
+
+.img-trimming {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+  }
