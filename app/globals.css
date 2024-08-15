@@ -2,3 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  font-size: 62.5%;
+  color: #886771;;
+}
