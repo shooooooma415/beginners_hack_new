@@ -30,7 +30,8 @@ export default function help() {
             <li className ="text-center">またファイル名に半角の英数字以外が含まれているとアップロードができない場合があります。</li>
             <li className ="text-center">そのはファイル名を変更して再度アップロードしなおしてください。</li>
         </ul>
-
+        
+        <ul className ="qanda">Q&A</ul>
 
 
 
