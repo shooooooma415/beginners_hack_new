@@ -69,18 +69,22 @@ const MyMapComponentHome: React.FC = () => {
 
   useEffect(() => {
     if (mapRef.current) {
-      if(latitude){
-        const fallbackLocation = { lat: Number(latitude), lng: Number(longitude) };
-          const newMap = new google.maps.Map(mapRef.current!, {
-            center: fallbackLocation,
-            zoom: 13,
-            mapTypeId: "roadmap",
-          });
-          setMap(newMap);
-          newMap.panTo({ lat: Number(latitude), lng: Number(longitude) })
+      // if(latitude){
+      //   const fallbackLocation = { lat: Number(latitude), lng: Number(longitude) };
+      //     const newMap = new google.maps.Map(mapRef.current!, {
+      //       center: fallbackLocation,
+      //       zoom: 13,
+      //       zoomControl: false,
+      //       fullscreenControl: false,
+      //       streetViewControl: false,
+      //       mapTypeControl: false, 
+      //       mapTypeId: "roadmap",
+      //     });
+      //     setMap(newMap);
+      //     // newMap.panTo({ lat: Number(latitude), lng: Number(longitude) })
 
-          // setCurrentLocationMarker(newMap, fallbackLocation);
-      }
+      //     // setCurrentLocationMarker(newMap, fallbackLocation);
+      // }
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const location = {
@@ -100,6 +104,9 @@ const MyMapComponentHome: React.FC = () => {
             styles: mapStyles,
           });
           setMap(newMap);
+          console.log(location)
+          // newMap.panTo(currentLocation!)
+          // newMap.setCenter(currentLocation!);
 
           if (location) {
             setCurrentLocationMarker(newMap, location);
@@ -150,7 +157,10 @@ const MyMapComponentHome: React.FC = () => {
               })
             })
 
+
+            if(latitude){
             newMap.panTo({ lat: Number(latitude), lng: Number(longitude) })
+            }
 
             // locations.forEach((location) => {
             //   newMap.panTo(location)
@@ -188,6 +198,7 @@ const MyMapComponentHome: React.FC = () => {
           });
         },
         (error) => {
+          console.log('error')
           console.error("Error retrieving location: ", error);
           const fallbackLocation = { lat: 35.32325, lng: 136.13382 };
           const newMap = new google.maps.Map(mapRef.current!, {
@@ -197,7 +208,7 @@ const MyMapComponentHome: React.FC = () => {
           });
           setMap(newMap);
 
-          // setCurrentLocationMarker(newMap, fallbackLocation);
+          setCurrentLocationMarker(newMap, fallbackLocation);
         },
         { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
       );
