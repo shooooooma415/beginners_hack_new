@@ -6,8 +6,6 @@ export default function AboutSite() {
         <>
             <div className="header-container">
                 <h2 className="custom-heading">このサイトについて</h2>
-
-
             </div>
             <div className="teamname">作成チーム</div>
             <div className="detailname">りんごかじり虫</div>
@@ -49,7 +47,6 @@ export default function AboutSite() {
                     height={100}
                     alt="vercel Icon"
                 />
-                
             </div>
         </>
     );  
