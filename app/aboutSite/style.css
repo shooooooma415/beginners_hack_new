@@ -37,7 +37,7 @@
   .Image, .nextjs, .supabase, .tailwindcss, .github, .vercel,.react {
     height:auto;
     width: 15vw; /* ビューポート幅の30%に設定 */
-    height: 15; /* 幅と同じ比率に設定 */
+    height: 15vw; /* 幅と同じ比率に設定 */
     object-fit: contain;
   }
 }
