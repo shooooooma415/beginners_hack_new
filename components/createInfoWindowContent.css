@@ -4,4 +4,14 @@
     font-size: 3rem; /* 文字の大きさを設定 */
     text-align: center; /* 文字を中央に配置 */
   }
+
+
+
+.view-link{
+  display: none;
+
+}
   
+.address{
+  display: none;
+}
