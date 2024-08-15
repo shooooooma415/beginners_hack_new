@@ -1,23 +1,23 @@
-import MapIcon from '@mui/icons-material/Map';
-import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
-import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
-import SettingsIcon from '@mui/icons-material/Settings';
-import LogoutIcon from '@mui/icons-material/Logout';
-
+import { FaPlusSquare } from 'react-icons/fa';
+import { IoMdMap } from "react-icons/io";
+import { MdInsertPhoto } from "react-icons/md";
+import { IoSettingsSharp } from "react-icons/io5";
+import { MdOutlineLogout } from "react-icons/md";
+import styles from './drawerIcon.module.css';
 interface IconProps {
   text: string;
 }
 
-export const MapIconComponent: React.FC = () => <MapIcon />;
-export const InsertPhotoIconComponent: React.FC = () => <InsertPhotoIcon />;
-export const AddLocationAltIconComponent: React.FC = () => <AddLocationAltIcon />;
-export const SettingsIconComponent: React.FC = () => <SettingsIcon />;
-export const LogoutIconComponent: React.FC = () => <LogoutIcon />;
+export const MapIconComponent: React.FC = () => <IoMdMap className={styles.Icons}/>;
+export const InsertPhotoIconComponent: React.FC = () => <MdInsertPhoto className={styles.Icons}/>;
+export const AddLocationAltIconComponent: React.FC = () => <FaPlusSquare className={styles.Icons}/>;
+export const SettingsIconComponent: React.FC = () => <IoSettingsSharp className={styles.Icons} />;
+export const LogoutIconComponent: React.FC = () => <MdOutlineLogout  className={styles.Icons}/>;
 
 export const IconComponent: React.FC<IconProps> = ({ text }) => {
   switch (text) {
     case 'My Map':
-      return <MapIconComponent />;
+      return <MapIconComponent  />;
     case 'My Posts':
       return <InsertPhotoIconComponent />;
     case 'New Post':
