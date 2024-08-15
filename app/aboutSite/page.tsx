@@ -30,7 +30,7 @@ export default function AboutSite() {
                 />
                 <Image
                     className="tailwindcss"
-                    src="/imagefile/tailwindcss copy.png"
+                    src="/imagefile/tailwind.png"
                     width={100}
                     height={100}
                     alt="Tailwind CSS Icon"
