@@ -140,7 +140,15 @@ const MyMapComponentHome: React.FC = () => {
             await data!.forEach(async (rec) => {
               const marker = new google.maps.Marker({
                 position: { lat: rec.latitude as number, lng: rec.longitude as number },
-                map: newMap
+                map: newMap,
+                icon: {
+                  path: google.maps.SymbolPath.CIRCLE,
+                  fillColor: 'black',
+                  fillOpacity: 1,
+                  strokeColor: 'black',
+                  strokeWeight: 1,
+                  scale: 8, // マーカーのサイズを調整
+                }
               })
               const { data, error } = await supabase.storage.from('public-image-bucket').download(`img/${userId}/${rec.image_name}`);
               if (error) {
@@ -159,8 +167,8 @@ const MyMapComponentHome: React.FC = () => {
             })
 
 
-            if(latitude){
-            newMap.panTo({ lat: Number(latitude), lng: Number(longitude) })
+            if (latitude) {
+              newMap.panTo({ lat: Number(latitude), lng: Number(longitude) })
             }
 
             // locations.forEach((location) => {
