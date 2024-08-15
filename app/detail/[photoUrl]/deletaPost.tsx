@@ -1,11 +1,13 @@
 import { createClient } from '@supabase/supabase-js';
+import { useRouter } from 'next/router';
 
 // Supabaseクライアントの初期化
-const supabaseUrl = 'YOUR_SUPABASE_URL';
-const supabaseAnonKey = 'YOUR_SUPABASE_ANON_KEY';
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-export default async function deleteRowById(id: number, user_id: string) {
+export default async function deleteRowById(id: string, user_id: string, image_name: string) {
+    
     try {
         // Supabase の "comments" テーブルから指定された ID の行を削除
         const { data, error } = await supabase
@@ -19,15 +21,16 @@ export default async function deleteRowById(id: number, user_id: string) {
 
         console.log('削除が成功しました:', data);
 
-        // ユーザーIDに基づいてフォルダ内のファイルを取得
-        const { data: files, error: listError } = await supabase.storage
-            .from('public-image-bucket') // あなたのバケット名を指定
-            .list(`${user_id}`); // ユーザーIDのフォルダを指定
+        // // ユーザーIDに基づいてフォルダ内のファイルを取得
+        // const { data: files, error: listError } = await supabase.storage
+        //     .from('public-image-bucket') // あなたのバケット名を指定
+        //     .list(`${user_id}`); // ユーザーIDのフォルダを指定
 
-        if (listError) throw listError;
+        // if (listError) throw listError;
 
-        // ファイルのパスを設定
-        const filePaths = files.map(file => `${user_id}/${file.name}`);
+        // // ファイルのパスを設定
+        // const filePaths = files.map(file => `${user_id}/${image_name}`);
+        const filePaths = [`img/${user_id}/${image_name}`];
 
         // フォルダ内のファイルを削除
         const { error: deleteError } = await supabase.storage

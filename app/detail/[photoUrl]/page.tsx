@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import deleteRowById from "./deletaPost";
+import { useRouter } from "next/navigation";
 
 interface Comment {
     comment: string;
@@ -23,6 +25,12 @@ export default function DetailPage() {
     const [loadingState, setLoadingState] = useState("hidden");
     const [comment, setComment] = useState<Comment>();
     const supabase = createClientComponentClient();
+    const router = useRouter()
+
+    const handleDelete = () => {
+        comment&& deleteRowById(comment.id, comment.user_id, photoUrl)
+        router.push('/private')
+    } 
 
     useEffect(() => {
         supabase.auth.getUser().then((user) => {
@@ -38,16 +46,16 @@ export default function DetailPage() {
         const tempUrlList: string[] = [];
         setLoadingState("flex justify-center");
 
-        const { data, error } = await supabase
+        const { data } = await supabase
             .storage
             .from('public-image-bucket')
             .getPublicUrl(photoUrl)
             ;
 
-        if (error) {
-            console.log(error);
-            return;
-        }
+        // if (error) {
+        //     console.log(error);
+        //     return;
+        // }
         await fetchComment(photoUrl);
         setLoadingState("hidden");
     };
@@ -67,7 +75,7 @@ export default function DetailPage() {
         if (data !== null) {
             setComment(
                 {
-                    comment: data[0].comment || '',
+                    comment: data[0].comment,
                     event_date: data[0].event_date,
                     latitude: data[0].latitude,
                     longitude: data[0].longitude,
@@ -78,7 +86,7 @@ export default function DetailPage() {
         }
 
     };
-    
+
 
     useEffect(() => {
         if (user_id) {
@@ -112,6 +120,10 @@ export default function DetailPage() {
             </Link>
             <p>{comment?.id}</p>
             <p>{comment?.user_id}</p>
+            <button
+                onClick={() =>handleDelete()}>
+                    削除
+            </button>
         </div>
     );
 }
