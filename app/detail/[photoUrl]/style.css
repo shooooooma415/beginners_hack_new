@@ -1,0 +1,63 @@
+.datalog{
+    font-size: 0.75rem; 
+    color: #6b7280;
+    margin-left: 0.5rem;
+}
+
+.ul{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    
+}
+.li{
+    height: auto;
+    padding: 0.25rem;
+}
+
+.ul2{
+    margin-top: 0.5rem;
+}
+
+.comment{
+    font-size: 0.875rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* 溢れたテキストに省略記号を表示 */
+    overflow: hidden; /* 省略記号が表示されるようにするために必要 */
+}
+
+.position{
+    border: none;
+    text-align: center;
+    color: #886771;
+    background-color: #E5E4E4; 
+    border-radius: 4px;
+    padding: 1vh 10vw;
+    width: 80vw;
+    margin: 5vh auto 0;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.delete{
+    border: none;
+    text-align: center;
+    color: #886771;
+    background-color: #E5E4E4; 
+    border-radius: 4px;
+    padding: 1vh 10vw;
+    width: 80vw;
+    margin: 5vh auto 0;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.button-group {
+    color: #886771;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
