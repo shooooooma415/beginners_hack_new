@@ -30,6 +30,9 @@ export default function ImageApp() {
   const lat = params.get('lat');
   const lng = params.get('lng');
 
+
+  const [disabled, setDisabled] = useState(false);
+
   const supabase = createClientComponentClient();
   useEffect(() => {
     supabase.auth.getUser().then((user) => {
@@ -188,8 +191,9 @@ export default function ImageApp() {
         image_name: uploadFile.name,
         comment,
         created_at: new Date(),
-        event_date: eventDate,
-        user_id: user_id,
+
+        event_date: eventDate || new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' }), // 日付 追加
+        user_id: user_id, 
         latitude: lat,
         longitude: lng,
       }]); // 日付も追加
