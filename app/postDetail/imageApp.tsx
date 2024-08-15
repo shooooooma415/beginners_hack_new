@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import heic2any from "heic2any"; // HEIC変換ライブラリをインポート
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { useRouter } from "next/navigation"; // useRouterをインポート
+import { useRouter, useSearchParams } from "next/navigation"; // useRouterをインポート
 import "./style.css"
 import Textarea from '@mui/joy/Textarea';
 import Input from '@mui/joy/Input';
@@ -26,7 +26,7 @@ export default function ImageApp() {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false); // ボタンの無効化状態を管理するステートを追加
   const router = useRouter(); // useRouterを初期化
 
-  const params = new URLSearchParams(window.location.search);
+  const params = useSearchParams();
   const lat = params.get('lat');
   const lng = params.get('lng'); 
 
