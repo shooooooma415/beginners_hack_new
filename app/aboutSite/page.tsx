@@ -9,7 +9,10 @@ export default function AboutSite() {
             </div>
             <div className="teamname">作成チーム</div>
             <div className="detailname">りんごかじり虫</div>
-            
+            <link href = "https://www.instagram.com/___n.s415/profilecard/?igsh=MW5pazB6d3dyMmhiaQ==">Shoooooooma</link>
+            <link href = "https://www.instagram.com/un_my_04915/profilecard/?igsh=MTY2dTB1OW5zbTVrdg==">ゆった</link>
+            <link href = "https://www.instagram.com/mz7042406?igsh=dTQ3cmJiMHNqbTZ4&utm_source=qr">ホズミ</link>
+            <link href = "https://www.instagram.com/ru1y_o?igsh=MW0wOXhra3J2enRvaQ%3D%3D&utm_source=qr">もりた まさたか</link>
             <div className="tools">技術スタック</div>
             <div className="image-row">
                 <Image
