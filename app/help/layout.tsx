@@ -18,12 +18,12 @@ export default function HomeLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col min-h-screen">
+    <main className="flex flex-col min-h-screen">
       <SwipeableTemporaryDrawer />
-      <main className="flex flex-col items-center"> {/* ここに main を追加 */}
+      <div className="flex flex-col items-center"> {/* ここに main を追加 */}
         {children}
-      </main>
+      </div>
 
-    </div>
+    </main>
   );
 }
