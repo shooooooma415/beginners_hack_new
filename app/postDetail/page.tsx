@@ -10,9 +10,11 @@ export default function Index() {
   return (
     <>
       <h1 className="NewPost">新規投稿</h1>
+      {typeof window !== 'undefined' && (
       <div className="date">
         <ImageApp />
       </div>
+      )}
     </>
   );
 }
