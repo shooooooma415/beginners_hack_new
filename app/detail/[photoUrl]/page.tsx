@@ -53,10 +53,6 @@ export default function DetailPage() {
             .getPublicUrl(photoUrl)
             ;
 
-        // if (error) {
-        //     console.log(error);
-        //     return;
-        // }
         await fetchComment(photoUrl);
         setLoadingState("hidden");
     };
