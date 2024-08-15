@@ -26,7 +26,7 @@ const NavigationItem = ({ text }) => {
 
   return (
     <Link href={getHref()}>
-      <ListItemButton>
+      <ListItemButton  className={styles.area}>
         <ListItemIcon>
           <IconComponent text={text} />
         </ListItemIcon>
