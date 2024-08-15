@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import Link from "next/link";
 
 interface Comment {
   comment: string;
@@ -18,7 +19,7 @@ export default function PrivateImageApp() {
   const supabase = createClientComponentClient();
 
   useEffect(() => {
-    supabase.auth.getUser().then((user) => { 
+    supabase.auth.getUser().then((user) => {
       if (user.data.user === null) {
         // ユーザーがサインインしていない場合、警告を表示
         return alert("ログインしてください");
@@ -89,14 +90,14 @@ export default function PrivateImageApp() {
       </div>
       <ul className="flex flex-wrap w-full">
         {urlList.map((item) => (
-          <li className="h-auto p-1" style={{width: "33%"}} key={item}>
-            <a className="hover:opacity-50" href={public_url + item} target="_blank">
-              <img className="object-cover" style={{aspectRatio: 1/1}} src={public_url + item} alt={item} />
-            </a>
+          <li className="h-auto p-1" style={{ width: "33%" }} key={item}>
+            <Link className="hover:opacity-50" href={`detail/${item}`}>
+              <img className="object-cover" style={{ aspectRatio: 1 / 1 }} src={public_url + item} alt={item} />
+            </Link>
             <ul className="mt-2">
               {comments[item]?.map((commentData, index) => (
-                <li key={index} className="text-sm ">
-                  <li>{commentData.comment}</li>
+                <li key={index} >
+                  <li className="text-sm whitespace-nowrap overflow-hidden text-ellipsis" >{commentData.comment}</li>
                   <span className="text-xs subText  ml-2">
                     日付: {commentData.event_date} {/* 修正：created_at を event_date に変更 */}
                   </span>

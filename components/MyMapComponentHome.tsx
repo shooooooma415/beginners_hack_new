@@ -8,6 +8,7 @@ import useFetchAllComments  from "./fetchAllComments";
 import { User } from "@supabase/supabase-js";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import createImageWindowContent from "./createImageWindowContent";
+import { useSearchParams } from "next/navigation";
 
 interface CommentLocation {
   lat: number
@@ -61,8 +62,23 @@ const MyMapComponentHome: React.FC = () => {
     },
   ];
 
+  const searchParams = useSearchParams()
+  const latitude = searchParams.get("latitude")
+  const longitude = searchParams.get("longitude")
+
   useEffect(() => {
     if (mapRef.current) {
+      if(latitude){
+        const fallbackLocation = { lat: Number(latitude), lng: Number(longitude) };
+          const newMap = new google.maps.Map(mapRef.current!, {
+            center: fallbackLocation,
+            zoom: 13,
+            mapTypeId: "roadmap",
+          });
+          setMap(newMap);
+
+          setCurrentLocationMarker(newMap, fallbackLocation);
+      }
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const location = {
