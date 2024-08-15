@@ -132,7 +132,7 @@ const MyMapComponent: React.FC = () => {
             // ピンを指した時に緯度と経度を表示
             newMap.addListener("click", (event: google.maps.MapMouseEvent) => {
               const latLng = event.latLng;
-              if (latLng) {
+              if (latLng && window !== undefined) {
                 const confirmPin = window.confirm("ここにピンを指しますか？");
                 if (confirmPin) {
                   const newMarker = new google.maps.Marker({
