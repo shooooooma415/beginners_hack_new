@@ -6,10 +6,15 @@
   height: 45px;
   width: 70%;
   font-size: 100%;
-  color: black;
+  color: white;
   border-radius: 15px; /* 角を丸くする */
   padding-left: 1rem;
-  background: #E5E4E4 no-repeat 2% ;
+  background: #886771 no-repeat 2% ;
+  transition: transform 0.2s ease;
+}
+
+.controls:active {
+  transform: scale(0.95); /* アイコンを縮小 */
 }
 
 .toggleButton {
