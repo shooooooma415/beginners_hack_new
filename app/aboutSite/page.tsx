@@ -40,14 +40,14 @@ export default function AboutSite() {
                     src="/imagefile/github copy.png"
                     width={100}
                     height={100}
-                    alt="Tailwind CSS Icon"
+                    alt="github Icon"
                 />
                 <Image
                     className="vercel"
                     src="/imagefile/vercel.png"
                     width={100}
                     height={100}
-                    alt="Tailwind CSS Icon"
+                    alt="vercel Icon"
                 />
                 
             </div>
