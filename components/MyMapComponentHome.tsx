@@ -102,6 +102,7 @@ const MyMapComponentHome: React.FC = () => {
             mapTypeControl: false, // これで航空写真などの切り替えボタンを非表示にする
             mapTypeId: "roadmap",
             styles: mapStyles,
+            gestureHandling: "greedy"
           });
           setMap(newMap);
           console.log(location)

@@ -64,6 +64,7 @@ const MyMapComponent: React.FC = () => {
             mapTypeControl: false,
             mapTypeId: "roadmap",
             styles: mapStyles, // ここでカスタムスタイルを適用
+            gestureHandling: "greedy"
           });
           setMap(newMap);
 
