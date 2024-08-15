@@ -144,6 +144,9 @@ export default function ImageApp() {
       return;
     }
 
+
+      
+
     setLoadingState("flex justify-center"); // ローディング状態を表示
     setErrorMessage(""); // エラーメッセージをクリア
     setIsButtonDisabled(true); // ボタンを無効化
@@ -189,6 +192,7 @@ export default function ImageApp() {
         latitude: lat,
         longitude: lng,
       }]); // 日付も追加
+      
     if (commentError) {
       alert("コメントの保存中にエラーが発生しました：" + commentError.message); // コメント保存エラーの警告
       setLoadingState("hidden"); // ローディング状態を隠す
