@@ -95,9 +95,9 @@ export default function PrivateImageApp() {
             </a>
             <ul className="mt-2">
               {comments[item]?.map((commentData, index) => (
-                <li key={index} className="text-sm text-gray-600">
+                <li key={index} className="text-sm ">
                   <li>{commentData.comment}</li>
-                  <span className="text-xs text-gray-400 ml-2">
+                  <span className="text-xs subText  ml-2">
                     日付: {commentData.event_date} {/* 修正：created_at を event_date に変更 */}
                   </span>
                 </li>
