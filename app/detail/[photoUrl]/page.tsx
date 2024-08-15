@@ -2,19 +2,24 @@
 import { useEffect, useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface Comment {
   comment: string;
   event_date: string; // 修正：created_at から event_date に変更
+  latitude: string;
+  longitude: string;
 }
 
-export default function PrivateImageApp() {
+export default function DetailPage() {
+    const pathname = usePathname()
+    const photoUrl = pathname.replace(/^\/detail\//, '');
+    console.log(photoUrl);
   const [user_id, setUserId] = useState<string>("");
   const public_url = `https://xydxmymbedqcfqzzjmgk.supabase.co/storage/v1/object/public/public-image-bucket/img/${user_id}/`;
 
-  const [urlList, setUrlList] = useState<string[]>([]);
   const [loadingState, setLoadingState] = useState("hidden");
-  const [comments, setComments] = useState<{ [key: string]: Comment[] }>({});
+  const [comment, setComment] = useState<Comment>();
 
   const supabase = createClientComponentClient();
 
@@ -28,58 +33,52 @@ export default function PrivateImageApp() {
     });
   }, []);
 
-  const listAllImage = async () => {
+  const image = async () => {
     const tempUrlList: string[] = [];
     setLoadingState("flex justify-center");
 
     const { data, error } = await supabase
       .storage
       .from('public-image-bucket')
-      .list(`img/${user_id}`, {
-        limit: 100,
-        offset: 0,
-        sortBy: { column: 'created_at', order: 'desc' },
-      });
+      .getPublicUrl(photoUrl)
+      ;
 
     if (error) {
       console.log(error);
       return;
     }
-
-    for (let index = 0; index < data.length; index++) {
-      if (data[index].name !== ".emptyFolderPlaceholder") {
-        tempUrlList.push(data[index].name);
-      }
-    }
-    setUrlList(tempUrlList);
-    await fetchAllComments(tempUrlList);
+    await fetchComment(photoUrl);
     setLoadingState("hidden");
   };
 
-  const fetchAllComments = async (imageList: string[]) => {
-    const tempComments: { [key: string]: Comment[] } = {};
-    for (const image of imageList) {
+  const fetchComment = async (imageUrl: string) => {
+    // const tempComments: { [key: string]: Comment[] } = {};
+
       const { data, error } = await supabase
         .from('comments')
-        .select('comment, event_date') // 修正：created_at を event_date に変更
-        .eq('image_name', image);
+        .select('comment, event_date, latitude, longitude') // 修正：created_at を event_date に変更
+        .eq('image_name', photoUrl);
 
       if (error) {
         console.log(error);
-        continue;
       }
 
-      tempComments[image] = data.map((entry) => ({
-        comment: entry.comment,
-        event_date: entry.event_date,
-      }));
-    }
-    setComments(tempComments);
+      if (data !== null) {
+        setComment(
+            {
+                comment: data[0].comment || '', 
+                event_date:data[0].event_date, 
+                latitude: data[0].latitude,
+                longitude: data[0].longitude,
+            }
+        );
+      }
+    
   };
 
   useEffect(() => {
     if (user_id) {
-      listAllImage();
+      image();
     }
   }, [user_id]);
 
@@ -89,23 +88,21 @@ export default function PrivateImageApp() {
         <div className="animate-spin h-10 w-10 border-4 border-blue-500 rounded-full border-t-transparent"></div>
       </div>
       <ul className="flex flex-wrap w-full">
-        {urlList.map((item) => (
-          <li className="h-auto p-1" style={{ width: "33%" }} key={item}>
-            <Link className="hover:opacity-50" href={`detail/${item}`}>
-              <img className="object-cover" style={{ aspectRatio: 1 / 1 }} src={public_url + item} alt={item} />
-            </Link>
+        
+          <li className="h-auto p-1">
+
+              <img className="object-cover" style={{ aspectRatio: 1 / 1 }} src={public_url + photoUrl} alt={photoUrl} />
+
             <ul className="mt-2">
-              {comments[item]?.map((commentData, index) => (
-                <li key={index} >
-                  <li className="text-sm whitespace-nowrap overflow-hidden text-ellipsis" >{commentData.comment}</li>
+                  <li className="text-sm whitespace-nowrap overflow-hidden text-ellipsis" >{comment?.comment}</li>
                   <span className="text-xs subText  ml-2">
-                    日付: {commentData.event_date} {/* 修正：created_at を event_date に変更 */}
+                    日付: {comment?.event_date} {/* 修正：created_at を event_date に変更 */}
                   </span>
-                </li>
-              ))}
+                  <p>緯度{comment?.longitude}</p>
+                  <p>経度{comment?.latitude}</p>
             </ul>
           </li>
-        ))}
+   
       </ul>
     </div>
   );
