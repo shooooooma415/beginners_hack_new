@@ -24,8 +24,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis; 
-    overflow: hidden; /* 省略記号が表示されるようにするために必要 */
-}
+    overflow: hidden; 
 
 .position{
     border: none;
