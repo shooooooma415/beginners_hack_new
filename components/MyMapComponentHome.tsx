@@ -4,7 +4,7 @@ import setCurrentLocationMarker from "@/components/setCurrentLocationMarker";
 import createInfoWindowContent from "@/components/createInfoWindowContent";
 import CurrentLocationButton from "@/components/currentLocation";
 import styles from './searchbutton.module.css'
-import useFetchAllComments  from "./fetchAllComments";
+import useFetchAllComments from "./fetchAllComments";
 import { User } from "@supabase/supabase-js";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import createImageWindowContent from "./createImageWindowContent";
@@ -24,7 +24,7 @@ const MyMapComponentHome: React.FC = () => {
   const mapRef = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const [currentLocation, setCurrentLocation] = useState<google.maps.LatLngLiteral | null>(null);
-  const [url, setUrl] = useState<string[]|null>([])
+  const [url, setUrl] = useState<string[] | null>([])
   // const [userId, setUserId] = useState<string>("")
   const supabase = createClientComponentClient();
 
@@ -77,8 +77,9 @@ const MyMapComponentHome: React.FC = () => {
             mapTypeId: "roadmap",
           });
           setMap(newMap);
+          newMap.panTo({ lat: Number(latitude), lng: Number(longitude) })
 
-          setCurrentLocationMarker(newMap, fallbackLocation);
+          // setCurrentLocationMarker(newMap, fallbackLocation);
       }
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -103,9 +104,9 @@ const MyMapComponentHome: React.FC = () => {
           if (location) {
             setCurrentLocationMarker(newMap, location);
           }
-          (async() => {
+          (async () => {
             const userId = await supabase.auth.getUser().then((u) => {
-              if(u.data.user == null) {
+              if (u.data.user == null) {
                 alert("ログインしてください")
                 return ""
               }
@@ -115,8 +116,8 @@ const MyMapComponentHome: React.FC = () => {
               .from("comments")
               .select("image_name, latitude, longitude")
               .eq("user_id", userId)
-            
-            if(error){
+
+            if (error) {
               console.error(error)
             }
 
@@ -124,16 +125,16 @@ const MyMapComponentHome: React.FC = () => {
               console.error("")
             }
 
-            const locations: CommentLocation[] = data!.map((rec) => {
-              return { lat: rec.latitude as number, lng: rec.longitude as number }
-            })
-          
-            await data!.forEach(async(rec) => {
+            // const locations: CommentLocation[] = data!.map((rec) => {
+            //   return { lat: rec.latitude as number, lng: rec.longitude as number }
+            // })
+
+            await data!.forEach(async (rec) => {
               const marker = new google.maps.Marker({
-                position: {lat: rec.latitude as number, lng: rec.longitude as number },
+                position: { lat: rec.latitude as number, lng: rec.longitude as number },
                 map: newMap
               })
-              const {data, error} = await supabase.storage.from('public-image-bucket').download(`img/${userId}/${rec.image_name}`);
+              const { data, error } = await supabase.storage.from('public-image-bucket').download(`img/${userId}/${rec.image_name}`);
               if (error) {
                 console.error(error);
               }
@@ -149,9 +150,11 @@ const MyMapComponentHome: React.FC = () => {
               })
             })
 
-            locations.forEach((location) => {
-              newMap.panTo(location)
-            })
+            newMap.panTo({ lat: Number(latitude), lng: Number(longitude) })
+
+            // locations.forEach((location) => {
+            //   newMap.panTo(location)
+            // })
           })()
 
           const input = document.getElementById("pac-input") as HTMLInputElement;
@@ -194,12 +197,13 @@ const MyMapComponentHome: React.FC = () => {
           });
           setMap(newMap);
 
-          setCurrentLocationMarker(newMap, fallbackLocation);
+          // setCurrentLocationMarker(newMap, fallbackLocation);
         },
         { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
       );
     }
   }, [mapRef]);
+
 
   return (
     <div style={divStyle}>
