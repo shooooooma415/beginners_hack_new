@@ -42,6 +42,13 @@ export default function AboutSite() {
                     height={100}
                     alt="Tailwind CSS Icon"
                 />
+                <Image
+                    className="vercel"
+                    src="/imagefile/vercel.png"
+                    width={100}
+                    height={100}
+                    alt="Tailwind CSS Icon"
+                />
                 
             </div>
         </>
