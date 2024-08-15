@@ -30,7 +30,7 @@ export default function AboutSite() {
                 />
                 <Image
                     className="tailwindcss"
-                    src="/imagefile/tailwindcss copy.png"
+                    src="/imagefile/tailwind.png"
                     width={100}
                     height={100}
                     alt="Tailwind CSS Icon"
@@ -38,6 +38,13 @@ export default function AboutSite() {
                 <Image
                     className="github"
                     src="/imagefile/github copy.png"
+                    width={100}
+                    height={100}
+                    alt="Tailwind CSS Icon"
+                />
+                <Image
+                    className="vercel"
+                    src="/imagefile/vercel.png"
                     width={100}
                     height={100}
                     alt="Tailwind CSS Icon"
