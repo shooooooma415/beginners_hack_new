@@ -46,7 +46,7 @@ const MyMapComponent: React.FC = () => {
   ];
 
   useEffect(() => {
-    if (mapRef.current) {
+    if (typeof window !== "undefined" && mapRef.current) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const location = {
