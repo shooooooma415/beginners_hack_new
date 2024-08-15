@@ -19,8 +19,8 @@ export default function help() {
 
         <ul className="main">投稿について</ul>
         <ul>
-            <li className ="text-center">投稿ページでは投稿する写真や画像の選択・日付・コメントが入力できます</li>
-            <li className ="text-center"></li>
+            <li className ="text-center">投稿ページでは投稿する写真や画像の選択・日付・コメントが入力できます。</li>
+            <li className ="text-center">投稿が完了すると自動的にNew Postにページがとびます。</li>
         </ul>
 
         <ul className="main">写真の選択について</ul>
@@ -28,7 +28,7 @@ export default function help() {
             <li className ="text-center">ここでは<span className="highlight">画像・写真ファイルのみ</span>アップロードができます。</li>
             <li className ="text-center">それ以外のファイルはアップロードができませんのでご注意ください。</li>
             <li className ="text-center">またファイル名に半角の英数字以外が含まれているとアップロードができない場合があります。</li>
-            <li className ="text-center">そのはファイル名を変更して再度アップロードしてください。</li>
+            <li className ="text-center">そのはファイル名を変更して再度アップロードしなおしてください。</li>
         </ul>
 
 

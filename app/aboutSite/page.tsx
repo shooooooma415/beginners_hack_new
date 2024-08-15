@@ -9,7 +9,8 @@ export default function AboutSite() {
 
 
             </div>
-            <div className="teamname">チーム名</div>
+            <div className="teamname">作成チーム</div>
+            <div className="detailname">りんごかじり虫</div>
             
             <div className="tools">技術スタック</div>
             <div className="image-row">

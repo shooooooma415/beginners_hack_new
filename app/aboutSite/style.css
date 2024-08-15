@@ -7,7 +7,13 @@
   margin-top: 20px;
   margin-bottom: 2%;
 }
-
+.detailname{
+  font-size: 30px;
+  /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
+  padding-top: 10px; 
+  padding-bottom: 5px;
+  color:rgb(225, 53, 53)
+}
 .tools,.teamname{
   font-size: 25px;
   padding-top: 40px; 
