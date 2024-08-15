@@ -2,7 +2,7 @@
     position: relative;
     height: 100vh; /* 親要素の高さをビュー全体に設定 */
     width: 100vw; /* 親要素の幅をビュー全体に設定 */
-    background-color: #f0f0f0; /* 親要素の背景色を灰色に設定 */
+    background-color: #E5E4E4;  /* 親要素の背景色を灰色に設定 */
     display: flex;
     justify-content: center; /* 子要素を水平方向に中央揃え */
     align-items: center; /* 子要素を垂直方向に中央揃え */
