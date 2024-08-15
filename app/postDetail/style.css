@@ -40,6 +40,16 @@
   margin: 23%;
 }
 
+.send:hover {
+  background-color: #E5E4E4; /* ホバー時の背景色 */
+  opacity: 0.8; /* ホバー時に少し透明にする */
+}
+
+.send:active {
+  transform: scale(0.95); /* ボタンを押した時に少し縮小させる */
+  background-color: #E5E4E4; /* 押された時の背景色 */
+}
+
 #formFile{
     border-radius: 1.3rem 1.3rem 0 0;
     padding-left: 3%;
