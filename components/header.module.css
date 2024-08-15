@@ -8,7 +8,7 @@
     display: flex;
     justify-content: center; /* 中央揃え */
     align-items: center;
-    background-color: rgba(128, 128, 128, 0.6); /* 透明度50%のグレー */
+    background-color: #886771a9; 
     height: 60px;
     margin-bottom: 0px;
 }
