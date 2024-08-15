@@ -17,11 +17,6 @@ export default function Setting() {
     return (
         <div className="settings-container">
             <h2 className="custom-heading">設定</h2>
-            <hr style={{
-                border: 'none',
-                borderTop: '2px solid #767373',
-                margin: "0",
-            }} />
             <div className="button-group">
                 <button className="settings-button" onClick={rootHelp}>
                     ヘルプページ

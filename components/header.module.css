@@ -3,78 +3,65 @@
     bottom: 0;
     right: 0;
     padding: 0%;
-    border-bottom: 0px; /* gray-300 */
+    border-bottom: 0px;
     width: 100vw;
     display: flex;
-    justify-content: center; /* 中央揃え */
+    justify-content: center;
     align-items: center;
-    background-color: rgba(128, 128, 128, 0.6); /* 透明度50%のグレー */
+    background-color: #886771a9; 
     height: 60px;
     margin-bottom: 0px;
 }
 
 .navList {
-    display: flex; /* フレックスボックスで配置 */
+    display: flex;
     position: absolute;
     bottom: 0;
-    justify-content: space-between; /* 等間隔に配置 */
-    align-items: center; /* 垂直中央揃え */
+    justify-content: space-between;
+    align-items: center;
     padding: 0;
     margin: 0;
-    list-style: none; /* リストスタイルを無効に */
-    width: 100%; /* リストの幅を100%に */
-    height: 60px;
+    list-style: none;
+    width: 100%;
+    height: 100%; /* Make navList height equal to the header */
 }
 
 .leftItem {
-    display: flex; /* 各アイテムをフレックスボックスに */
-    align-items: center; /* 垂直中央揃え */
-    justify-content: center; /* 水平中央揃え */
-    padding:  0 0%; /* 左右の余白を自動に */
-    left: 3%;
-    flex: 1; /* 各アイテムを均等に分配 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px auto 7px;
+    flex: 1;
+}
+.centeredItem{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+.rightItem{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
 }
 
-.centeredItem {
-    display: flex; /* フレックスボックスで配置 */
-    align-items: center; /* 垂直中央揃え */
-    justify-content: center; /* 水平中央揃え */
-    padding: 0 0%; /* 左右の余白を自動に */
-    margin: 0 20%; /* 左右の余白を自動に */
-    flex: 1; /* 均等にスペースを分配 */
-}
-
-
-.centerIcon{
-    position: absolute; /*  フレックスボックスで配置 */
-    font-size: 50px;
-    align-items: center; /* 垂直中央揃え */
-    justify-content: center; /* 水平中央揃え */
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
-}
-
-.rightIcon{
+.rightIcon {
     font-size: 58px;
-    align-items: center; /* 垂直中央揃え */
-    justify-content: center; /* 水平中央揃え */
 }
 
-.rightItem {
-    display: flex; /* 各アイテムをフレックスボックスに */
-    align-items: center; /* 垂直中央揃え */
-    justify-content: center; /* 水平中央揃え */
-    padding: 0 0%; /* 左右の余白を自動に */
-    flex: 1; /* 各アイテムを均等に分配 */
-    right: 3%;
+.centerIcon {
+    font-size: 50px;
+}
+
+.leftIcon {
+    font-size: 46.5px;
 }
 
 .iconLink {
     width: 50px;
     height: 50px;
+    
 }
 
 .button {
@@ -82,21 +69,11 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    outline: none; /* Tabキーでのフォーカス時のアウトラインを消す */
-    padding: 0; /* ボタンの内側の余白 */
-    border-radius: 4px; /* ボタンの角を丸くする */
-    background-color: transparent; /* ボタンの背景色 */
-    transition: background-color 0.2s; /* ホバー時の変化のアニメーション */
-    width: 60px; /* ボタンの幅を固定 */
-    height: 60px; /* ボタンの高さを固定 */
+    outline: none;
+    padding: 0;
+    border-radius: 4px;
+    background-color: transparent;
+    transition: background-color 0.2s;
+    width: 60px;
+    height: 60px;
 }
-
-/* .button:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-} */
-
-.upBurger {
-    position: absolute;
-    bottom: 0;
-}
-
