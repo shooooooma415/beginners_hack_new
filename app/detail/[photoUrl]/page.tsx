@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import deleteRowById from "./deletaPost";
 import { useRouter } from "next/navigation";
+import './style.css';
 
 interface Comment {
     comment: string;
@@ -95,35 +96,30 @@ export default function DetailPage() {
     }, [user_id]);
 
     return (
-        <div className="w-screen max-w-3xl">
-            <div className={loadingState} aria-label="読み込み中">
-                <div className="animate-spin h-10 w-10 border-4 border-blue-500 rounded-full border-t-transparent"></div>
-            </div>
-            <ul className="flex flex-wrap w-full">
-
-                <li className="h-auto p-1">
-
-                    <img className="object-cover" style={{ aspectRatio: 1 / 1 }} src={public_url + photoUrl} alt={photoUrl} />
-
-                    <ul className="mt-2">
-                        <li className="text-sm whitespace-nowrap overflow-hidden text-ellipsis" >{comment?.comment}</li>
-                        <span className="text-xs subText  ml-2">
-                            日付: {comment?.event_date} {/* 修正：created_at を event_date に変更 */}
-                        </span>
-                        <p>longitude:{comment?.longitude}</p>
-                        <p>latitude:{comment?.latitude}</p>
-                    </ul>
-                </li>
+        <div className="w-screen max-w-3xl mx-auto">
+    <div className={loadingState} aria-label="読み込み中">
+        <div className="animate-spin h-10 w-10 border-4 border-blue-500 rounded-full border-t-transparent"></div>
+    </div>
+    <ul className="ul">
+        <li className="li">
+            <img className="object-cover" style={{ aspectRatio: 1 / 1 }} src={public_url + photoUrl} alt={photoUrl} />
+            <ul className="ul2">
+                <li className="comment">{comment?.comment}</li>
+                <span className="datelog">
+                    日付: {comment?.event_date} {/* 修正：created_at を event_date に変更 */}
+                </span>
             </ul>
-            <Link href={{ pathname: "/home", query: { longitude: comment?.longitude, latitude: comment?.latitude } }}>
-                位置に移動する
-            </Link>
-            <p>{comment?.id}</p>
-            <p>{comment?.user_id}</p>
-            <button
-                onClick={() =>handleDelete()}>
-                    削除
-            </button>
-        </div>
+        </li>
+    </ul>
+    <div className="button-group">
+    <button className="position"><Link href={{ pathname: "/home", query: { longitude: comment?.longitude, latitude: comment?.latitude } }}>
+        位置に移動する
+    </Link></button>
+    <button className="delete" onClick={() => handleDelete()}>
+        削除
+    </button>
+    </div>
+</div>
+
     );
 }
