@@ -18,7 +18,7 @@ export default function ImageApp() {
   // ステート管理
   const [eventDate, setEventDate] = useState<string>(""); // 日付 追加
   const [urlList, setUrlList] = useState<string[]>([]); // 画像URLリスト
-  const [loadingState, setLoadingState] = useState("hidden"); // ローディング状態
+  const [loadingState, setLoadingState] = useState(false); // ローディング状態
   const [comments, setComments] = useState<{ [key: string]: { comment: string; created_at: string; event_date: string }[] }>({}); // 画像ごとのコメント
   const [file, setFile] = useState<File>(); // アップロードするファイル
   const [comment, setComment] = useState<string>(""); // コメントの値
@@ -28,11 +28,11 @@ export default function ImageApp() {
 
   const params = useSearchParams();
   const lat = params.get('lat');
-  const lng = params.get('lng'); 
+  const lng = params.get('lng');
 
   const supabase = createClientComponentClient();
   useEffect(() => {
-    supabase.auth.getUser().then((user) => { 
+    supabase.auth.getUser().then((user) => {
       if (user.data.user === null) {
         return alert("ログインしてください");
       }
@@ -43,7 +43,7 @@ export default function ImageApp() {
   // 画像を全てリストする関数
   const listAllImage = async () => {
     const tempUrlList: string[] = []; // 一時的なURLリスト
-    setLoadingState("flex justify-center"); // ローディング状態を表示
+    // setLoadingState("flex justify-center"); // ローディング状態を表示
 
     console.log("fetching image list: ", user_id);
     // Supabaseから画像リストを取得
@@ -69,7 +69,7 @@ export default function ImageApp() {
     }
     setUrlList(tempUrlList); // 画像URLリストをステートに設定
     await fetchAllComments(tempUrlList); // コメントを取得
-    setLoadingState("hidden"); // ローディング状態を隠す
+    // setLoadingState("hidden"); // ローディング状態を隠す
   };
 
   // 画像に関連する全てのコメントを取得する関数
@@ -119,10 +119,10 @@ export default function ImageApp() {
         blob: file,
         toType: "image/jpeg",
       });
-      if (Array.isArray(outputBlob)){
+      if (Array.isArray(outputBlob)) {
         return outputBlob[0];
       }
-      
+
       return outputBlob;
     } catch (error) {
       console.error("HEIC to JPEG conversion error:", error);
@@ -132,6 +132,7 @@ export default function ImageApp() {
 
   // フォーム送信時に呼ばれる関数
   const onSubmit = async (event: any) => {
+    setLoadingState(true); // ローディング状態を表示
     event.preventDefault(); // デフォルトのフォーム送信を防ぐ
 
     if (!file) {
@@ -145,11 +146,11 @@ export default function ImageApp() {
     }
 
 
-      
 
-    setLoadingState("flex justify-center"); // ローディング状態を表示
-    setErrorMessage(""); // エラーメッセージをクリア
-    setIsButtonDisabled(true); // ボタンを無効化
+
+    // setLoadingState("flex justify-center"); // ローディング状態を表示
+    // setErrorMessage(""); // エラーメッセージをクリア
+    // setIsButtonDisabled(true); // ボタンを無効化
 
     const fileExtension = file.name.split(".").pop(); // ファイル拡張子を取得
     const fileName = `${uuidv4()}.${fileExtension}`; // 一意なファイル名を生成
@@ -163,8 +164,8 @@ export default function ImageApp() {
         uploadFile = new File([convertedBlob], `${uuidv4()}.jpeg`, { type: "image/jpeg" }); // 変換したJPEGを新しいファイルとして生成
       } else {
         alert("HEICファイルの変換に失敗しました。");
-        setLoadingState("hidden"); // ローディング状態を隠す
-        setIsButtonDisabled(false); // 失敗時にボタンを再度有効化
+        setLoadingState(false); // ローディング状態を隠す
+        // setIsButtonDisabled(false); // 失敗時にボタンを再度有効化
         return;
       }
     }
@@ -175,8 +176,8 @@ export default function ImageApp() {
       .upload(`img/${user_id}/${uploadFile.name}`, uploadFile);
     if (uploadError) {
       alert("エラーが発生しました：" + uploadError.message); // アップロードエラーの警告
-      setLoadingState("hidden"); // ローディング状態を隠す
-      setIsButtonDisabled(false); // 失敗時にボタンを再度有効化
+      setLoadingState(false); // ローディング状態を隠す
+      // setIsButtonDisabled(false); // 失敗時にボタンを再度有効化
       return;
     }
 
@@ -188,15 +189,15 @@ export default function ImageApp() {
         comment,
         created_at: new Date(),
         event_date: eventDate,
-        user_id: user_id, 
+        user_id: user_id,
         latitude: lat,
         longitude: lng,
       }]); // 日付も追加
-      
+
     if (commentError) {
       alert("コメントの保存中にエラーが発生しました：" + commentError.message); // コメント保存エラーの警告
-      setLoadingState("hidden"); // ローディング状態を隠す
-      setIsButtonDisabled(false); // 失敗時にボタンを再度有効化
+      setLoadingState(false); // ローディング状態を隠す
+      // setIsButtonDisabled(false); // 失敗時にボタンを再度有効化
       return;
     }
 
@@ -204,7 +205,7 @@ export default function ImageApp() {
     setFile(undefined);
     setComment("");
     await listAllImage();
-    setLoadingState("hidden"); // ローディング状態を隠す
+    // setLoadingState("flex justify-center"); // ローディング状態を隠す
 
     // 投稿が完了した後に遷移
     router.push('/private'); // 遷移先のパスを指定
@@ -213,54 +214,58 @@ export default function ImageApp() {
   return (
     <>
       {/* 画像アップロードフォーム */}
-      
-      <form className="appload" onSubmit={onSubmit}>
-        
-      
-      <input
-          className="handler"
-          type="file"
-          id="formFile"
-          accept="image/*,.HEIC"
-          onChange={handleChangeFile} // ファイル選択時のハンドラ
-        />
-      <Stack spacing={1.5} sx={{ minWidth: 300 }}>
-        <Input
-          type="date"
-          onChange={(e) => setEventDate(e.target.value)}
-          slotProps={{
-            input: {
-              min: '1930-01-01',
-              max: '2100-12-31',
-            },
-          }}
-        />
-      </Stack>
-        <Textarea
-          className="comment"
-          placeholder="Enter your comment"
-          minRows={6}
-          sx={{
-            '--Textarea-focusedInset': 'var(--any, )',
-            '--Textarea-focusedThickness': '0.25rem',
-            '--Textarea-focusedHighlight': 'rgba(13,110,253,.25)',
-            '&::before': {
-            transition: 'box-shadow .15s ease-in-out',
-            },
-            '&:focus-within': {
-            borderColor: '#86b7fe',
-            },
-          }}
-          value={comment} // コメントの値
-          onChange={(e) => setComment(e.target.value)} // コメント入力時のハンドラー
-        />
-        {/* エラーメッセージの表示 */}
-        {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>}
-        <button type="submit" disabled={!file} className="send">
-          送信
-        </button>
-      </form>
-      {/* 画像とコメントの表示 */}
+      {loadingState ? (
+      <div  aria-label="読み込み中">
+        <h2>loading...</h2>
+      </div>
+      ):
+      <div  aria-label="読み込み中">
+        <form className="appload" onSubmit={onSubmit}>
+          <input
+            className="handler"
+            type="file"
+            id="formFile"
+            accept="image/*,.HEIC"
+            onChange={handleChangeFile} // ファイル選択時のハンドラ
+          />
+          <Stack spacing={1.5} sx={{ minWidth: 300 }}>
+            <Input
+              type="date"
+              onChange={(e) => setEventDate(e.target.value)}
+              slotProps={{
+                input: {
+                  min: '1930-01-01',
+                  max: '2100-12-31',
+                },
+              }}
+            />
+          </Stack>
+          <Textarea
+            className="comment"
+            placeholder="Enter your comment"
+            minRows={6}
+            sx={{
+              '--Textarea-focusedInset': 'var(--any, )',
+              '--Textarea-focusedThickness': '0.25rem',
+              '--Textarea-focusedHighlight': 'rgba(13,110,253,.25)',
+              '&::before': {
+                transition: 'box-shadow .15s ease-in-out',
+              },
+              '&:focus-within': {
+                borderColor: '#86b7fe',
+              },
+            }}
+            value={comment} // コメントの値
+            onChange={(e) => setComment(e.target.value)} // コメント入力時のハンドラー
+          />
+          {/* エラーメッセージの表示 */}
+          {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>}
+          <button type="submit" disabled={!file} className="send">
+            送信
+          </button>
+        </form>
+        {/* 画像とコメントの表示 */}
+      </div>}
     </>
   );
 }
