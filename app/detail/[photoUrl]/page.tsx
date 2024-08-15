@@ -9,7 +9,7 @@ import './style.css';
 
 interface Comment {
     comment: string;
-    event_date: string; // 修正：created_at から event_date に変更
+    event_date: string; 
     latitude: string;
     longitude: string;
     id: string;
