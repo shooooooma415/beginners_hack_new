@@ -17,16 +17,9 @@ export default function LogoutCheck() {
     return (
         <>
             <h2 className="logout">ログアウト</h2>
-            <hr style={{
-                border: 'none',
-                borderTop: '2px solid #767373',
-                margin: "0",
-            }} />
-            <button className='question'>ログアウトしますか？</button>
-           
-            <div>
-                <button className="custom-buttonYes" onClick={handleLogout}>Logout</button>
-                <button className="custom-buttonNo" onClick={backLogout}>Cancel</button>
+            <div className="button-group">
+                <button className="custom-buttonYes" onClick={handleLogout}>ログアウトする</button>
+                <button className="custom-buttonNo" onClick={backLogout}>戻る</button>
             </div>
         </>
     );

@@ -23,7 +23,7 @@
     border: none;
     text-align: center;
     color: #886771;
-    background-color: #ffffff;
+    background-color: #E5E4E4; 
     border-radius: 4px;
     padding: 1vh 10vw;
     width: 80vw;
@@ -34,5 +34,5 @@
 }
 
 .settings-button:hover {
-    background-color: #e0e0e0;
+    background-color: rgb(118, 115, 115,0.6);
 }
