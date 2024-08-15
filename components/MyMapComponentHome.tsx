@@ -9,6 +9,7 @@ import { User } from "@supabase/supabase-js";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import createImageWindowContent from "./createImageWindowContent";
 import { useSearchParams } from "next/navigation";
+import "./delete.css";
 
 interface CommentLocation {
   lat: number
