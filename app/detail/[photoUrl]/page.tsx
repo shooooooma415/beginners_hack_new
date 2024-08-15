@@ -9,6 +9,8 @@ interface Comment {
     event_date: string; // 修正：created_at から event_date に変更
     latitude: string;
     longitude: string;
+    id: string;
+    user_id: string;
 }
 
 export default function DetailPage() {
@@ -20,7 +22,6 @@ export default function DetailPage() {
 
     const [loadingState, setLoadingState] = useState("hidden");
     const [comment, setComment] = useState<Comment>();
-
     const supabase = createClientComponentClient();
 
     useEffect(() => {
@@ -56,7 +57,7 @@ export default function DetailPage() {
 
         const { data, error } = await supabase
             .from('comments')
-            .select('comment, event_date, latitude, longitude') // 修正：created_at を event_date に変更
+            .select('user_id, id, comment, event_date, latitude, longitude') // 修正：created_at を event_date に変更
             .eq('image_name', photoUrl);
 
         if (error) {
@@ -70,11 +71,14 @@ export default function DetailPage() {
                     event_date: data[0].event_date,
                     latitude: data[0].latitude,
                     longitude: data[0].longitude,
+                    id: data[0].id,
+                    user_id: data[0].user_id,
                 }
             );
         }
 
     };
+    
 
     useEffect(() => {
         if (user_id) {
@@ -103,9 +107,11 @@ export default function DetailPage() {
                     </ul>
                 </li>
             </ul>
-            <Link href={{ pathname: "/home", query: { longitude: comment?.longitude, latitude: comment?.latitude} }}>
+            <Link href={{ pathname: "/home", query: { longitude: comment?.longitude, latitude: comment?.latitude } }}>
                 位置に移動する
             </Link>
+            <p>{comment?.id}</p>
+            <p>{comment?.user_id}</p>
         </div>
     );
 }
