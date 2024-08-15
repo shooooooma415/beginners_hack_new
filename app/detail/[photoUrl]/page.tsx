@@ -29,7 +29,7 @@ export default function DetailPage() {
 
     const handleDelete = () => {
         comment&& deleteRowById(comment.id, comment.user_id, photoUrl)
-        router.push('/private')
+        router.push('/home')
     } 
 
     useEffect(() => {

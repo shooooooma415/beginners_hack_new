@@ -5,7 +5,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { IconComponent } from '@/components/renderIcon';
 import styles from './drawerIcon.module.css';
 
-const NavigationItem = ({ text }) => {
+const NavigationItem = ({ text }:{text : string}) => {
 
   const getHref = () => {
     switch (text) {

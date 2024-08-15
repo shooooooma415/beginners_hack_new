@@ -17,7 +17,7 @@ const MapWrapper: React.FC = () => {
   const supabase = createClientComponentClient();
   return (
     <Wrapper
-      apiKey="AIzaSyBXGiM07CN4VN57L3QmdNVc4FTbJ_kKdbI"
+      apiKey = {process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY || ''}
       render={render}
       libraries={["places"]}
     >
