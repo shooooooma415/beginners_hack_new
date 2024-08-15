@@ -85,28 +85,28 @@ export default function PrivateImageApp() {
 
   return (
     <div className="w-screen max-w-3xl">
+
       <div className={loadingState} aria-label="読み込み中">
         <div className="animate-spin h-10 w-10 border-4 border-blue-500 rounded-full border-t-transparent"></div>
       </div>
       <ul className="flex flex-wrap w-full">
-        {urlList.map((item) => (
-          <li className="h-auto p-1" style={{ width: "33%" }} key={item}>
-            <Link className="hover:opacity-50" href={`detail/${item}`}>
-              <img className="object-cover" style={{ aspectRatio: 1 / 1 }} src={public_url + item} alt={item} />
-            </Link>
-            <ul className="mt-2">
-              {comments[item]?.map((commentData, index) => (
-                <li key={index} >
-                  <li className="text-sm whitespace-nowrap overflow-hidden text-ellipsis" >{commentData.comment}</li>
-                  <span className="text-xs subText  ml-2">
-                    日付: {commentData.event_date} {/* 修正：created_at を event_date に変更 */}
-                  </span>
-                </li>
-              ))}
-            </ul>
+  {urlList.map((item) => (
+    <li className="h-auto p-1" style={{ width: "33%", border: "1px solid #ccc", boxSizing: "border-box" }} key={item}>
+      <Link className="hover:opacity-50" href={`detail/${item}`}>
+        <img className="object-cover" style={{ aspectRatio: 1 / 1, border: "1px solid #ccc" }} src={public_url + item} alt={item} />
+      </Link>
+      <ul className="mt-2">
+        {comments[item]?.map((commentData, index) => (
+          <li key={index}>
+            <li className="text-sm whitespace-nowrap overflow-hidden text-ellipsis">{commentData.comment}</li>
+            <span className="text-xs subText ml-2">日付: {commentData.event_date}</span>
           </li>
         ))}
       </ul>
+    </li>
+  ))}
+</ul>
+
     </div>
   );
 }
