@@ -20,7 +20,7 @@ export default function SignInForm() {
           access_type: 'offline',
           prompt: 'consent',
         },
-        redirectTo: `http://localhost:3000/home`,  
+        redirectTo: `/home`,
       },
     });
   
