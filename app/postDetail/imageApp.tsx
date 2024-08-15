@@ -12,7 +12,7 @@ import Stack from '@mui/joy/Stack';
 
 export default function ImageApp() {
   const [user_id, setUserId] = useState<string>("");
-  const public_url = `https://spzlpfucuqkpjlucnnfh.supabase.co/storage/v1/object/public/public-image-bucket/img/${user_id}/`;
+  const public_url = `https://xydxmymbedqcfqzzjmgk.supabase.co/storage/v1/object/public/public-image-bucket/img/${user_id}/`;
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   // ステート管理

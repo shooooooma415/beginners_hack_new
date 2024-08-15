@@ -9,7 +9,7 @@ interface Comment {
 
 export default function PrivateImageApp() {
   const [user_id, setUserId] = useState<string>("");
-  const public_url = `https://spzlpfucuqkpjlucnnfh.supabase.co/storage/v1/object/public/public-image-bucket/img/${user_id}/`;
+  const public_url = `https://xydxmymbedqcfqzzjmgk.supabase.co/storage/v1/object/public/public-image-bucket/img/${user_id}/`;
 
   const [urlList, setUrlList] = useState<string[]>([]);
   const [loadingState, setLoadingState] = useState("hidden");
