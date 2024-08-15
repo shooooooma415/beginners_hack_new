@@ -7,10 +7,8 @@ import styles from './signInForm.module.css';
 import Image from 'next/image';
 import Link from "next/link";
 
-export default function SignInForm(props: {
-  showModal: Dispatch<SetStateAction<boolean>>;
-}) {
-  const { showModal } = props;
+export default function SignInForm() {
+  
   const supabase = createClientComponentClient();
   const router = useRouter();
 
