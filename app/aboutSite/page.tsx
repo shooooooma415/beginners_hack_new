@@ -51,6 +51,13 @@ export default function AboutSite() {
                     height={100}
                     alt="vercel Icon"
                 />
+                <Image
+                    className="react"
+                    src="/imagefile/react.png"
+                    width={100}
+                    height={100}
+                    alt="react Icon"
+                />
             </div>
         </>
     );  
