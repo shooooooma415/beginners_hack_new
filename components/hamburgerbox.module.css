@@ -3,6 +3,8 @@
     top: 1%;
     right: 3%;
     z-index: 1000;
+    height: 45px;
+    width: 45px;
     font-size: 3rem;
     background-color: #886771; /* 背景をほぼ黒にする */
     color: #E5E4E4;
