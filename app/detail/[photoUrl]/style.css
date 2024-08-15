@@ -23,7 +23,7 @@
     font-size: 0.875rem;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; /* 溢れたテキストに省略記号を表示 */
+    text-overflow: ellipsis; 
     overflow: hidden; /* 省略記号が表示されるようにするために必要 */
 }
 
