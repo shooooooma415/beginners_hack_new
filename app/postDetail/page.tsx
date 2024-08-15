@@ -1,7 +1,12 @@
 'use client';
-import ImageApp from "./imageApp";
+// import ImageApp from "./imageApp";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import "./style.css"
+import dynamic from "next/dynamic";
+
+const ImageApp = dynamic(() => 
+  import ("./imageApp"), {ssr: false}
+)
 
 
 export default function Index() {
