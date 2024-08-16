@@ -16,7 +16,6 @@ export default function AboutSite() {
             <Link href = "https://www.instagram.com/ru1y_o?igsh=MW0wOXhra3J2enRvaQ%3D%3D&utm_source=qr">もりた まさたか</Link>
             <div className="tools">技術スタック</div>
             <div className="image-row">
-                <Link href ="https://nextjs.org/">
                 <Image
                     className="nextjs"
                     src="/imagefile/Nextjs.png"
@@ -24,7 +23,6 @@ export default function AboutSite() {
                     height={100}
                     alt="Next.js Icon"
                 />
-                </Link>
                 <Image
                     className="supabase"
                     src="/imagefile/supabase.png"
