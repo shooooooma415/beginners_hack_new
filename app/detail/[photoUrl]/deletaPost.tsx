@@ -9,6 +9,9 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
 export default async function deleteRowById(id: string, user_id: string, image_name: string) {
     
     try {
+        if (window !== undefined) {
+            const confirmPin = window.confirm("投稿を削除しますか？");
+            if (!confirmPin) return      
         // Supabase の "comments" テーブルから指定された ID の行を削除
         const { data, error } = await supabase
             .from('comments')
@@ -42,6 +45,7 @@ export default async function deleteRowById(id: string, user_id: string, image_n
         }
 
         console.log('ファイル削除が成功しました');
+    }
     } catch (error) {
         console.error('削除に失敗しました:', (error as any).message);
     }
