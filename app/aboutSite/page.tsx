@@ -16,6 +16,7 @@ export default function AboutSite() {
             <Link href = "https://www.instagram.com/ru1y_o?igsh=MW0wOXhra3J2enRvaQ%3D%3D&utm_source=qr">もりた まさたか</Link>
             <div className="tools">技術スタック</div>
             <div className="image-row">
+                <Link href ="https://nextjs.org/">
                 <Image
                     className="nextjs"
                     src="/imagefile/Nextjs.png"
@@ -23,12 +24,14 @@ export default function AboutSite() {
                     height={100}
                     alt="Next.js Icon"
                 />
+                </Link>
                 <Image
                     className="supabase"
                     src="/imagefile/supabase.png"
                     width={100}
                     height={100}
                     alt="Supabase Icon"
+                    href =
                 />
                 <Image
                     className="tailwindcss"
@@ -36,6 +39,7 @@ export default function AboutSite() {
                     width={100}
                     height={100}
                     alt="Tailwind CSS Icon"
+                    href =
                 />
                 <Image
                     className="github"
@@ -43,6 +47,7 @@ export default function AboutSite() {
                     width={100}
                     height={100}
                     alt="github Icon"
+                    href =
                 />
                 <Image
                     className="vercel"
@@ -50,13 +55,23 @@ export default function AboutSite() {
                     width={100}
                     height={100}
                     alt="vercel Icon"
+                    href =
                 />
                 <Image
                     className="react"
-                    src="/imagefile/react.png"
+                    src="/imagefile/React copy.png"
                     width={100}
                     height={100}
                     alt="react Icon"
+                    href =
+                />
+                <Image
+                    className="googlemapapi"
+                    src="/imagefile/googlemap copy.png"
+                    width={100}
+                    height={100}
+                    alt="google map api Icon"
+                    href =
                 />
             </div>
         </>
