@@ -20,7 +20,7 @@ export default function SignInForm() {
           access_type: 'offline',
           prompt: 'consent',
         },
-        redirectTo: `https://up-load-image.vercel.app/home`,
+        redirectTo: `https://beginners-hack-new.vercel.app/home`,
       },
     });
   
