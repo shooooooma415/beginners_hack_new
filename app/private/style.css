@@ -10,7 +10,7 @@
   }
   
   .scroll-container {
-    max-height: 500px; /* 必要に応じて高さを調整 */
+    max-height: 100%; /* 必要に応じて高さを調整 */
     max-width: 100%;
     overflow-y: scroll; /* 縦方向のスクロールを有効にする */
     overflow-x: hidden; /* 横方向のスクロールを無効にする */
