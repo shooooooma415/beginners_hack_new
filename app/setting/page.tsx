@@ -16,7 +16,7 @@ export default function Setting() {
 
     return (
         <div className="settings-container">
-            <h2 className="custom-heading">Logout</h2>
+            <h2 className="custom-heading">設定</h2>
             <div className="button-group">
                 <button className="settings-button" onClick={rootHelp}>
                     ヘルプページ
