@@ -25,54 +25,60 @@ export default function AboutSite() {
                     alt="Next.js Icon"
                 />
                 </Link>
+                <Link href ="https://supabase.com/">
                 <Image
                     className="supabase"
                     src="/imagefile/supabase.png"
                     width={100}
                     height={100}
                     alt="Supabase Icon"
-                    href =
                 />
+                </Link>
+                <Link href ="https://tailwindcss.com/">
                 <Image
                     className="tailwindcss"
                     src="/imagefile/tailwind.png"
                     width={100}
                     height={100}
                     alt="Tailwind CSS Icon"
-                    href =
                 />
+                </Link>
+                <Link href ="https://github.co.jp/">
                 <Image
                     className="github"
                     src="/imagefile/github copy.png"
                     width={100}
                     height={100}
-                    alt="github Icon"
-                    href =
+                    alt="github Icon"  
                 />
+                </Link>
+                <Link  href ="https://vercel.com/docs">
                 <Image
                     className="vercel"
                     src="/imagefile/vercel.png"
                     width={100}
                     height={100}
                     alt="vercel Icon"
-                    href =
                 />
+                </Link>
+                <Link href ="https://ja.react.dev/">
                 <Image
                     className="react"
                     src="/imagefile/React copy.png"
                     width={100}
                     height={100}
                     alt="react Icon"
-                    href =
                 />
+                </Link>
+                <Link href ="https://developers.google.com/maps/documentation/javascript?hl=ja">
                 <Image
                     className="googlemapapi"
                     src="/imagefile/googlemap copy.png"
                     width={100}
                     height={100}
-                    alt="google map api Icon"
-                    href =
+                    alt="google map api Icon"     
                 />
+                </Link>
             </div>
         </>
     );  

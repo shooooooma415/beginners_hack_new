@@ -89,8 +89,8 @@ const MyMapComponent: React.FC = () => {
                 return;
               }
 
-              markers.forEach((marker) => marker.setMap(null));
-              markers = [];
+              // markers.forEach((marker) => marker.setMap(null));
+              // markers = [];
 
               const bounds = new google.maps.LatLngBounds();
 
@@ -111,9 +111,9 @@ const MyMapComponent: React.FC = () => {
                   title: place.name,
                   position: place.geometry.location,
                 });
-
+                place.geometry.location.lat()
                 const infoWindow = new google.maps.InfoWindow({
-                  content: createInfoWindowContent(0, 0), // デフォルト値を設定
+                  content: createInfoWindowContent(place.geometry.location.lat(), place.geometry.location.lng()), // デフォルト値を設定
                   pixelOffset: new google.maps.Size(0, -50),
                 });
 
