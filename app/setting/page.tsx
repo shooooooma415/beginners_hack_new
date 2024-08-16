@@ -24,11 +24,6 @@ export default function Setting() {
                 <button className="settings-button" onClick={rootAbout}>
                     このサイトについて
                 </button>
-                <Link href="/editProfile" passHref> 
-                    <button className="settings-button">
-                        プロフィールを編集
-                    </button>
-                </Link>
             </div>
         </div>
     );
